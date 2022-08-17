@@ -1,0 +1,138 @@
+// @import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200400700&display=swap")
+
+:root
+  --clr-salmon: #ff6c5f
+
+$primary: #16528c
+$secondary: #7cc5cc
+$tertiary: #14475c
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+#body-bg
+  backdrop-filter: blur(30px)
+  background-color: #ffffff67
+  display: flex
+  align-items: center
+  justify-content: center
+
+.section-log-in
+  padding: 50px 0
+
+.section-log-in .container
+  padding: 0 15px
+  max-width: 1000px
+
+  display: flex
+  align-items: center
+  justify-content: center
+
+.section-log-in .choices-container
+  text-align: center
+  width: 100%
+  position: relative
+
+.section-log-in .choices
+  background-color: $primary
+  border-radius: 5px
+  padding: 3rem 0
+  display: flex
+  justify-content: space-around
+  align-items: center
+
+.section-log-in .choice
+  padding: 0 1rem
+  flex: 1
+
+.section-log-in .choice .text
+  color: #eee
+  margin-bottom: 25px
+
+.section-log-in .choice .btn
+  display: inline-block
+  padding: 0.7rem 1.4rem
+  font-family: "Dosis", sans-serif
+  font-weight: 700
+  border: 2px solid #fff
+  background-color: transparent
+  color: #fff
+  border-radius: 3px
+  min-width: 100px
+  font-size: 16px
+  cursor: pointer
+  transition: all 0.15s linear
+
+.section-log-in .choice .btn:hover
+  background-color: #fff
+  color: $primary
+
+.section-log-in .forms-container
+  position: absolute
+  min-height: 140%
+  width: calc(50% - 2rem)
+  background-color: #fff
+  border-radius: 5px
+  top: 50%
+  transform: translateY(-50%) translateX(calc(0px + 1rem))
+  transition: all 0.3s linear
+  overflow: hidden
+
+  /* display: grid */
+  /* grid-template-columns: 100% 100% */
+
+.section-log-in .choices-container.login-step .forms-container
+  transform: translateY(-50%) translateX(calc(100% + 3rem))
+
+.section-log-in .forms-container .form
+  padding: 2rem 1.5rem
+  display: flex
+  flex-direction: column
+  justify-content: center
+
+.section-log-in .forms-container .form-sign-up, .section-log-in .choices-container.login-step .forms-container .form-login
+  display: flex
+
+.section-log-in .choices-container.login-step .forms-container .form-sign-up, .section-log-in .forms-container .form-login
+  display: none
+
+.section-log-in .forms-container .form .text-form
+  text-transform: uppercase
+  font-size: 28px
+  color: var(--clr-salmon)
+  margin-bottom: 1.5rem
+
+.section-log-in .forms-container .form .btn:hover
+  box-shadow: none
+  color: var(--clr-salmon)
+  background-color: transparent
+
+@media only screen and (max-width: 350px)
+  .section-log-in .forms-container
+    position: static
+    transform: initial !important
+    transition: none !important
+
+  .section-log-in .choices
+    padding-bottom: 80px
+
+  .section-log-in .forms-container
+    width: 90%
+    position: relative
+    left: 50%
+    transform: translate(-50%, -25px) !important
+
+h1
+  color: $primary
+  letter-spacing: 2px
+
+.p-button
+  background-color: $primary !important
+  font-weight: bold
+  letter-spacing: 2px
+
+button:hover
+  background-color: $primary !important
+  color: $primary !important

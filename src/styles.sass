@@ -1,1 +1,139 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@fontsource/fredoka-one"
+@import "~@fontsource/montserrat"
+
+$primary: #16528c
+$secondary: #7c9fcc
+$tertiary: #00a9c0
+$purple: #6a2c6b
+$b-radius: 1px solid $secondary
+
+*
+    font-family: 'Montserrat'
+    box-sizing: border-box
+
+body
+    background-image: url('assets/imgs/background.jpg')
+    background-size: cover
+    background-repeat: no-repeat
+    height: 100vh
+
+.p-datatable .p-datatable-scrollable-header
+    background: none !important
+
+.p-datatable table
+    border-collapse: separate !important
+    border-spacing: 0 0.5em !important
+
+.p-datatable table thead tr
+    background: #F5F5F5 !important
+    margin-bottom: .5em
+
+.p-datatable thead th
+    font-size: 1rem !important
+    background: transparent !important
+    color: #666666 !important
+    font-weight: 900 !important
+
+.p-datatable table tbody tr
+    height: 70px
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px
+    border-radius: 15px !important
+    margin-bottom: .5em
+
+.p-datatable table tbody tr td
+    border-top: $b-radius !important
+    border-bottom: $b-radius !important
+    color: #8d8c8c
+    font-weight: 500
+    padding: .25em 1em !important
+
+.p-datatable table tbody tr td:first-of-type
+    border-radius: 15px 0 0 15px
+    border-left: $b-radius
+
+.p-datatable table tbody tr td:last-of-type
+    border-radius: 0 15px 15px 0
+    border-right: $b-radius
+    font-size: medium
+
+.p-datatable table tbody tr:hover
+    box-shadow: 0px 4px 4px -3px rgba(0, 0, 0, 0.25)
+
+.p-datatable table tbody tr:hover td
+    background-color: $primary
+    color: white !important
+
+.p-datatable-footer
+    padding: 0 !important
+    border: none !important
+
+input:not(:focus)::placeholder
+    color: transparent !important
+
+
+input
+    width: 100%
+    padding: 1em !important
+
+
+input:disabled
+    background-color: white !important
+
+
+label
+    color: $primary
+    font-weight: 500
+    font-size: medium
+
+
+.p-float-label input:focus ~ label, .p-float-label .p-inputwrapper-focus ~ label
+    color: $primary
+
+
+.p-inputtext:enabled:focus 
+    box-shadow: inset 0 0 0 1px $primary
+  
+
+.p-inputtext:enabled:focus 
+  outline: 0 none
+  outline-offset: 0
+  border-color: $primary !important
+
+
+p-inputnumber, p-calendar, p-dropdown, .p-dropdown
+    padding: 0 !important
+    width: 100% !important
+    border-width: 0 0 1px !important
+    border-color: $secondary !important
+
+
+p-inputnumber > span, p-calendar > span
+    width: 100% !important
+
+
+.p-input-filled .p-inputtext:enabled:focus
+    background-color: ghostwhite
+
+.button
+    // background: $purple !important
+
+.text-border
+    font-size: 4.5em !important
+    font-weight: bolder !important
+    -webkit-text-fill-color: #ffffff0e
+    -webkit-text-stroke-width: 2px
+    -webkit-text-stroke-color: $tertiary
+
+h1, h2, h3
+    font-family: 'Fredoka One'
+    color: $secondary
+
+.p-button-label
+    font-weight: 900
+
+.p-button-label:hover, .p-button:hover .p-button-icon
+    filter: blur(2px)
+
+.p-button:not(.p-button-text)
+    background-color: $tertiary !important

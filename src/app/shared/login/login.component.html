@@ -1,0 +1,79 @@
+<div id="body-bg" class="w-100 h-100">
+    <section class="section-log-in w-100 d-flex justify-content-center">
+        <div class="container col-lg-10">
+      
+          <div class="choices-container" id="choices-container">
+            <div class="choices row">
+              <div class="choice me-auto col-sm-6 sign-up">
+                <h2 class="text">APPRENANT?</h2>
+                <button class="btn btn-sign-up" id="btn-sign-up">REDIRECTION</button>
+              </div>
+              <div class="choice  ms-auto col-sm-6 login">
+                <h2 class="text">PROFESSIONNEL?</h2>
+                <button class="btn btn-login" id="btn-login">REDIRECTION</button>
+              </div>
+            </div>
+      
+            <div class="forms-container">
+              <form class="form form-sign-up">
+                <h1 class="mb-3">BIENVENUE</h1>
+                <div class="field m-3">
+                    <span class="p-float-label p-input-filled">
+                        <input name="username" [(ngModel)]="username" placeholder="Nom d'utilisateur"
+                            class="form-control {{submitted && !username ? 'ng-invalid ng-dirty' : ''}}" type="text"
+                            pInputText>
+                        <label for="inputtext"><i class="pi pi-at"></i> Username</label>
+                    </span>
+                    <small *ngIf="submitted && !username" id="username-help" class="p-error">Le nom d'utilisateur est
+                        requis.</small>
+                </div>
+                <div class="field m-3">
+                    <span class="p-float-label p-input-filled">
+                        <input [feedback]="false" name="password" [(ngModel)]="password"
+                            class="form-control {{submitted && !password ? 'ng-invalid ng-dirty' : ''}}"
+                            placeholder="Mot de passe" type="password" pPassword toggleMask="true">
+                        <label for="inputtext"><i class="pi pi-lock"></i> Password</label>
+                    </span>
+                    <small *ngIf="submitted && !password" id="username-help" class="p-error">Le mot de passe est
+                        requis.</small>
+                </div>
+                <div class="field m-3 py-2">
+                    <div class="d-flex">
+                        <button [routerLink]="['/']" iconPos="right" pButton label="CONNEXION" icon="pi pi-sign-in" type="submit" class="p-button p-button-lg flex-grow-1" id="login"></button>
+                    </div>
+                </div>
+              </form>
+              <form class="form form-login">
+                <h1 class="mb-3">BIENVENUE</h1>
+                <div class="field m-3">
+                    <span class="p-float-label p-input-filled">
+                        <input name="username" [(ngModel)]="username" placeholder="Nom d'utilisateur"
+                            class="form-control {{submitted && !username ? 'ng-invalid ng-dirty' : ''}}" type="text"
+                            pInputText>
+                        <label for="inputtext"><i class="pi pi-at"></i> Username</label>
+                    </span>
+                    <small *ngIf="submitted && !username" id="username-help" class="p-error">Le nom d'utilisateur est
+                        requis.</small>
+                </div>
+                <div class="field m-3">
+                    <span class="p-float-label p-input-filled">
+                        <input [feedback]="false" name="password" [(ngModel)]="password"
+                            class="form-control {{submitted && !password ? 'ng-invalid ng-dirty' : ''}}"
+                            placeholder="Mot de passe" type="password" pPassword toggleMask="true">
+                        <label for="inputtext"><i class="pi pi-lock"></i> Password</label>
+                    </span>
+                    <small *ngIf="submitted && !password" id="username-help" class="p-error">Le mot de passe est
+                        requis.</small>
+                </div>
+                <div class="field m-3 py-2">
+                    <div class="d-flex">
+                        <button [routerLink]="['/']" iconPos="right" pButton label="CONNEXION" icon="pi pi-sign-in" type="submit" class="p-button p-button-lg flex-grow-1" id="login"></button>
+                    </div>
+                </div>
+              </form>
+            </div>
+          </div>
+      
+        </div>
+      </section>
+</div>

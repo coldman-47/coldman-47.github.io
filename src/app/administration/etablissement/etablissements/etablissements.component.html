@@ -1,0 +1,51 @@
+<div class="h-100">
+    <h1 class="text-center p-5 titre mb-0">Etablissements</h1>
+    <div class="row justify-content-center mx-0 overflow-y-hidden rounded"  style="height: calc(100% - 125.92px);">
+        <div class="col-lg-7 overflow-y-auto h-100">
+            <div class="h-100 bg-white fadeinup animation-duration-500" style="border-radius: 15px">
+                <p-card>
+                    <ng-template pTemplate="subtitle">
+                        <div class="px-3 col-lg-6">
+                            <span class="p-float-label p-input-filled">
+                                <input class="form-control p-inputtext-sm" placeholder="Recherche" type="text" pInputText>
+                                <label for=""><i class="pi pi-search"></i> &nbsp;Recherche</label>
+                            </span>
+                        </div>
+                    </ng-template>
+                    <div class="px-3">
+                        <p-table responsiveLayout="scroll" [value]="etablissements">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>NOM</th>
+                                    <th>Téléphone</th>
+                                    <th>Email</th>
+                                    <th>Modifier</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-e let-i="rowIndex">
+                                <tr class="{{i === active ? 'selected' : ''}}">
+                                    <td class="text-teal-500">{{e.nom | uppercase}}</td>
+                                    <td class="text-pink-500">{{e.telephone | phone}}</td>
+                                    <td class="text-purple-700">{{e.email}}</td>
+                                    <td><button (click)="selected = e; active =  active ? null : i; edit = !edit" pButton pRipple type="button"
+                                            icon="pi pi-pencil"
+                                            class="p-button-icon p-button-rounded p-button-text text-orange-500"></button></td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="summary">
+                                <p-paginator *ngIf="pagination" (onPageChange)="getEtablissements($event.page + 1)" [alwaysShow]="false"
+                                    [totalRecords]="pagination.totalElements" [rows]="pagination.limit"></p-paginator>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+        <div class="col-lg-4 h-100 rounded">
+            <app-new-etablissement *ngIf="!edit else edition" class="fadeinup h-100 animation-duration-1000"></app-new-etablissement>
+            <ng-template #edition>
+                <app-edit-etablissement class="fadeindown animation-duration-500" (status)="cancel($event)" [etablissement]="selected!"></app-edit-etablissement>
+            </ng-template>
+        </div>
+    </div>
+</div>

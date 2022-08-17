@@ -1,0 +1,124 @@
+$primary: #16528c
+$secondary: #7c9fcc
+$tertiary: #14475c
+$purple: #6a2c6b
+
+#sidebar
+    width: 223px
+    height: 100%
+    background: linear-gradient(#16538ca1 30%, #7c9fcc)
+    backdrop-filter: blur(25px)
+    z-index: 1
+
+#sidebar header
+    width: 100%
+    height: 237px
+    box-shadow: 0px 0 2.5px rgba(0, 0, 0, 0.25)
+    border-radius: 0px 0px 0px 100px
+    background: $primary
+
+#sidebar header strong
+    font-size: 18px
+    line-height: 21px
+    color: $tertiary
+    text-align: center
+    font-weight: bold
+
+p-avatar
+    width: 100px
+    height: 100px
+
+:host ::ng-deep
+    .p-avatar
+        height: 100% !important
+        width: 100% !important
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+
+    .p-avatar-image
+        height: 64px
+        width: 64px
+
+a
+    text-decoration: none
+
+#republic
+    font-family: 'Rekha'
+    font-size: 16px
+
+#devise
+    font-family: 'Rekha'
+    font-size: 14px
+
+#main
+    width: calc(100% - 223px)
+    height: 100%
+    z-index: 2
+
+#main > div
+    background: $primary
+    height: calc(100% - 65px)
+
+#main header
+    background: linear-gradient(90deg, $primary, #7cb3cc91 )
+    height: 65px
+    z-index: 3
+    color: white
+
+#mainBody
+    background-image: url('../../../assets/imgs/background.jpg')
+    background-size: cover
+    border-radius: 20px 0px 0px 0px
+
+#mainBody > div
+    border-radius: 20px 0px 0px 0px
+    background: rgba(255, 255, 255, 0.5)
+    backdrop-filter: blur(100px)
+
+.navs
+    margin: .75em auto
+    padding: .75em
+    border-radius: 10px
+    width: calc(100% - 2em)
+    color: white
+    font-weight: 900
+    display: flex
+    align-items: center
+    cursor: pointer
+
+.active .navs, .navs:hover
+    // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+    background: #a3cdf5
+    border: none !important
+    color: $primary
+    font-weight: bold
+
+.navs:hover
+    filter: blur(1px)
+    color: white
+
+#content
+    background: rgba(255, 255, 255, 0.25)
+    border-radius: 10px
+    transform: scale(0.95, 0.91)
+
+:host ::ng-deep 
+    .titre
+        font-size: 2.5em !important
+    .titre, h2
+        text-transform: uppercase
+        font-weight: 500
+        letter-spacing: 0.05em
+        color: $tertiary
+
+    .p-card
+        box-shadow: none
+        border-radius: 10px
+
+h1
+    text-align: center
+    font-weight: 500
+    color: $purple
+    text-transform: uppercase
+    letter-spacing: 2px
+    font-size: 35px
+    margin: 0

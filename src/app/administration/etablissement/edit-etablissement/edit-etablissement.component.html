@@ -1,0 +1,131 @@
+<form class="h-100 fadeindown animation-duration-500 overflow-y-auto" (submit)="update()">
+    <p-card class="rounded">
+        <ng-template pTemplate="title">
+            <h2 class="text-center" style="font-size: 1.5em">Mise à jour</h2>
+        </ng-template>
+        <div class="field mb-5 px-5">
+            <span class="p-float-label p-input-filled">
+                <input [(ngModel)]="etablissement.nom" name="nomEtablissement"
+                    placeholder="Nom de l'etablissement"
+                    class="form-control {{submitted && !etablissement.nom ? 'ng-invalid ng-dirty' : ''}}"
+                    type="text" pInputText>
+                <label><i class="pi pi-building"></i> &nbsp;Nom de l'etablissement</label>
+            </span>
+            <small *ngIf="submitted && !etablissement.nom" id="username-help" class="p-error">Le nom de
+                l'etablissement
+                est
+                requis.</small>
+        </div>
+        <div class="field my-5 px-5">
+            <span class="p-float-label p-input-filled">
+                <input [(ngModel)]="etablissement.email" name="emailEtablissement"
+                    placeholder="Adresse electronique"
+                    class="form-control {{submitted && !etablissement.email ? 'ng-invalid ng-dirty' : ''}}"
+                    type="email" pInputText>
+                <label for="inputtext"><i class="pi pi-at"></i> &nbsp;Email de l'etablissement</label>
+            </span>
+            <small *ngIf="submitted && !etablissement.email" id="username-help" class="p-error">Une adresse
+                email valide est requise.</small>
+        </div>
+        <div class="field my-5 px-5">
+            <span class="p-float-label p-input-filled">
+                <input [(ngModel)]="etablissement.telephone" name="numeroEtablissement"
+                    placeholder="Numéro de téléphone"
+                    class="form-control {{submitted && !etablissement.telephone ? 'ng-invalid ng-dirty' : ''}}"
+                    type="tel" pInputText>
+                <label for="inputtext"><i class="pi pi-phone"></i> &nbsp;Téléphone de l'etablissement</label>
+            </span>
+            <small *ngIf="submitted && !etablissement.telephone" id="username-help" class="p-error">Un
+                numéro
+                de téléphone est requis.</small>
+        </div>
+        <div class="field px-5" *ngIf="!loginPage">
+            <p-fileUpload #img [chooseIcon]="'pi pi-image'" [cancelIcon]="''" [accept]="'image/*'"
+                (onRemove)="logo = undefined" chooseLabel="Image" cancelLabel="Annuler" (onSelect)="getImg($event)"
+                [showUploadButton]="false" name="image" [multiple]="false"></p-fileUpload>
+        </div>
+        <div class="field px-5">
+            <p-accordion>
+                <p-accordionTab>
+                    <ng-template pTemplate="header">
+                        <h3>Responsable</h3>
+                    </ng-template>
+                    <div class="field mb-5 px-5">
+                        <span class="p-float-label p-input-filled">
+                            <input [(ngModel)]="etablissement.responsable!.nom" name="nom"
+                                placeholder="Nom du responsable"
+                                class="form-control {{submitted && !etablissement.responsable?.nom ? 'ng-invalid ng-dirty' : ''}}"
+                                type="text" pInputText>
+                            <label for="inputtext"><i class="pi pi-user"></i> &nbsp;Nom du responsable</label>
+                        </span>
+                        <small *ngIf="submitted && !etablissement.responsable?.nom" id="username-help" class="p-error">Le nom de
+                            l'responsable
+                            est
+                            requis.</small>
+                    </div>
+                    <div class="field my-5 px-5">
+                        <span class="p-float-label p-input-filled">
+                            <input [(ngModel)]="etablissement.responsable!.prenom" name="prenom"
+                                placeholder="Prénom du responsable"
+                                class="form-control {{submitted && !etablissement.responsable?.prenom ? 'ng-invalid ng-dirty' : ''}}"
+                                type="text" pInputText>
+                            <label for="inputtext"><i class="pi pi-user"></i> &nbsp;Prénom du responsable</label>
+                        </span>
+                        <small *ngIf="submitted && !etablissement.responsable?.prenom" id="username-help" class="p-error">Le
+                            prénom du responsable
+                            est
+                            requis.</small>
+                    </div>
+                    <div class="field my-5 px-5">
+                        <span class="p-float-label p-input-filled">
+                            <input [(ngModel)]="etablissement.responsable!.email" name="email"
+                                placeholder="Email du responsable"
+                                class="form-control {{submitted && !etablissement.responsable?.email ? 'ng-invalid ng-dirty' : ''}}"
+                                type="email" pInputText>
+                            <label for="inputtext"><i class="pi pi-at"></i> &nbsp;Email du responsable</label>
+                        </span>
+                        <small *ngIf="submitted && !etablissement.responsable?.email" id="username-help" class="p-error">L'email
+                            du responsable
+                            est
+                            requis.</small>
+                    </div>
+                    <div class="field my-5 px-5">
+                        <span class="p-float-label p-input-filled">
+                            <input [(ngModel)]="etablissement.responsable!.telephone" name="telephone"
+                                placeholder="Téléphone du responsable"
+                                class="form-control {{submitted && !etablissement.responsable?.telephone ? 'ng-invalid ng-dirty' : ''}}"
+                                type="tel" pInputText>
+                            <label for="inputtext"><i class="pi pi-phone"></i> &nbsp;Téléphone du responsable</label>
+                        </span>
+                        <small *ngIf="submitted && !etablissement.responsable?.telephone" id="username-help" class="p-error">Le
+                            téléphone du responsable
+                            est
+                            requis.</small>
+                    </div>
+                    <div class="field my-5 px-5">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p-radioButton name="sexe" inputId="male" value="M"
+                                    [(ngModel)]="etablissement.responsable!.sexe"></p-radioButton>
+                                <label for="male">&nbsp;Homme</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p-radioButton inputId="female" name="sexe" value="F"
+                                    [(ngModel)]="etablissement.responsable!.sexe"></p-radioButton>
+                                <label for="female">&nbsp;Femme</label>
+                            </div>
+                        </div>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+        </div>
+        <ng-template pTemplate="footer">
+            <div class="field mx-5">
+                <div class="d-flex">
+                    <button pButton class="p-button p-button-lg flex-grow-1 button"
+                        label="Modifier"></button>
+                </div>
+            </div>
+        </ng-template>
+    </p-card>
+</form>
