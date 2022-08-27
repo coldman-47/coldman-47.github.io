@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   backendUrl: 'https://backenddigischool.herokuapp.com/api/'
+  // backendUrl: 'https://e076-41-83-49-196.ngrok.io/api/'
 };
 
 /*

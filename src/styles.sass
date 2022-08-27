@@ -80,6 +80,8 @@ input
 input:disabled
     background-color: white !important
 
+.p-component.p-dropdown
+    border: none !important
 
 label
     color: $primary
@@ -90,12 +92,15 @@ label
 .p-float-label input:focus ~ label, .p-float-label .p-inputwrapper-focus ~ label
     color: $primary
 
+.p-float-label > label
+    display: flex
+    align-items: center
 
-.p-inputtext:enabled:focus 
+.p-inputtext:enabled:focus, p-dropdown, .p-dropdown 
     box-shadow: inset 0 0 0 1px $primary
   
 
-.p-inputtext:enabled:focus 
+.p-inputtext:enabled:focus, p-dropdown, .p-dropdown 
   outline: 0 none
   outline-offset: 0
   border-color: $primary !important
@@ -113,7 +118,7 @@ p-inputnumber > span, p-calendar > span
 
 
 .p-input-filled .p-inputtext:enabled:focus
-    background-color: ghostwhite
+    background-color: #fafafa !important
 
 .button
     // background: $purple !important

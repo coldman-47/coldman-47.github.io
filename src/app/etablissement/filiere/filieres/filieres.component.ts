@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Filiere } from 'src/app/core/models/filiere/filiere';
 import { FiliereService } from 'src/app/core/services/filiere/filiere.service';
+import { ClasseService } from '../../../core/services/classe/classe.service';
+import { Classe } from '../../../core/models/classe/classe';
 
 @Component({
   selector: 'app-filieres',
@@ -9,24 +10,27 @@ import { FiliereService } from 'src/app/core/services/filiere/filiere.service';
 })
 export class FilieresComponent implements OnInit {
   cycles = [];
+  activeTab = 'classes';
+  display = false;
+  items = [
+    { label: 'Filières', icon: 'pi pi-fw pi-home', id: 'filieres' },
+    { label: 'Classes', icon: 'pi pi-fw pi-calendar', id: 'classes' },
+  ];
+  classes: Classe[] = [];
 
-  constructor(srv: FiliereService) {
-    srv.getCycles().subscribe({
-      next: (_res: any) => {
-        this.cycles = _res.map((_cycle: any) => {
+  constructor(srv: FiliereService, classeSrv: ClasseService) {
+    srv.getCycles();
+    srv.cycles.subscribe({
+      next: (cycles: any) => {
+        this.cycles = cycles.map((_cycle: any) => {
           _cycle.icon = 'pi pi-book';
           if (_cycle.niveaux.length)
             _cycle.items = _cycle.niveaux.map((_niveau: any) => {
               let { label } = _niveau;
-              let command = () => {
-                console.log(_niveau);
-                
-                // srv.getNiveaux(_cycle._id).subscribe({
-                //   next: (_filiere) => {
-                //     console.log(_filiere);
-                //   },
-                // });
-              };
+              let command = () =>
+                classeSrv.getClassesByGrade(_niveau._id).subscribe({
+                  next: (_res: any) => this.classes = _res,
+                });
               return { label, command };
             });
           return _cycle;

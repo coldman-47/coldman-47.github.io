@@ -1,18 +1,28 @@
-<div class="row p-6 justify-content-evenly h-100">
-    <div class="col-3 bg-white rounded overflow-y-auto h-100">
-        <h2 class="p-3">Cycles</h2>
-        <p-panelMenu orientation="vertical" [model]="cycles"></p-panelMenu>
-        <!-- <p-card>
-            <div class="d-flex justify-content-center">
-            </div>
-        </p-card> -->
+<div class="row p-5 justify-content-evenly h-100">
+    <div class="col-2 bg-white rounded overflow-y-auto h-100">
+        <p-card>
+            <h2 class="p-3">Cycles</h2>
+            <p-panelMenu orientation="vertical" [model]="cycles"></p-panelMenu>
+        </p-card>
     </div>
-    <div class="col-8 bg-white rounded d-flex flex-column">
-        <h2 class="text-center p-3">Classes</h2>
-        <div class="m-auto d-flex justify-content-center align-items-center flex-column">
-            <img src="assets/imgs/empty.jpg" width="600px" alt="">
-            <h3 class="">Aucune filière n'a encore été selectionnée</h3>
-        </div>
+    <div class="col-10 rounded d-flex flex-column ps-4 py-0">
+        <p-card>
+            <div *ngIf="activeTab === 'filieres' else other" class="m-auto d-flex justify-content-center align-items-center flex-column">
+                <img src="assets/imgs/empty.jpg" width="600px" alt="">
+                <h3 class="">Aucune filière n'a encore été selectionnée</h3>
+            </div>
+            <ng-template #other>
+                <app-classes [classes]="classes"></app-classes>
+            </ng-template>
+        </p-card>
         
     </div>
 </div>
+            <!-- <nav class="p-3" mat-tab-nav-bar [tabPanel]="tabPanel">
+                <a [active]="activeTab === link.id" class="text-black" (click)="activeTab = link.id" mat-tab-link
+                    *ngFor="let link of items"> {{link.label}} </a>
+            </nav>
+            <mat-tab-nav-panel #tabPanel>
+    
+                
+            </mat-tab-nav-panel> -->

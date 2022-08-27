@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,7 @@ export class LoginComponent implements OnInit {
   password?: string;
   submitted = false;
 
-  constructor() {}
+  constructor(private authSrv: AuthService, private messageSrv: MessageService) {}
 
   ngOnInit(): void {
     const choicesElmCont = document.getElementById("choices-container");
@@ -25,6 +27,20 @@ export class LoginComponent implements OnInit {
     btnLogin!.addEventListener("click", function () {
       choicesElmCont!.classList.add("login-step");
     });
+
+    this.authSrv.conError.subscribe((error) =>
+      this.messageSrv.add({
+        severity: 'error',
+        summary: 'La connexion a échoué!',
+        detail: error,
+      })
+    );
+  }
+
+  login(admin = false) {
+    let username = this.username!;
+    let password = this.password!;
+    this.authSrv.login({ username, password }, admin);
   }
 
 }

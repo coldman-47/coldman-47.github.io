@@ -1,0 +1,30 @@
+<div class="container-fluid overflow-y-scroll">
+    <div class="px-3">
+        <p-steps [(activeIndex)]="activeIndex" [model]="item"></p-steps>
+    </div>
+    <div class="row justify-content-between">
+        <ng-container *ngIf="activeIndex === 0 else boom">
+            <div class="col-xl-8 px-5">
+                <div class="surface-50 row m-0">
+                    <div class="col-lg-4 p-3" *ngFor="let class of classes">
+                        <p-card subheader="{{class.annee}}" (click)="selected = class; activeIndex = activeIndex+1">
+                            <ng-template pTemplate="title">{{class.label}}</ng-template>
+                        </p-card>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 px-5">
+                <app-new-classe [filieres]="filieres" [cycles]="cycles"></app-new-classe>
+            </div>
+        </ng-container>
+        <ng-template #boom>
+            <app-apprenants [apprenants]="selected.apprenants"></app-apprenants>
+        </ng-template>
+    </div>
+    <div class="container-fluid d-flex">
+        <button icon="pi pi-chevron-left" *ngIf="activeIndex>0" (click)="activeIndex = activeIndex-1" class="me-auto"
+            pButton label="Retour"></button>
+        <!-- <button icon="pi pi-chevron-right" iconPos="right" *ngIf="activeIndex<2" (click)="activeIndex = activeIndex+1"
+            class="ms-auto" pButton label="Suivant"></button> -->
+    </div>
+</div>

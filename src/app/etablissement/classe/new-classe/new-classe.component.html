@@ -1,0 +1,56 @@
+<form class="surface-50 p-3 rounded-3" (submit)="create()">
+    <h3 class="text-center">Nouvelle</h3>
+    <div class="field my-4">
+        <span class="p-float-label">
+            <input name="label" [(ngModel)]="classe.label" placeholder="Nom d'utilisateur"
+                class="form-control {{submitted && !classe.label ? 'ng-invalid ng-dirty' : ''}}" type="text"
+                pInputText>
+            <label for="inputtext"><span class="material-icons-outlined">school</span> &nbsp;&nbsp;Libellé</label>
+        </span>
+        <small *ngIf="submitted && !classe.label" id="username-help" class="p-error">Le libellé de la classe est
+            requis.</small>
+    </div>
+    <div class="field my-4">
+        <span class="p-float-label">
+            <p-dropdown #_cycle (onChange)="getNiveaux($event)" [options]="cycles" optionLabel="label" optionValue="_id" name="username" placeholder="Cycles"
+                class="form-control {{submitted && !classe.filiere ? 'ng-invalid ng-dirty' : ''}}"></p-dropdown>
+            <label for="inputtext"><i class="pi pi-book"></i> &nbsp;&nbsp;Cycles</label>
+        </span>
+        <small *ngIf="submitted && !classe.filiere" id="username-help" class="p-error">Le libellé de la classe est
+            requis.</small>
+    </div>
+    <div class="field my-4">
+        <span class="p-float-label">
+            <p-dropdown [disabled]="!_cycle.value" name="niveaux" [options]="niveaux" optionLabel="label" optionValue="_id" [(ngModel)]="classe.niveau" placeholder="Nom d'utilisateur"
+                class="form-control {{submitted && !classe.niveau ? 'ng-invalid ng-dirty' : ''}}" type="text"
+                pInputText></p-dropdown>
+            <label for="inputtext"><span class="material-icons-outlined">anchor</span> &nbsp;&nbsp;Niveau</label>
+        </span>
+        <small *ngIf="submitted && !classe.niveau" id="username-help" class="p-error">Le libellé de la classe est
+            requis.</small>
+    </div>
+    <div class="field my-4">
+        <span class="p-float-label">
+            <p-dropdown [disabled]="!_cycle.value" [options]="filieres" optionLabel="label" optionValue="_id" name="username" [(ngModel)]="classe.filiere" placeholder="Nom d'utilisateur"
+                class="form-control {{submitted && !classe.filiere ? 'ng-invalid ng-dirty' : ''}}"></p-dropdown>
+            <label for="inputtext"><i class="pi pi-hashtag"></i> &nbsp;&nbsp;Filière</label>
+        </span>
+        <small *ngIf="submitted && !classe.filiere" id="username-help" class="p-error">Le libellé de la classe est
+            requis.</small>
+    </div>
+    <div class="field my-4">
+        <span class="p-float-label">
+            <p-inputNumber name="username" [(ngModel)]="classe.annee" placeholder="Année"
+                class="form-control {{submitted && !classe.annee ? 'ng-invalid ng-dirty' : ''}}" type="number" [min]="2000"
+                ></p-inputNumber>
+            <label for="inputtext"><i class="pi pi-calendar"></i> &nbsp;&nbsp;Année</label>
+        </span>
+        <small *ngIf="submitted && !classe.annee" id="username-help" class="p-error">Le libellé de la classe est
+            requis.</small>
+    </div>
+    <div class="field my-4 py-2">
+        <div class="d-flex">
+            <button pButton label="CRÉER" icon="pi pi-plus" type="submit" class="p-button p-button-lg flex-grow-1"></button>
+        </div>
+    </div>
+</form>
