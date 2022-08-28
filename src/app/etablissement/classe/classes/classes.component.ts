@@ -14,12 +14,13 @@ export class ClassesComponent implements OnInit {
   cycles: any = [];
   @Input() classes: any = [];
   item = [
-    { label: 'Classes' },
-    { label: 'Apprenants' },
+    { label: 'Filères' },
+    { label: 'Classe' },
     { label: 'Details' },
   ];
   activeIndex = 0;
   selected: any;
+  display = false;
 
   constructor(private srv: ClasseService, private filiereSrv: FiliereService) {
     filiereSrv.getFilieres().subscribe({

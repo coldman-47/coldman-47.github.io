@@ -12,6 +12,10 @@ export class ApprenantService {
 
   constructor(private http: HttpClient) { }
 
+  getApprenant(id: string){
+    return this.http.get(this.baseUrl+'/'+id);
+  }
+
   addApprenant(apprenant: Apprenant){
     return this.http.post(this.baseUrl+'/add', apprenant);
   }

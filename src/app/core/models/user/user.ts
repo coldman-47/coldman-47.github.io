@@ -9,4 +9,5 @@ export class User {
   adresse?: string;
   etablissement?: string | Etablissement;
   sexe?: string;
+  photo?: any;
 }

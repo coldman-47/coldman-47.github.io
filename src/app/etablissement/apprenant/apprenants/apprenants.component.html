@@ -1,13 +1,18 @@
 <div class="row justify-content-between">
-    <div class="col-xl-8 px-5">
+    <div class="col-xl-8 px-3">
         <div class="surface-50 row m-0">
-            <div class="col-lg-4 p-3">
-                <p-card>
+            <div class="col-lg-4 p-3" *ngFor="let student of apprenants">
+                <p-card header="{{student.prenom+' '+student.nom}}">
+                    <!-- {{student | json}} -->
+                    <ng-template pTemplate="footer">
+                        <i class="pi pi-phone"> : {{student.telephone | phone}}</i><hr>
+                        <i class="pi pi-at"> : {{student.email}}</i><br>
+                    </ng-template>
                 </p-card>
             </div>
         </div>
     </div>
-    <div class="col-xl-4 px-5">
-        <app-new-apprenant></app-new-apprenant>
+    <div class="col-xl-4 px-3">
+        <app-new-apprenant classe="h-100" [classeId]="classe._id"></app-new-apprenant>
     </div>
 </div>

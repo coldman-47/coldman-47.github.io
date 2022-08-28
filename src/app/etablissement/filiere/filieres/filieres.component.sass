@@ -46,3 +46,15 @@ $tertiary: #00a9c0
         padding-left: 2.5em !important
     .p-panelmenu-panel
         box-shadow: none
+
+    app-classes > p-card, app-classes > p-card > .p-card
+        height: 100% !important
+        overflow-y: hidden
+    app-classes > p-card, app-classes > p-card > .p-card > .p-card-body
+        overflow-y: hidden
+        // height: calc(100% - 83.1892px)
+        height: calc(100% - 86px)
+    app-classes > p-card, app-classes > p-card > .p-card > .p-card-body > .p-card-content
+        padding: 0
+        height: calc(100% - 57.1783px)
+        overflow-y: scroll

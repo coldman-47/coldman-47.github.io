@@ -1,0 +1,9 @@
+<div class="h-100 w-100">
+    <div style="margin-bottom: -8em;" class="p-5 d-flex justify-content-end flex-wrap">
+        <button (click)="display=true" pButton icon="pi pi-plus"></button>
+    </div>
+    <full-calendar id="calendar" #calendar (click)="toggleView($event)" [options]="calendarOptions" class="p-5"></full-calendar>
+</div>
+<p-dialog position="right" [modal]="true" [(visible)]="display">
+    <app-new-cours></app-new-cours>
+</p-dialog>
