@@ -3,6 +3,8 @@ import { FiliereService } from '../../../core/services/filiere/filiere.service';
 import { Filiere } from '../../../core/models/filiere/filiere';
 import { ClasseService } from '../../../core/services/classe/classe.service';
 
+
+
 @Component({
   selector: 'app-classes',
   templateUrl: './classes.component.html',

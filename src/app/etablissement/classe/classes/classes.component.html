@@ -41,5 +41,5 @@
     </ng-template>
 </p-card>
 <p-dialog [(visible)]="display" [modal]="true" [style]="{'height': '100%', 'width': '100%'}">
-    <app-cours *ngIf="selected" [classeId]="selected._id"></app-cours>
+    <app-cours *ngIf="display" [classe]="selected"></app-cours>
 </p-dialog>

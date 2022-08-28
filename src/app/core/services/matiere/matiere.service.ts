@@ -11,11 +11,7 @@ export class MatiereService {
 
   constructor(private http: HttpClient) { }
 
-  getMatieres(){
-    return this.http.get(this.baseUrl);
-  }
-
-  getUes(id: string){
-    return this.http.get(environment.backendUrl+`ue/classe/${id}`);
+  getMatieres(UeId: string){
+    return this.http.get(this.baseUrl+'/ue/'+UeId);
   }
 }

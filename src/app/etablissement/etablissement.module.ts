@@ -30,6 +30,7 @@ import { EtablissementRoutingModule } from './etablissement-routing.module';
 import { FilieresComponent } from './filiere/filieres/filieres.component';
 import { NewPersonnelComponent } from './personnel/new-personnel/new-personnel.component';
 import { PersonnelComponent } from './personnel/personnel/personnel.component';
+import { EditCoursComponent } from './cours/edit-cours/edit-cours.component';
 ;
 
 // FullCalendarModule.registerPlugins([
@@ -50,7 +51,8 @@ import { PersonnelComponent } from './personnel/personnel/personnel.component';
     EnseignantsComponent,
     NewEnseignantComponent,
     CoursComponent,
-    NewCoursComponent
+    NewCoursComponent,
+    EditCoursComponent
   ],
   imports: [
     CommonModule,

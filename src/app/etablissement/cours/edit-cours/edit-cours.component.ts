@@ -1,18 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Cours } from 'src/app/core/models/cours/cours';
-import { MatiereService } from '../../../core/services/matiere/matiere.service';
-import { Ue } from '../../../core/models/ue/ue';
-import { EnseignantService } from 'src/app/core/services/enseignant/enseignant.service';
 import { Enseignant } from 'src/app/core/models/enseignant/enseignant';
-import { CoursService } from '../../../core/services/cours/cours.service';
+import { Ue } from 'src/app/core/models/ue/ue';
+import { CoursService } from 'src/app/core/services/cours/cours.service';
+import { EnseignantService } from 'src/app/core/services/enseignant/enseignant.service';
+import { MatiereService } from 'src/app/core/services/matiere/matiere.service';
 
 @Component({
-  selector: 'app-new-cours',
-  templateUrl: './new-cours.component.html',
-  styleUrls: ['./new-cours.component.sass'],
+  selector: 'app-edit-cours',
+  templateUrl: './edit-cours.component.html',
+  styleUrls: ['./edit-cours.component.sass'],
 })
-export class NewCoursComponent implements OnInit {
-  cours = new Cours();
+export class EditCoursComponent implements OnInit {
+  @Input() cours!: Cours;
   submitted = false;
   ue?: String;
   @Input() ues!: Ue[];
@@ -30,18 +30,14 @@ export class NewCoursComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.cours);
+    
+  }
 
   getMatieres(e: any) {
     this.matiereSrv.getMatieres(e.value).subscribe({
       next: (_matieres: any) => (this.matieres = _matieres),
     });
-  }
-
-  create(){
-    this.cours.classe = this.classeId
-    this.srv.addCours(this.cours).subscribe({
-      next: _cours => console.log(_cours)
-    })
   }
 }
