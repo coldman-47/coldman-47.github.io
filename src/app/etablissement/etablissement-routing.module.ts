@@ -3,12 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { ClassesComponent } from './classe/classes/classes.component';
 import { EnseignantsComponent } from './enseignant/enseignants/enseignants.component';
 import { FilieresComponent } from './filiere/filieres/filieres.component';
+import { PedagogieComponent } from './pedagogie/pedagogie.component';
 import { PersonnelComponent } from './personnel/personnel/personnel.component';
 
 const routes: Routes = [
   {
-    path: 'filieres',
-    component: FilieresComponent,
+    path: 'pedagogie',
+    component: PedagogieComponent,
     children: [{ path: 'classes', component: ClassesComponent }],
   },
   { path: 'personnel', component: PersonnelComponent },

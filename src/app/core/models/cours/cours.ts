@@ -5,4 +5,5 @@ export class Cours {
     classe: any;
     matiere: any;
     enseignant: any;
+  ue: any;
 }

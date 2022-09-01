@@ -69,10 +69,12 @@
             <div class="bg-white h-100 rounded-3 p-5">
                 <app-new-enseignant *ngIf="!edit else edition" ></app-new-enseignant>
                 <ng-template #edition>
-                    <!-- <app-edit-enseignant *ngIf="!details else infos" (status)="cancel($event)" [enseignant]="selected" [departements]="departements"></app-edit-enseignant>
-                    <ng-template #infos>
-                        <app-emargements [emargements]="selected?.emargements"></app-emargements>
-                    </ng-template> -->
+                    <ng-container *ngIf="selected">
+                        <app-edit-enseignant *ngIf="!details else infos" (status)="cancel($event)" [enseignant]="selected"></app-edit-enseignant>
+                        <ng-template #infos>
+                            <!-- <app-emargements [emargements]="selected?.emargements"></app-emargements> -->
+                        </ng-template>
+                    </ng-container>
                 </ng-template>
             </div>
         </div>

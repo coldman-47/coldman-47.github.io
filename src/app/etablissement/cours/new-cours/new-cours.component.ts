@@ -14,7 +14,7 @@ import { CoursService } from '../../../core/services/cours/cours.service';
 export class NewCoursComponent implements OnInit {
   cours = new Cours();
   submitted = false;
-  ue?: String;
+  // ue?: String;
   @Input() ues!: Ue[];
   @Input() classeId?: string;
   matieres: any[] = [];

@@ -3,8 +3,6 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import interactionPlugin from '@fullcalendar/interaction';
 import { AccordionModule } from 'primeng/accordion';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
@@ -31,7 +29,11 @@ import { FilieresComponent } from './filiere/filieres/filieres.component';
 import { NewPersonnelComponent } from './personnel/new-personnel/new-personnel.component';
 import { PersonnelComponent } from './personnel/personnel/personnel.component';
 import { EditCoursComponent } from './cours/edit-cours/edit-cours.component';
-;
+import { PedagogieComponent } from './pedagogie/pedagogie.component';
+import { EditPersonnelComponent } from './personnel/edit-personnel/edit-personnel.component';
+import { ConfirmationService } from 'primeng/api';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { EditEnseignantComponent } from './enseignant/edit-enseignant/edit-enseignant.component';
 
 // FullCalendarModule.registerPlugins([
 //   // register FullCalendar plugins
@@ -44,6 +46,7 @@ import { EditCoursComponent } from './cours/edit-cours/edit-cours.component';
     FilieresComponent,
     PersonnelComponent,
     NewPersonnelComponent,
+    EditPersonnelComponent,
     ClassesComponent,
     NewClasseComponent,
     ApprenantsComponent,
@@ -52,7 +55,9 @@ import { EditCoursComponent } from './cours/edit-cours/edit-cours.component';
     NewEnseignantComponent,
     CoursComponent,
     NewCoursComponent,
-    EditCoursComponent
+    EditCoursComponent,
+    PedagogieComponent,
+    EditEnseignantComponent
   ],
   imports: [
     CommonModule,
@@ -61,6 +66,7 @@ import { EditCoursComponent } from './cours/edit-cours/edit-cours.component';
     AccordionModule,
     CalendarModule,
     CardModule,
+    ConfirmPopupModule,
     DialogModule,
     FileUploadModule,
     InputNumberModule,
@@ -73,6 +79,7 @@ import { EditCoursComponent } from './cours/edit-cours/edit-cours.component';
     StepsModule,
     TableModule,
   ],
+  providers: [ConfirmationService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class EtablissementModule {}

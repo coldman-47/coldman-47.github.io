@@ -22,7 +22,7 @@
         </div>
         <div class="field my-5 px-5">
             <span class="p-float-label p-input-filled">
-                <p-dropdown (onChange)="getMatieres($event)" [options]="ues" optionLabel="label" optionValue="_id" name="numeroCours" placeholder="Unité d'enseignement" class="form-control"></p-dropdown>
+                <p-dropdown (onChange)="getMatieres($event)" [(ngModel)]="ue" [options]="ues" optionLabel="label" optionValue="_id" name="numeroCours" placeholder="Unité d'enseignement" class="form-control"></p-dropdown>
                 <label for="inputtext"><i class="pi pi-file"></i> &nbsp;Ue</label>
             </span>
         </div>

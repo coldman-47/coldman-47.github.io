@@ -14,7 +14,7 @@ import { MatiereService } from 'src/app/core/services/matiere/matiere.service';
 export class EditCoursComponent implements OnInit {
   @Input() cours!: Cours;
   submitted = false;
-  ue?: String;
+  ue?: Ue;
   @Input() ues!: Ue[];
   @Input() classeId?: string;
   matieres: any[] = [];
@@ -31,13 +31,20 @@ export class EditCoursComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.cours);
+    let obj: any = {};
+    obj.value = this.cours.matiere.ue._id;
+    this.ue = this.cours.matiere.ue;
+    this.getMatieres(obj);
+    
     
   }
 
   getMatieres(e: any) {
     this.matiereSrv.getMatieres(e.value).subscribe({
-      next: (_matieres: any) => (this.matieres = _matieres),
+      next: (_matieres: any) => {
+        this.matieres = _matieres;
+        this.cours.matiere = _matieres.find((matiere: any) => this.cours.matiere._id === matiere._id);
+      }
     });
   }
 }
