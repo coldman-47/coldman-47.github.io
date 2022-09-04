@@ -7,21 +7,24 @@
     <ng-template pTemplate="content">
         <div class="container-fluid">
             <div class="row justify-content-between">
-                <ng-container *ngIf="activeIndex === 0 else boom">
-                    <div class="col-xl-8 px-5 h-100 overflow-y-auto">
-                        <div class="surface-50 row m-0">
-                            <div class="col-lg-4 p-3" *ngFor="let class of classes">
-                                <p-card subheader="{{class.annee}}"
-                                    (click)="selected = class; activeIndex = activeIndex+1">
-                                    <ng-template pTemplate="title">{{class.label}}</ng-template>
-                                </p-card>
+                <app-filieres (_filieres)="getFilieres($event)" (status)="activeIndex = 1" *ngIf="activeIndex === 0 else _classes"></app-filieres>
+                <ng-template #_classes>
+                    <ng-container *ngIf="activeIndex === 1 else boom">
+                        <div class="col-xl-8 px-5 h-100 overflow-y-auto">
+                            <div class="surface-50 row m-0">
+                                <div class="col-lg-4 p-3" *ngFor="let class of classes">
+                                    <p-card subheader="{{class.annee}}"
+                                        (click)="selected = class; activeIndex = activeIndex+1">
+                                        <ng-template pTemplate="title">{{class.label}}</ng-template>
+                                    </p-card>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xl-4 px-5">
-                        <app-new-classe [filieres]="filieres" [cycles]="cycles"></app-new-classe>
-                    </div>
-                </ng-container>
+                        <div class="col-xl-4 px-5">
+                            <app-new-classe [filieres]="filieres" [cycles]="cycles"></app-new-classe>
+                        </div>
+                    </ng-container>
+                </ng-template>
                 <ng-template #boom>
                     <app-apprenants [classe]="selected"></app-apprenants>
                 </ng-template>
@@ -36,7 +39,7 @@
         <div class="container-fluid d-flex p-3">
             <button *ngIf="activeIndex > 0" icon="pi pi-chevron-left" (click)="activeIndex = activeIndex-1"
                 class="me-auto" pButton label="Retour"></button>
-            <button label="Emplois du temps" iconPos="right" pButton icon="pi pi-map" *ngIf="activeIndex === 1" (click)="display=true" class="p-button-outlined ms-auto"></button>
+            <button label="Emplois du temps" iconPos="right" pButton icon="pi pi-map" *ngIf="activeIndex === 2" (click)="display=true" class="p-button-outlined ms-auto"></button>
         </div>
     </ng-template>
 </p-card>
