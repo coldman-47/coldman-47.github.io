@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ApprenantService } from 'src/app/core/services/apprenant/apprenant.service';
+import { Apprenant } from '../../../core/models/apprenant/apprenant';
 
 @Component({
   selector: 'app-apprenants',
@@ -9,6 +10,8 @@ import { ApprenantService } from 'src/app/core/services/apprenant/apprenant.serv
 export class ApprenantsComponent implements OnInit {
   @Input() classe!: any;
   apprenants: any[] = [];
+  selected?: Apprenant;
+  edition = false;
 
   constructor(private srv: ApprenantService) {}
 

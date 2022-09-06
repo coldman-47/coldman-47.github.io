@@ -19,4 +19,8 @@ export class ApprenantService {
   addApprenant(apprenant: Apprenant){
     return this.http.post(this.baseUrl+'/add', apprenant);
   }
+
+  getTuteur(id: string){
+    return this.http.get(environment.backendUrl+'tuteurs/'+id);
+  }
 }

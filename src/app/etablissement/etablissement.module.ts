@@ -18,6 +18,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { StepsModule } from 'primeng/steps';
 import { TableModule } from 'primeng/table';
+import { TooltipModule } from 'primeng/tooltip';
 import { PipesModule } from '../core/pipes/pipes.module';
 import { ApprenantsComponent } from './apprenant/apprenants/apprenants.component';
 import { NewApprenantComponent } from './apprenant/new-apprenant/new-apprenant.component';
@@ -31,10 +32,14 @@ import { EnseignantsComponent } from './enseignant/enseignants/enseignants.compo
 import { NewEnseignantComponent } from './enseignant/new-enseignant/new-enseignant.component';
 import { EtablissementRoutingModule } from './etablissement-routing.module';
 import { FilieresComponent } from './filiere/filieres/filieres.component';
+import { NewFiliereComponent } from './filiere/new-filiere/new-filiere.component';
 import { PedagogieComponent } from './pedagogie/pedagogie.component';
 import { EditPersonnelComponent } from './personnel/edit-personnel/edit-personnel.component';
 import { NewPersonnelComponent } from './personnel/new-personnel/new-personnel.component';
 import { PersonnelComponent } from './personnel/personnel/personnel.component';
+import { NewUeComponent } from './ue/new-ue/new-ue.component';
+import { EditApprenantComponent } from './apprenant/edit-apprenant/edit-apprenant.component';
+import { DataUriToBlobPipe } from '../core/pipes/file/data-uri-to-blob.pipe';
 
 // FullCalendarModule.registerPlugins([
 //   // register FullCalendar plugins
@@ -58,7 +63,11 @@ import { PersonnelComponent } from './personnel/personnel/personnel.component';
     NewCoursComponent,
     EditCoursComponent,
     PedagogieComponent,
-    EditEnseignantComponent
+    EditEnseignantComponent,
+    NewFiliereComponent,
+    NewUeComponent,
+    EditApprenantComponent,
+    DataUriToBlobPipe
   ],
   imports: [
     CommonModule,
@@ -80,6 +89,7 @@ import { PersonnelComponent } from './personnel/personnel/personnel.component';
     SpeedDialModule,
     StepsModule,
     TableModule,
+    TooltipModule
   ],
   providers: [ConfirmationService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

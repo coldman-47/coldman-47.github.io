@@ -13,12 +13,12 @@ export class ClassesComponent implements OnInit {
   cycles: any = [];
   @Input() classes: any = [];
   item = [
-    { label: 'Filères' },
+    { label: 'Pédagogie' },
     { label: 'Classe' },
     { label: 'Apprenants' },
     { label: 'Details' },
   ];
-  activeIndex = 0;
+  activeIndex = 1;
   selected: any;
   display = false;
 

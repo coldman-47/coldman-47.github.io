@@ -13,9 +13,10 @@
                         <div class="col-xl-8 px-5 h-100 overflow-y-auto">
                             <div class="surface-50 row m-0">
                                 <div class="col-lg-4 p-3" *ngFor="let class of classes">
-                                    <p-card subheader="{{class.annee}}"
+                                    <p-card class="cursor-pointer"
                                         (click)="selected = class; activeIndex = activeIndex+1">
-                                        <ng-template pTemplate="title">{{class.label}}</ng-template>
+                                        <ng-template pTemplate="title"><h3>{{class.label}}</h3></ng-template>
+                                        <ng-template pTemplate="footer">{{class.annee}}</ng-template>
                                     </p-card>
                                 </div>
                             </div>

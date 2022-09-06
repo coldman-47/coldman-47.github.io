@@ -2,7 +2,7 @@
     <div class="col-xl-8 px-3">
         <div class="surface-50 row m-0">
             <div class="col-lg-4 p-3" *ngFor="let student of apprenants">
-                <p-card header="{{student.prenom+' '+student.nom}}">
+                <p-card class="cursor-pointer" (click)="selected = student; edition = true" header="{{student.prenom+' '+student.nom}}">
                     <!-- {{student | json}} -->
                     <ng-template pTemplate="footer">
                         <i class="pi pi-phone"> : {{student.telephone | phone}}</i><hr>
@@ -13,6 +13,11 @@
         </div>
     </div>
     <div class="col-xl-4 px-3">
-        <app-new-apprenant classe="h-100" [classeId]="classe._id"></app-new-apprenant>
+        <app-new-apprenant *ngIf="!edition else edit"  classe="h-100" [classeId]="classe._id"></app-new-apprenant>
+        <ng-template #edit>
+            <ng-container *ngIf="selected">
+                <app-edit-apprenant (status)="selected = undefined; edition = false" [apprenant]="selected"></app-edit-apprenant>
+            </ng-container>
+        </ng-template>
     </div>
 </div>

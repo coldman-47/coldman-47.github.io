@@ -5,4 +5,5 @@ export class Apprenant extends User {
     classe: string | Classe = new Classe;
     dateNaiss: any;
     matricule?: string;
+    tuteur?: any;
 }

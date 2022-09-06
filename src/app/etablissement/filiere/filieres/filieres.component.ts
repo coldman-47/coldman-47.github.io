@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FiliereService } from 'src/app/core/services/filiere/filiere.service';
 import { Filiere } from '../../../core/models/filiere/filiere';
 import { StepEvent } from '../../../shared/utilities/step-event/step-event';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-filieres',
@@ -12,13 +13,21 @@ export class FilieresComponent extends StepEvent implements OnInit {
 
   filieres: Filiere[] = [];
   @Output() _filieres = new EventEmitter();
-
-  btnItems = [
+  display = false;
+  ue = false;
+  btnItems!: MenuItem[];
+  items = [
     {
-      label: 'Filière',
-      icon: 'pi pi-book'
+      id: 0,
+      label: "Filières"
+    },
+    {
+      id: 1,
+      label: "Ue",
+      disable: true
     }
-  ]
+  ];
+  active = 0;
 
   constructor(srv: FiliereService) {
     super();
@@ -28,6 +37,28 @@ export class FilieresComponent extends StepEvent implements OnInit {
         this._filieres.emit(_filieres);
       }
     });
+    this.btnItems = [
+      {
+        tooltipOptions: {
+          tooltipLabel: "Filière",
+          tooltipPosition: "left"
+        },
+        icon: 'pi pi-box',
+        command: () => {
+          this.ue = false;
+          this.display = true;
+        }
+      },
+      {
+        tooltipOptions: {
+          tooltipLabel: "UE",
+          tooltipPosition: "left"
+        },
+        icon: 'pi pi-table',
+        tooltipPosition: 'left',
+        command: () => this.ue = this.display = true
+      }
+    ];
   }
 
   ngOnInit(): void {}
