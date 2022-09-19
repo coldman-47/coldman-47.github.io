@@ -15,14 +15,14 @@
             </div>
       
             <div class="forms-container">
-              <form class="form form-sign-up">
+              <form (submit)="login()" class="form form-sign-up">
                 <h1 class="mb-3">BIENVENUE</h1>
                 <div class="field m-3">
                     <span class="p-float-label p-input-filled">
                         <input name="username" [(ngModel)]="username" placeholder="Nom d'utilisateur"
                             class="form-control {{submitted && !username ? 'ng-invalid ng-dirty' : ''}}" type="text"
                             pInputText>
-                        <label for="inputtext"><i class="pi pi-at"></i> Username</label>
+                        <label for="inputtext"><i class="pi pi-at"></i> &nbsp; Username</label>
                     </span>
                     <small *ngIf="submitted && !username" id="username-help" class="p-error">Le nom d'utilisateur est
                         requis.</small>
@@ -32,25 +32,25 @@
                         <input [feedback]="false" name="password" [(ngModel)]="password"
                             class="form-control {{submitted && !password ? 'ng-invalid ng-dirty' : ''}}"
                             placeholder="Mot de passe" type="password" pPassword toggleMask="true">
-                        <label for="inputtext"><i class="pi pi-lock"></i> Password</label>
+                        <label for="inputtext"><i class="pi pi-lock"></i> &nbsp; Password</label>
                     </span>
                     <small *ngIf="submitted && !password" id="username-help" class="p-error">Le mot de passe est
                         requis.</small>
                 </div>
                 <div class="field m-3 py-2">
                     <div class="d-flex">
-                        <button [routerLink]="['/']" iconPos="right" pButton label="CONNEXION" icon="pi pi-sign-in" type="submit" class="p-button p-button-lg flex-grow-1" id="login"></button>
+                        <button iconPos="right" pButton label="CONNEXION" icon="pi pi-sign-in" type="submit" class="p-button p-button-lg flex-grow-1" id="login"></button>
                     </div>
                 </div>
               </form>
-              <form class="form form-login">
+              <form (submit)="login(true)" class="form form-login">
                 <h1 class="mb-3">BIENVENUE</h1>
                 <div class="field m-3">
                     <span class="p-float-label p-input-filled">
                         <input name="username" [(ngModel)]="username" placeholder="Nom d'utilisateur"
                             class="form-control {{submitted && !username ? 'ng-invalid ng-dirty' : ''}}" type="text"
                             pInputText>
-                        <label for="inputtext"><i class="pi pi-at"></i> Username</label>
+                        <label for="inputtext"><i class="pi pi-at"></i> &nbsp; Username</label>
                     </span>
                     <small *ngIf="submitted && !username" id="username-help" class="p-error">Le nom d'utilisateur est
                         requis.</small>
@@ -60,14 +60,14 @@
                         <input [feedback]="false" name="password" [(ngModel)]="password"
                             class="form-control {{submitted && !password ? 'ng-invalid ng-dirty' : ''}}"
                             placeholder="Mot de passe" type="password" pPassword toggleMask="true">
-                        <label for="inputtext"><i class="pi pi-lock"></i> Password</label>
+                        <label for="inputtext"><i class="pi pi-lock"></i> &nbsp; Password</label>
                     </span>
                     <small *ngIf="submitted && !password" id="username-help" class="p-error">Le mot de passe est
                         requis.</small>
                 </div>
                 <div class="field m-3 py-2">
                     <div class="d-flex">
-                        <button [routerLink]="['/']" iconPos="right" pButton label="CONNEXION" icon="pi pi-sign-in" type="submit" class="p-button p-button-lg flex-grow-1" id="login"></button>
+                        <button iconPos="right" pButton label="CONNEXION" icon="pi pi-sign-in" type="submit" class="p-button p-button-lg flex-grow-1" id="login"></button>
                     </div>
                 </div>
               </form>
@@ -77,3 +77,4 @@
         </div>
       </section>
 </div>
+<p-toast position="bottom-center"></p-toast>

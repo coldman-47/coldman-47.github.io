@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   login(credentials: {username: string, password: string}, admin = false){
-    return this.http.post(environment.backendUrl+`auth/login${admin ? '/admin' : ''}`, credentials).subscribe({
+    return this.http.post(environment.backendUrl+`login/authentication${admin ? '/admin' : ''}`, credentials).subscribe({
         next: (res: any) => this.storeToken(res.token),
         error: (err) => this.conError.next(err.error)
       });

@@ -1,0 +1,17 @@
+<form (submit)="create()">
+    <div class="field my-4">
+        <span class="p-float-label">
+            <input name="label" [(ngModel)]="filiere.label" placeholder="Nom d'utilisateur"
+                class="form-control {{submitted && !filiere.label ? 'ng-invalid ng-dirty' : ''}}" type="text" pInputText>
+            <label for="inputtext"><span class="material-icons-outlined">school</span> &nbsp;&nbsp;Libellé</label>
+        </span>
+        <small *ngIf="submitted && !filiere.label" id="username-help" class="p-error">Le libellé de la filiere est
+            requis.</small>
+    </div>
+    <div class="field my-4">
+        <div class="d-flex">
+            <button pButton label="CRÉER" icon="pi pi-plus" type="submit" class="p-button p-button-lg flex-grow-1"></button>
+        </div>
+    </div>
+</form>
+<p-toast></p-toast>

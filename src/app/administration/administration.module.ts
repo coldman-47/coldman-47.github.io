@@ -5,6 +5,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { AccordionModule } from 'primeng/accordion';
 import { CardModule } from 'primeng/card';
 import { FileUploadModule } from 'primeng/fileupload';
+import { InputTextModule } from 'primeng/inputtext';
 import { PaginatorModule } from 'primeng/paginator';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { TableModule } from 'primeng/table';
@@ -27,6 +28,7 @@ import { NewEtablissementComponent } from './etablissement/new-etablissement/new
     AccordionModule,
     CardModule,
     FileUploadModule,
+    InputTextModule,
     MatTabsModule,
     PaginatorModule,
     PipesModule,

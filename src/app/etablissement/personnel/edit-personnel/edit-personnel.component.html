@@ -1,0 +1,46 @@
+<div class="fadeindown">
+    <h1>Mise à jour</h1>
+    <p-card class="rounded">
+        <form [formGroup]="personnelForm" (submit)="update()">
+            <div class="field m-4">
+                <span class="p-float-label">
+                    <input [autocomplete]="true" formControlName="prenom" placeholder="Prénom" class="form-control {{submitted && controls['prenom'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="text" pInputText> 
+                    <label for="inputtext">Prénom</label>
+                </span>
+                <small *ngIf="submitted && controls['prenom'].invalid" id="username-help" class="p-error">Un prénom est requis.</small>
+            </div>
+            <div class="field m-4">
+                <span class="p-float-label">
+                    <input [autocomplete]="true" formControlName="nom" placeholder="Nom" class="form-control {{submitted && controls['nom'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="text" pInputText> 
+                    <label for="inputtext">Nom</label>
+                </span>
+                <small *ngIf="submitted && controls['nom'].invalid" id="username-help" class="p-error">Un nom est requis.</small>
+            </div>
+            <div class="field m-4">
+                <span class="p-float-label">
+                    <input [autocomplete]="true" formControlName="email" placeholder="Adresse electronique" class="form-control {{submitted && controls['email'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="email" pInputText> 
+                    <label for="inputtext">Email</label>
+                </span>
+                <small *ngIf="submitted && controls['email'].invalid" id="username-help" class="p-error">Une adresse email valide est requise.</small>
+            </div>
+            <div class="field m-4">
+                <span class="p-float-label">
+                    <input [autocomplete]="true" formControlName="telephone" placeholder="Numéro de téléphone" class="form-control {{submitted && controls['telephone'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="tel" pInputText> 
+                    <label for="inputtext">Téléphone</label>
+                </span>
+                <small *ngIf="submitted && controls['telephone'].invalid" id="username-help" class="p-error">Un numéro de téléphone est requis.</small>
+            </div>
+            <div class="field m-4">
+                <div class="d-flex pt-3">
+                    <button type="submit" class="p-button p-button-lg p-button-raised flex-grow-1" label="Modifier" pButton></button>
+                </div>
+            </div>
+            <div class="field m-4">
+                <div class="d-flex">
+                    <button (click)="cancelEdition($event)" type="button" class="p-button flex-grow-1 p-button-outlined p-button-secondary" pButton label="Annuler"></button>
+                </div>
+            </div>
+        </form>
+    </p-card>
+</div>
+<p-confirmPopup></p-confirmPopup>

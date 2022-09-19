@@ -23,7 +23,7 @@ export class PersonnelService {
   getPersonnels(page?: number, param?: string){
     let filter;
     if (page || param) filter = `?${page ? 'page=' + (page-1) : ''}${page && param ? '&' : ''}${param ? 'search=' + param : ''}`;
-    return this.http.get(this.baseUrl + `personnels/entreprise${filter ? filter : ''}`).pipe(
+    return this.http.get(this.baseUrl + `personnels${filter ? filter : ''}`).pipe(
       map(
         (personnels: any) => personnels
       ),

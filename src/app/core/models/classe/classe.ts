@@ -4,4 +4,5 @@ export class Classe {
     annee?: string;
     filiere?: string;
     niveau?: string;
+    ue: any;
 }
