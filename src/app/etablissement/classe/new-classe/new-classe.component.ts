@@ -27,10 +27,8 @@ export class NewClasseComponent implements OnInit {
 
   create(){
     this.srv.createClasse(this.classe).subscribe({
-      next(value) {
-        console.log(value)
-      },
-    })
+      next: () => this.classe = new Classe()
+    });
   }
 
 }

@@ -13,7 +13,23 @@ export class ApprenantsComponent implements OnInit {
   selected?: Apprenant;
   edition = false;
 
-  constructor(private srv: ApprenantService) {}
+  constructor(private srv: ApprenantService) {
+    srv.serverSentEvent.subscribe({
+      next: (apprenant: any) => {
+        if(apprenant){
+          if (apprenant.method === 'put') {
+            const idx = this.apprenants.findIndex(
+              (_apprenant) => _apprenant._id === apprenant._data._id
+            );
+            if (idx !== -1) this.apprenants[idx] = apprenant._data;
+          } else {
+            if (this.apprenants.length < 10) this.apprenants.push(apprenant._data);
+            // this.pagination.totalElements++;
+          }
+        }
+      },
+    });
+  }
 
   ngOnInit(): void {
     this.apprenants = this.classe.apprenants;

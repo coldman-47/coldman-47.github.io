@@ -1,5 +1,6 @@
 export class Ue {
     _id?: string;
     label?: string;
-    credit?: number;
+    totalCredits?: number;
+    classes?: any[];
 }

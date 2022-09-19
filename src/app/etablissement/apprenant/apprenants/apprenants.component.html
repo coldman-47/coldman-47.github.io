@@ -2,11 +2,11 @@
     <div class="col-xl-8 px-3">
         <div class="surface-50 row m-0">
             <div class="col-lg-4 p-3" *ngFor="let student of apprenants">
-                <p-card class="cursor-pointer" (click)="selected = student; edition = true" header="{{student.prenom+' '+student.nom}}">
-                    <!-- {{student | json}} -->
+                <p-card *ngIf="student" class="cursor-pointer" (click)="selected = student; edition = true">
+                    <ng-template pTemplate="title"><h3>{{student.prenom+' '+student.nom}}</h3></ng-template>
                     <ng-template pTemplate="footer">
-                        <i class="pi pi-phone"> : {{student.telephone | phone}}</i><hr>
-                        <i class="pi pi-at"> : {{student.email}}</i><br>
+                        <i class="pi pi-phone"></i> : {{student.telephone | phone}}<hr>
+                        <i class="pi pi-at"></i> : {{student.email}}<br>
                     </ng-template>
                 </p-card>
             </div>

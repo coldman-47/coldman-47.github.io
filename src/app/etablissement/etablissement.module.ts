@@ -12,6 +12,7 @@ import { DialogModule } from 'primeng/dialog';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { PaginatorModule } from 'primeng/paginator';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { SkeletonModule } from 'primeng/skeleton';
@@ -19,8 +20,10 @@ import { SpeedDialModule } from 'primeng/speeddial';
 import { StepsModule } from 'primeng/steps';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
+import { DataUriToBlobPipe } from '../core/pipes/file/data-uri-to-blob.pipe';
 import { PipesModule } from '../core/pipes/pipes.module';
 import { ApprenantsComponent } from './apprenant/apprenants/apprenants.component';
+import { EditApprenantComponent } from './apprenant/edit-apprenant/edit-apprenant.component';
 import { NewApprenantComponent } from './apprenant/new-apprenant/new-apprenant.component';
 import { ClassesComponent } from './classe/classes/classes.component';
 import { NewClasseComponent } from './classe/new-classe/new-classe.component';
@@ -38,14 +41,6 @@ import { EditPersonnelComponent } from './personnel/edit-personnel/edit-personne
 import { NewPersonnelComponent } from './personnel/new-personnel/new-personnel.component';
 import { PersonnelComponent } from './personnel/personnel/personnel.component';
 import { NewUeComponent } from './ue/new-ue/new-ue.component';
-import { EditApprenantComponent } from './apprenant/edit-apprenant/edit-apprenant.component';
-import { DataUriToBlobPipe } from '../core/pipes/file/data-uri-to-blob.pipe';
-
-// FullCalendarModule.registerPlugins([
-//   // register FullCalendar plugins
-//   dayGridPlugin,
-//   interactionPlugin
-// ]);
 
 @NgModule({
   declarations: [
@@ -82,6 +77,7 @@ import { DataUriToBlobPipe } from '../core/pipes/file/data-uri-to-blob.pipe';
     InputNumberModule,
     InputTextModule,
     MatTabsModule,
+    MultiSelectModule,
     PaginatorModule,
     PanelMenuModule,
     PipesModule,

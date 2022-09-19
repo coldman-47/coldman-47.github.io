@@ -25,6 +25,6 @@
     </ng-template>
     <app-new-filiere *ngIf="!ue else UE" (status)="display = false"></app-new-filiere>
     <ng-template #UE>
-        <app-new-ue></app-new-ue>
+        <app-new-ue [filieres]="filieres"></app-new-ue>
     </ng-template>
 </p-dialog>

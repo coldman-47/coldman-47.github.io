@@ -12,13 +12,19 @@
                     <ng-container *ngIf="activeIndex === 1 else boom">
                         <div class="col-xl-8 px-5 h-100 overflow-y-auto">
                             <div class="surface-50 row m-0">
-                                <div class="col-lg-4 p-3" *ngFor="let class of classes">
-                                    <p-card class="cursor-pointer"
-                                        (click)="selected = class; activeIndex = activeIndex+1">
-                                        <ng-template pTemplate="title"><h3>{{class.label}}</h3></ng-template>
-                                        <ng-template pTemplate="footer">{{class.annee}}</ng-template>
-                                    </p-card>
-                                </div>
+                                <ng-container *ngIf="classes.length else empty">
+                                    <div class="col-lg-4 p-3" *ngFor="let class of classes">
+                                        <p-card class="cursor-pointer"
+                                            (click)="selected = class; activeIndex = activeIndex+1">
+                                            <ng-template pTemplate="title"><h3>{{class.label}}</h3></ng-template>
+                                            <ng-template pTemplate="footer">{{class.annee}}</ng-template>
+                                        </p-card>
+                                    </div>
+                                </ng-container>
+                                <ng-template #empty>
+                                    <img height="500px" src="assets/imgs/cactus.jpg" alt="">
+                                    <h3 class="text-center">Pas de niveau séléctionné ou pas de classes disponible pour ce niveau</h3>
+                                </ng-template>
                             </div>
                         </div>
                         <div class="col-xl-4 px-5">
