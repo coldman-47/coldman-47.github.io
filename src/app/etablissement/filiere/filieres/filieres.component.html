@@ -1,28 +1,30 @@
-<div class="row p-5 justify-content-evenly h-100">
-    <div class="col-2 bg-white rounded overflow-y-auto h-100">
-        <p-card>
-            <h2 class="p-3">Cycles</h2>
-            <p-panelMenu orientation="vertical" [model]="cycles"></p-panelMenu>
-        </p-card>
+<div class="d-flex justify-content-between surface-50">
+    <div class="my-auto">
+        <nav class="flex-grow-1" mat-tab-nav-bar [tabPanel]="tabPanel">
+            <a [active]="active === link.id" class="text-black" (click)="active = link.id" mat-tab-link
+                *ngFor="let link of items"> {{link.label}} </a>
+        </nav>
     </div>
-    <div class="col-10 rounded d-flex flex-column ps-4 py-0">
-        <p-card>
-            <div *ngIf="activeTab === 'filieres' else other" class="m-auto d-flex justify-content-center align-items-center flex-column">
-                <img src="assets/imgs/empty.jpg" width="600px" alt="">
-                <h3 class="">Aucune filière n'a encore été selectionnée</h3>
-            </div>
-            <ng-template #other>
-                <app-classes [classes]="classes"></app-classes>
-            </ng-template>
-        </p-card>
-        
+    <div>
+        <p-speedDial [transitionDelay]="80" buttonClassName="p-button-outlined" [model]="btnItems" direction="down"></p-speedDial>
     </div>
 </div>
-            <!-- <nav class="p-3" mat-tab-nav-bar [tabPanel]="tabPanel">
-                <a [active]="activeTab === link.id" class="text-black" (click)="activeTab = link.id" mat-tab-link
-                    *ngFor="let link of items"> {{link.label}} </a>
-            </nav>
-            <mat-tab-nav-panel #tabPanel>
-    
-                
-            </mat-tab-nav-panel> -->
+<mat-tab-nav-panel #tabPanel>
+    <div class="surface-50 mt-3 rounded p-5 row justify-content-center">
+        <div class="col-3" *ngFor="let filiere of filieres">
+            <p-card class="cursor-pointer" (click)="status.emit(true)">
+                <h3>{{filiere.label}}</h3>
+            </p-card>
+        </div>
+    </div>
+</mat-tab-nav-panel>
+
+<p-dialog position="right" [modal]="true" [(visible)]="display">
+    <ng-template pTemplate="header">
+        <h2 class="p-3">Nouvelle {{ue ? 'UE' : 'filière'}}</h2>
+    </ng-template>
+    <app-new-filiere *ngIf="!ue else UE" (status)="display = false"></app-new-filiere>
+    <ng-template #UE>
+        <app-new-ue [filieres]="filieres"></app-new-ue>
+    </ng-template>
+</p-dialog>

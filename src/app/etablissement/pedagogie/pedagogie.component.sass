@@ -1,0 +1,60 @@
+@import "~@fontsource/fredoka-one"
+
+$primary: #16528c
+$secondary: #7c9fcc
+$tertiary: #00a9c0
+
+.mat-tab-link
+    opacity: 1
+    color: $secondary !important
+    font-size: 18px !important
+    transition: 500ms cubic-bezier(0.35, 0, 0.25, 1) !important
+    font-family: 'Fredoka One'
+    letter-spacing: 1px
+
+.mat-tab-link.mat-tab-label-active
+    color: white !important
+    z-index: 6
+
+:host ::ng-deep 
+
+:host ::ng-deep 
+    .p-accordion-header-text
+        font-weight: 400
+        text-decoration: underline
+        // color: $purple
+        letter-spacing: .75px
+
+    .p-accordion .p-accordion-tab
+        box-shadow: none
+        margin-bottom: .5em
+
+    .mat-tab-link-container
+        border-radius: 15px
+        background: #fafafa !important
+
+    .mat-ink-bar
+        border-radius: 15px
+        // box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.25)
+        background: linear-gradient(to bottom right, $primary, $secondary) !important
+        height: 100%
+        z-index: 5
+    
+    .p-panelmenu-header-link
+        padding: 2.5em !important
+    .p-menuitem
+        padding-left: 2.5em !important
+    .p-panelmenu-panel
+        box-shadow: none
+
+    app-classes > p-card, app-classes > p-card > .p-card
+        height: 100% !important
+        overflow-y: hidden
+    app-classes > p-card, app-classes > p-card > .p-card > .p-card-body
+        overflow-y: hidden
+        height: calc(100% - 83.1892px)
+    app-classes > p-card, app-classes > p-card > .p-card > .p-card-body > .p-card-content
+        padding: 0
+        height: calc(100% - 86.1783px)
+        overflow-y: scroll
+        overflow-x: hidden

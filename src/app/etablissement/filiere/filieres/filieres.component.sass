@@ -17,13 +17,21 @@ $tertiary: #00a9c0
     z-index: 6
 
 :host ::ng-deep 
+    .p-speeddial
+        position: inherit
 
-:host ::ng-deep 
+    .p-speeddial-list
+        position: absolute
+        margin-top: 4em
+
     .p-accordion-header-text
         font-weight: 400
         text-decoration: underline
         // color: $purple
         letter-spacing: .75px
+
+    .p-speeddial-action
+        background: $tertiary
 
     .p-accordion .p-accordion-tab
         box-shadow: none
@@ -46,3 +54,14 @@ $tertiary: #00a9c0
         padding-left: 2.5em !important
     .p-panelmenu-panel
         box-shadow: none
+
+    app-classes > p-card, app-classes > p-card > .p-card
+        height: 100% !important
+        overflow-y: hidden
+    app-classes > p-card, app-classes > p-card > .p-card > .p-card-body
+        overflow-y: hidden
+        height: calc(100% - 83.1892px)
+    app-classes > p-card, app-classes > p-card > .p-card > .p-card-body > .p-card-content
+        padding: 0
+        height: calc(100% - 86.1783px)
+        overflow-y: scroll

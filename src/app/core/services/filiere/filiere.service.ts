@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
+import { Filiere } from 'src/app/core/models/filiere/filiere';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,9 @@ export class FiliereService {
     this.http.get(this.baseUrl + 'cycles').subscribe({
       next: (_cycles => this.cycles.next(_cycles))
     });
+  }
+
+  addFiliere(filiere: Filiere){
+    return this.http.post(this.baseUrl+'filieres/add', filiere);
   }
 }

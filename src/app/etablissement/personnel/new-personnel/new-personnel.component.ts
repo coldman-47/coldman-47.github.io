@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { Personnel } from 'src/app/core/models/personnel/personnel';
 import { PersonnelService } from 'src/app/core/services/personnel/personnel.service';
@@ -18,8 +18,7 @@ export class NewPersonnelComponent implements OnInit {
     prenom: [null, Validators.required],
     nom: [null, Validators.required],
     email: [null, [Validators.email, Validators.required]],
-    telephone: [null, Validators.required],
-    departement: [null, Validators.required]
+    telephone: [null, Validators.required]
   });
 
   constructor(private srv: PersonnelService, private fb: FormBuilder, private messageSrv: MessageService) { }

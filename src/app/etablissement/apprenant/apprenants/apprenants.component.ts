@@ -1,18 +1,42 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Apprenant } from 'src/app/core/models/apprenant/apprenant';
+import { ApprenantService } from 'src/app/core/services/apprenant/apprenant.service';
+import { Apprenant } from '../../../core/models/apprenant/apprenant';
 
 @Component({
   selector: 'app-apprenants',
   templateUrl: './apprenants.component.html',
-  styleUrls: ['./apprenants.component.sass']
+  styleUrls: ['./apprenants.component.sass'],
 })
 export class ApprenantsComponent implements OnInit {
+  @Input() classe!: any;
+  apprenants: any[] = [];
+  selected?: Apprenant;
+  edition = false;
 
-  @Input() apprenants!: Apprenant[]
-
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private srv: ApprenantService) {
+    srv.serverSentEvent.subscribe({
+      next: (apprenant: any) => {
+        if(apprenant){
+          if (apprenant.method === 'put') {
+            const idx = this.apprenants.findIndex(
+              (_apprenant) => _apprenant._id === apprenant._data._id
+            );
+            if (idx !== -1) this.apprenants[idx] = apprenant._data;
+          } else {
+            if (this.apprenants.length < 10) this.apprenants.push(apprenant._data);
+            // this.pagination.totalElements++;
+          }
+        }
+      },
+    });
   }
 
+  ngOnInit(): void {
+    this.apprenants = this.classe.apprenants;
+    this.apprenants.forEach(async (item: string, idx) =>
+      this.srv.getApprenant(item).subscribe({
+        next: (_apprenant) => (this.apprenants[idx] = _apprenant),
+      })
+    );
+  }
 }

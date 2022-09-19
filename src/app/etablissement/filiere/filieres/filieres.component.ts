@@ -1,42 +1,64 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FiliereService } from 'src/app/core/services/filiere/filiere.service';
-import { ClasseService } from '../../../core/services/classe/classe.service';
-import { Classe } from '../../../core/models/classe/classe';
+import { Filiere } from '../../../core/models/filiere/filiere';
+import { StepEvent } from '../../../shared/utilities/step-event/step-event';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-filieres',
   templateUrl: './filieres.component.html',
   styleUrls: ['./filieres.component.sass'],
 })
-export class FilieresComponent implements OnInit {
-  cycles = [];
-  activeTab = 'classes';
-  display = false;
-  items = [
-    { label: 'Filières', icon: 'pi pi-fw pi-home', id: 'filieres' },
-    { label: 'Classes', icon: 'pi pi-fw pi-calendar', id: 'classes' },
-  ];
-  classes: Classe[] = [];
+export class FilieresComponent extends StepEvent implements OnInit {
 
-  constructor(srv: FiliereService, classeSrv: ClasseService) {
-    srv.getCycles();
-    srv.cycles.subscribe({
-      next: (cycles: any) => {
-        this.cycles = cycles.map((_cycle: any) => {
-          _cycle.icon = 'pi pi-book';
-          if (_cycle.niveaux.length)
-            _cycle.items = _cycle.niveaux.map((_niveau: any) => {
-              let { label } = _niveau;
-              let command = () =>
-                classeSrv.getClassesByGrade(_niveau._id).subscribe({
-                  next: (_res: any) => this.classes = _res,
-                });
-              return { label, command };
-            });
-          return _cycle;
-        });
-      },
+  filieres: Filiere[] = [];
+  @Output() _filieres = new EventEmitter();
+  display = false;
+  ue = false;
+  btnItems!: MenuItem[];
+  items = [
+    {
+      id: 0,
+      label: "Filières"
+    },
+    {
+      id: 1,
+      label: "Ue",
+      disable: true
+    }
+  ];
+  active = 0;
+
+  constructor(srv: FiliereService) {
+    super();
+    srv.getFilieres().subscribe({
+      next: (_filieres: any) => {
+        this.filieres = _filieres;
+        this._filieres.emit(_filieres);
+      }
     });
+    this.btnItems = [
+      {
+        tooltipOptions: {
+          tooltipLabel: "Filière",
+          tooltipPosition: "left"
+        },
+        icon: 'pi pi-box',
+        command: () => {
+          this.ue = false;
+          this.display = true;
+        }
+      },
+      {
+        tooltipOptions: {
+          tooltipLabel: "UE",
+          tooltipPosition: "left"
+        },
+        icon: 'pi pi-table',
+        tooltipPosition: 'left',
+        command: () => this.ue = this.display = true
+      }
+    ];
   }
 
   ngOnInit(): void {}

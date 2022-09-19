@@ -69,10 +69,10 @@
             <div class="bg-white h-100 rounded-3 p-5">
                 <app-new-personnel *ngIf="!edit else edition" ></app-new-personnel>
                 <ng-template #edition>
-                    <!-- <app-edit-personnel *ngIf="!details else infos" (status)="cancel($event)" [personnel]="selected" [departements]="departements"></app-edit-personnel>
+                    <app-edit-personnel *ngIf="!details else infos" (status)="cancel($event)" [personnel]="selected"></app-edit-personnel>
                     <ng-template #infos>
-                        <app-emargements [emargements]="selected?.emargements"></app-emargements>
-                    </ng-template> -->
+                        <!-- <app-emargements [emargements]="selected?.emargements"></app-emargements> -->
+                    </ng-template>
                 </ng-template>
             </div>
         </div>

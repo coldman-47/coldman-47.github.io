@@ -1,0 +1,53 @@
+<form class="h-100 overflow-y-auto fadeinup animation-duration-500 bg-white rounded" (submit)="create()">
+    <p-card class="rounded">
+        <ng-template pTemplate="title">
+            <h2 class="text-center" style="font-size: 1.5em">Nouveau cours</h2>
+        </ng-template>
+        <div class="field mb-5 px-5">
+            <span class="p-float-label p-input-filled">
+                <p-calendar [autocomplete]="true" [(ngModel)]="cours.date" name="dateCours"
+                    placeholder="Date du cours"
+                    class="form-control {{submitted && !cours.date ? 'ng-invalid ng-dirty' : ''}}"></p-calendar>
+                <label for="inputtext"><i class="pi pi-calendar"></i> &nbsp;Date du cours</label>
+            </span>
+            <small *ngIf="submitted && !cours.date" id="username-help" class="p-error">La date du cours est requis.</small>
+        </div>
+        <div class="field my-5 px-5">
+            <span class="p-float-label p-input-filled">
+                <p-inputNumber [(ngModel)]="cours.duree" name="dureeCours" placeholder="Durée du cours" class="form-control {{submitted && !cours.duree ? 'ng-invalid ng-dirty' : ''}}"></p-inputNumber>
+                <label for="inputtext"><i class="pi pi-clock"></i> &nbsp;Duree du cours</label>
+            </span>
+            <small *ngIf="submitted && !cours.duree" id="username-help" class="p-error">Une adresse
+                duree valide est requise.</small>
+        </div>
+        <div class="field my-5 px-5">
+            <span class="p-float-label p-input-filled">
+                <p-dropdown (onChange)="getMatieres($event)" [options]="ues" optionLabel="label" optionValue="_id" name="numeroCours" placeholder="Unité d'enseignement" class="form-control"></p-dropdown>
+                <label for="inputtext"><i class="pi pi-file"></i> &nbsp;Ue</label>
+            </span>
+        </div>
+        <div class="field my-5 px-5">
+            <span class="p-float-label p-input-filled">
+                <p-dropdown optionValue="_id" optionLabel="label" [options]="matieres" [(ngModel)]="cours.matiere" name="numeroCours" placeholder="Numéro de téléphone"
+                    class="form-control {{submitted && !cours.matiere ? 'ng-invalid ng-dirty' : ''}}"></p-dropdown>
+                <label for="inputtext"><i class="pi pi-file"></i> &nbsp;Matière du cours</label>
+            </span>
+            <small *ngIf="submitted && !cours.matiere" id="username-help" class="p-error">Une matière est requise.</small>
+        </div>
+        <div class="field my-5 px-5">
+            <span class="p-float-label p-input-filled">
+                <p-dropdown [options]="enseignants" optionLabel="nom" optionValue="_id" [(ngModel)]="cours.enseignant" name="enseignant" placeholder="Enseignant"
+                    class="form-control {{submitted && !cours.matiere ? 'ng-invalid ng-dirty' : ''}}"></p-dropdown>
+                <label for="inputtext"><i class="pi pi-user"></i> &nbsp;Enseignant</label>
+            </span>
+            <small *ngIf="submitted && !cours.matiere" id="username-help" class="p-error">Un enseignantest requis.</small>
+        </div>
+        <ng-template pTemplate="footer">
+            <div class="field mx-5">
+                <div class="d-flex">
+                    <button icon="pi pi-plus" iconPos="right" pButton class="p-button p-button-lg flex-grow-1 button" label="Créer"></button>
+                </div>
+            </div>
+        </ng-template>
+    </p-card>
+</form>
