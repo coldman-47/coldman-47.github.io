@@ -14,6 +14,11 @@ const routes: Routes = [
   },
   { path: 'personnel', component: PersonnelComponent },
   { path: 'enseignants', component: EnseignantsComponent },
+  {
+    path: 'redevances',
+    loadChildren: () =>
+      import('./redevance/redevance.module').then((m) => m.RedevanceModule),
+  }
 ];
 
 @NgModule({

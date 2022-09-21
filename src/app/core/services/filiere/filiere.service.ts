@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Filiere } from 'src/app/core/models/filiere/filiere';
 
 @Injectable({
@@ -15,8 +15,8 @@ export class FiliereService {
 
   constructor(private http: HttpClient) { }
 
-  getFilieres(){
-    return this.http.get(this.baseUrl + 'filieres');
+  getFilieres(): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl + 'filieres');
   }
 
   getFiliere(id: string){
