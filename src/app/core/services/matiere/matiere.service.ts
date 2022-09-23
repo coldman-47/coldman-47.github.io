@@ -14,4 +14,8 @@ export class MatiereService {
   getMatieres(UeId: string){
     return this.http.get(this.baseUrl+'/ue/'+UeId);
   }
+
+  addMatiere(matiere: any){
+    return this.http.post(this.baseUrl+'/add', matiere);
+  }
 }

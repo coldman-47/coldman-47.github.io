@@ -32,11 +32,8 @@ export class ApprenantsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.apprenants = this.classe.apprenants;
-    this.apprenants.forEach(async (item: string, idx) =>
-      this.srv.getApprenant(item).subscribe({
-        next: (_apprenant) => (this.apprenants[idx] = _apprenant),
-      })
-    );
+    this.srv.getApprenants(this.classe._id).subscribe({
+      next: (apprenants: any) => this.apprenants = apprenants
+    });
   }
 }

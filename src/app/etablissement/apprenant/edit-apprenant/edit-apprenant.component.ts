@@ -7,6 +7,8 @@ import { ApprenantService } from 'src/app/core/services/apprenant/apprenant.serv
 import { Cancel } from '../../../shared/utilities/cancel/cancel';
 import { ConfirmationService } from 'primeng/api';
 import { DataUriToBlobPipe } from 'src/app/core/pipes/file/data-uri-to-blob.pipe';
+import { UeService } from '../../../core/services/ue/ue.service';
+import { Ue } from 'src/app/core/models/ue/ue';
 
 @Component({
   selector: 'app-edit-apprenant',
@@ -18,43 +20,54 @@ export class EditApprenantComponent extends Cancel implements OnInit {
   @Input() apprenant!: Apprenant;
   @Input() classeId!: string;
   submitted = false;
+  visible = false;
+  loading = false;
 
   apprenantForm!: FormGroup;
   avatar: any;
   photo: any;
+  ues?: Ue[];
 
-  constructor(private srv: ApprenantService,private fb: FormBuilder,private messageSrv: MessageService, confirmSrv: ConfirmationService) {
+  constructor(private srv: ApprenantService, private ueSrv: UeService, private fb: FormBuilder,private messageSrv: MessageService, confirmSrv: ConfirmationService) {
     super(confirmSrv);
   }
   
-  ngOnInit(): void {
+  ngOnInit(): void {    
     const pipe = new DataUriToBlobPipe();
-    if(this.apprenant.photo) this.photo = pipe.transform(this.apprenant.photo);
-    this.apprenantForm = this.fb.group({
-      prenom: [this.apprenant.prenom, Validators.required],
-      nom: [this.apprenant.nom, Validators.required],
-      email: [this.apprenant.email, [Validators.email, Validators.required]],
-      telephone: [this.apprenant.telephone, Validators.required],
-      adresse: [this.apprenant.adresse, Validators.required],
-      dateNaiss: [this.apprenant.dateNaiss, Validators.required],
-      tuteur: this.fb.group({
-        prenom: [null, Validators.required],
-        nom: [null, Validators.required],
-        email: [null, [Validators.email, Validators.required]],
-        telephone: [null, Validators.required],
-        adresse: [null, Validators.required]
-      })
-    });
-    this.srv.getTuteur(<string>this.apprenant.tuteur).subscribe({
-      next: (_tuteur: any) => this.controls['tuteur'] = this.fb.group({
-        prenom: [_tuteur.prenom, Validators.required],
-        nom: [_tuteur.nom, Validators.required],
-        email: [_tuteur.email, [Validators.email, Validators.required]],
-        telephone: [_tuteur.telephone, Validators.required],
-        adresse: [_tuteur.adresse, Validators.required]
-      })
-    });
-    this.controls;
+    this.loading = true;
+    this.srv.getApprenant(<string>this.apprenant._id).subscribe({
+      next: (_apprenant: any) => {
+        if(_apprenant.photo) this.photo = pipe.transform(_apprenant.photo);
+        this.apprenantForm = this.fb.group({
+          prenom: [_apprenant.prenom, Validators.required],
+          nom: [_apprenant.nom, Validators.required],
+          email: [_apprenant.email, [Validators.email, Validators.required]],
+          telephone: [_apprenant.telephone, Validators.required],
+          adresse: [_apprenant.adresse, Validators.required],
+          dateNaiss: [_apprenant.dateNaiss, Validators.required],
+          tuteur: this.fb.group({
+            prenom: [null, Validators.required],
+            nom: [null, Validators.required],
+            email: [null, [Validators.email, Validators.required]],
+            telephone: [null, Validators.required],
+            adresse: [null, Validators.required]
+          })
+        });
+        this.srv.getTuteur(<string>_apprenant.tuteur).subscribe({
+          next: (_tuteur: any) => this.controls['tuteur'] = this.fb.group({
+            prenom: [_tuteur.prenom, Validators.required],
+            nom: [_tuteur.nom, Validators.required],
+            email: [_tuteur.email, [Validators.email, Validators.required]],
+            telephone: [_tuteur.telephone, Validators.required],
+            adresse: [_tuteur.adresse, Validators.required]
+          })
+        });
+        this.apprenant = _apprenant;
+        this.controls;
+        this.loading = false;
+      },
+      error: () => this.loading = false
+    })
   }
 
   get controls() {
@@ -101,6 +114,12 @@ export class EditApprenantComponent extends Cancel implements OnInit {
       fr.onloadend = () => img.next(<string>fr.result);
       fr.readAsDataURL(file);
     });
+  }
+
+  getUes(){
+    this.ueSrv.getUesByClass(this.classeId).subscribe({
+      next: (ues: any) => this.ues = ues
+    })
   }
 
 }

@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FiliereService } from '../../../core/services/filiere/filiere.service';
 import { Filiere } from '../../../core/models/filiere/filiere';
 import { ClasseService } from '../../../core/services/classe/classe.service';
+import { UeService } from '../../../core/services/ue/ue.service';
+import { Ue } from 'src/app/core/models/ue/ue';
 
 @Component({
   selector: 'app-classes',
@@ -21,8 +23,10 @@ export class ClassesComponent implements OnInit {
   activeIndex = 1;
   selected: any;
   display = false;
+  visible = false;
+  ues?: Ue[];
 
-  constructor(private srv: ClasseService, private filiereSrv: FiliereService) {
+  constructor(private srv: ClasseService, private filiereSrv: FiliereService, private ueSrv: UeService) {
     srv.serverSentEvent.subscribe({
       next: (classe: any) => {
         if(classe){
@@ -51,5 +55,11 @@ export class ClassesComponent implements OnInit {
 
   getFilieres(e:any){
     this.filieres = e;
+  }
+
+  getUes(){
+    this.ueSrv.getUesByClass(this.selected._id).subscribe({
+      next: (ues: any) => this.ues = ues
+    })
   }
 }

@@ -1,0 +1,95 @@
+<div class="h-100 p-5">
+    <div class="row justify-content-center" style="height: calc(100% - 155.04px);">
+        <div class="surface-50 rounded-3 h-100 p-3">
+            <!-- <div class="col-sm-4 p-0 my-4">
+                <div class="p-inputgroup">
+                    <span class="p-float-label">
+                        <input class="form-control" #recherche placeholder="Recherche" type="text" pInputText> 
+                        <label for="inputtext">Recherche</label>
+                    </span>
+                    <button pButton (click)="search(recherche.value)" pRipple><span class="material-icons">search</span></button>      
+                </div>
+            </div> -->
+            <p-table [autoLayout]="true" [value]="ues" dataKey="_id">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th></th>
+                        <th>Ue</th>
+                        <th>Crédit</th>
+                        <th>Ajouter une matière</th>
+                        <th>Archiver</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-ue let-expanded="expanded">
+                    <tr>
+                        <td>
+                            <button type="button" pButton pRipple [pRowToggler]="ue" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                        </td>
+                        <td class="text-pink-500">{{ue.label}}</td>
+                        <td>{{ue.totalCredits}}</td>
+                        <td><button (click)="selected = ue; op.toggle($event)" class="p-button p-button-outlined p-button-warning" pButton icon="pi pi-plus"></button></td>
+                        <td><button class="p-button p-button-text p-button-danger" pButton icon="pi pi-trash"></button></td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="rowexpansion" let-ue>
+                    <tr class="p-5">
+                        <td colspan="5">
+                            <p-table>
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th>Matière</th>
+                                        <th>Volume Horaire</th>
+                                        <th>Coeficient</th>
+                                        <th>Crédits</th>
+                                        <th>Enlever</th>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </td>
+                    </tr>
+                </ng-template>
+                <!-- <ng-template pTemplate="summary">
+                    <p-paginator *ngIf="pagination" (onPageChange)="getPersonnel($event.page + 1)" [alwaysShow]="false" [totalRecords]="pagination?.totalElements" [rows]="pagination.limit"></p-paginator>
+                </ng-template> -->
+            </p-table>
+        </div>
+    </div>
+</div>
+<p-overlayPanel #op>
+    <h2>Ajout d'une matière à l'UE</h2>
+    <ng-template pTemplate>
+        <form [formGroup]="matiereForm" (submit)="add()">
+            <div class="field m-4">
+                <span class="p-float-label">
+                    <input [autocomplete]="true" formControlName="label" placeholder="Matière" class="form-control {{submitted && controls['label'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="tel" pInputText> 
+                    <label for="inputtext"><i class="pi pi-phone"></i>&nbsp;Matière</label>
+                </span>
+                <small *ngIf="submitted && controls['label'].invalid" id="username-help" class="p-error">Le libellé de la matière est requis.</small>
+            </div>
+            <div class="field m-4">
+                <span class="p-float-label">
+                    <p-inputNumber formControlName="volumeHoraire" placeholder="Volume horaire" class="form-control {{submitted && controls['volumeHoraire'].invalid ? 'ng-invalid ng-dirty' : ''}}"></p-inputNumber> 
+                    <label for="inputtext"><i class="pi pi-phone"></i>&nbsp;Volume horaire</label>
+                </span>
+                <small *ngIf="submitted && controls['volumeHoraire'].invalid" id="username-help" class="p-error">Le volume horaire de la matière est requis.</small>
+            </div>
+            <div class="field m-4">
+                <span class="p-float-label">
+                    <p-inputNumber formControlName="credits" placeholder="Crédits" class="form-control {{submitted && controls['credits'].invalid ? 'ng-invalid ng-dirty' : ''}}"></p-inputNumber> 
+                    <label for="inputtext"><i class="pi pi-phone"></i>&nbsp;Crédits</label>
+                </span>
+                <small *ngIf="submitted && controls['credits'].invalid" id="username-help" class="p-error">Le nombre de crédit de la matière est requis.</small>
+            </div>
+            <div class="field m-4">
+                <span class="p-float-label">
+                    <p-inputNumber formControlName="coefficient" placeholder="Coefficient" class="form-control {{submitted && controls['coefficient'].invalid ? 'ng-invalid ng-dirty' : ''}}"></p-inputNumber> 
+                    <label for="inputtext"><i class="pi pi-phone"></i>&nbsp;Coefficient</label>
+                </span>
+                <small *ngIf="submitted && controls['coefficient'].invalid" id="username-help" class="p-error">Le coefficient de la matière est requis.</small>
+            </div>
+            <div class="field mt-4 mx-4">
+                <button class="p-button p-button-raised flex-grow-1" label="Ajouter" pButton></button>
+            </div>
+        </form>
+    </ng-template>
+</p-overlayPanel>

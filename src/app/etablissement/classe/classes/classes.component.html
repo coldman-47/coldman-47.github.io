@@ -46,10 +46,19 @@
         <div class="container-fluid d-flex p-3">
             <button *ngIf="activeIndex > 0" icon="pi pi-chevron-left" (click)="activeIndex = activeIndex-1"
                 class="me-auto" pButton label="Retour"></button>
-            <button label="Emplois du temps" iconPos="right" pButton icon="pi pi-map" *ngIf="activeIndex === 2" (click)="display=true" class="p-button-outlined ms-auto"></button>
+                <ng-container *ngIf="activeIndex === 2">
+                    <button label="Unités d'enseignements" iconPos="right" pButton icon="pi pi-book" (click)="getUes(); visible=true;" class="p-button-outlined ms-auto p-button-success"></button>
+                    <button label="Emplois du temps" iconPos="right" pButton icon="pi pi-map" (click)="display=true" class="p-button-outlined ms-3"></button>
+                </ng-container>
         </div>
     </ng-template>
 </p-card>
 <p-dialog [(visible)]="display" [modal]="true" [style]="{'height': '100%', 'width': '100%'}">
     <app-cours *ngIf="display" [classe]="selected"></app-cours>
+</p-dialog>
+<p-dialog [(visible)]="visible" [modal]="true" [style]="{'height': '100%', 'width': '100%'}">
+    <ng-template pTemplate="header">
+        <h1 class="text-center p-3 titre mb-0">Unités d'enseignement</h1>
+    </ng-template>
+    <app-ues *ngIf="ues" [ues]="ues" [classeId]="selected._id"></app-ues>
 </p-dialog>

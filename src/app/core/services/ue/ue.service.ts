@@ -16,6 +16,10 @@ export class UeService {
     return this.http.get(this.baseUrl+'/'+id);
   }
 
+  getUesByClass(classId: string, ){
+    return this.http.get(this.baseUrl+'/classe/'+classId);
+  }
+
   addUe(ue: Ue){
     return this.http.post(this.baseUrl+'/add', ue);
   }

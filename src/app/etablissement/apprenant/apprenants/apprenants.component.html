@@ -16,7 +16,7 @@
         <app-new-apprenant *ngIf="!edition else edit"  classe="h-100" [classeId]="classe._id"></app-new-apprenant>
         <ng-template #edit>
             <ng-container *ngIf="selected">
-                <app-edit-apprenant (status)="selected = undefined; edition = false" [apprenant]="selected"></app-edit-apprenant>
+                <app-edit-apprenant [classeId]="classe._id" (status)="selected = undefined; edition = false" [apprenant]="selected"></app-edit-apprenant>
             </ng-container>
         </ng-template>
     </div>

@@ -13,6 +13,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { PaginatorModule } from 'primeng/paginator';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { SkeletonModule } from 'primeng/skeleton';
@@ -41,6 +42,7 @@ import { EditPersonnelComponent } from './personnel/edit-personnel/edit-personne
 import { NewPersonnelComponent } from './personnel/new-personnel/new-personnel.component';
 import { PersonnelComponent } from './personnel/personnel/personnel.component';
 import { NewUeComponent } from './ue/new-ue/new-ue.component';
+import { UesComponent } from './ue/ues/ues.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,8 @@ import { NewUeComponent } from './ue/new-ue/new-ue.component';
     NewFiliereComponent,
     NewUeComponent,
     EditApprenantComponent,
-    DataUriToBlobPipe
+    DataUriToBlobPipe,
+    UesComponent
   ],
   imports: [
     CommonModule,
@@ -78,6 +81,7 @@ import { NewUeComponent } from './ue/new-ue/new-ue.component';
     InputTextModule,
     MatTabsModule,
     MultiSelectModule,
+    OverlayPanelModule,
     PaginatorModule,
     PanelMenuModule,
     PipesModule,

@@ -20,6 +20,10 @@ export class ApprenantService {
     });
   }
 
+  getApprenants(classeId: string){
+    return this.http.get(this.baseUrl+'/classe/'+classeId);
+  }
+
   getApprenant(id: string){
     return this.http.get(this.baseUrl+'/'+id);
   }
