@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // backendUrl: 'https://backenddigischool.herokuapp.com/api/'
-  backendUrl: 'https://a55a-41-83-49-196.ngrok.io/api/'
+  backendUrl: 'https://backenddigischool.herokuapp.com/api/'
+  // backendUrl: 'https://b7a4-41-83-49-196.ngrok.io/api/'
 };
 
 /*

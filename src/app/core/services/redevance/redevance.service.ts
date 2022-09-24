@@ -35,8 +35,8 @@ export class RedevanceService {
     return this._hhtpClient.post<Redevance>(`${BASE_URL}/add`, redevance);
   }
 
-  updateRedevance(redevance: Redevance) {
-    return this._hhtpClient.put<Redevance>(`${BASE_URL}/${redevance.redevance?._id}`, redevance);
+  updateRedevance(id: string, redevance: Redevance) {
+    return this._hhtpClient.put<Redevance>(`${BASE_URL}/${id}`, redevance);
   }
 
   deleteRedevance(idRedevance: string) {

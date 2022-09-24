@@ -12,6 +12,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ToastModule } from 'primeng/toast';
+import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
 
 const PRIME_MODULES = [
   // PrimeNG Modules
@@ -20,11 +22,13 @@ const PRIME_MODULES = [
   ConfirmDialogModule,
   DropdownModule,
   InputNumberModule,
+  InputTextModule,
   MenuModule,
   MultiSelectModule,
   PanelModule,
   RippleModule,
   ProgressSpinnerModule,
+  TableModule,
   ToastModule
 ]
 

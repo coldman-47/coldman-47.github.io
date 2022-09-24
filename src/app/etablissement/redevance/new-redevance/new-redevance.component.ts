@@ -82,8 +82,9 @@ export class NewRedevanceComponent implements OnInit {
       ...this.redevanceForm.value,
     };
     if (this.isEdit) {
-      this._redevanceService.updateRedevance(data).subscribe({
-        next: () => this._router.navigate(['/etablissement/redevances']),
+      const id = data._id;
+      this._redevanceService.updateRedevance(id, data).subscribe({
+        next: (data) => this._router.navigate(['/etablissement/redevances']),
       });
     } else {
       this._redevanceService.createRedevance(data).subscribe({

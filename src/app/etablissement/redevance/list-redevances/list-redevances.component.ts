@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfirmationService, ConfirmEventType, MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { Filiere } from 'src/app/core/models/filiere/filiere';
 import { Redevance } from 'src/app/core/models/redevance/redevance.model';
@@ -33,8 +33,6 @@ export class ListRedevancesComponent implements OnInit {
   }
 
   onDelete(redevance: Redevance) {
-    console.log(redevance);
-
     this._confirmationService.confirm({
       message: 'Voulez-vous supprimer cette redevance?',
       header: 'Suppression',
@@ -43,8 +41,8 @@ export class ListRedevancesComponent implements OnInit {
       rejectLabel: 'Annuler',
       icon: 'pi pi-info-circle',
       accept: () => {
-        if (redevance.redevance && redevance.redevance._id) {
-          this._redevanceService.deleteRedevance(redevance.redevance._id).subscribe({
+        if (redevance._id) {
+          this._redevanceService.deleteRedevance(redevance._id).subscribe({
             next: (data) => {
               this._messageService.add({
                 severity: 'info',

@@ -18,6 +18,16 @@ const routes: Routes = [
     path: 'redevances',
     loadChildren: () =>
       import('./redevance/redevance.module').then((m) => m.RedevanceModule),
+  },
+  {
+    path: 'services',
+    loadChildren: () =>
+      import('./services/services.module').then((m) => m.ServicesModule),
+  },
+  {
+    path: 'bourses',
+    loadChildren: () =>
+      import('./bourses/bourses.module').then((m) => m.BoursesModule),
   }
 ];
 

@@ -1,0 +1,55 @@
+<p-card>
+  <div class="d-flex justify-content-between align-items-center">
+    <h2>{{ title }}</h2>
+    <button
+      pButton
+      pRipple
+      type="button"
+      [routerLink]="['/etablissement/services']"
+      icon="pi pi-times"
+      class="p-button-rounded p-button-secondary p-button-text"
+    ></button>
+  </div>
+
+  <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+    <div class="grid">
+        <div class="field col-12 md:col-6">
+          <label for="label">Nom du service</label>
+          <input
+            pInputText
+            inputId="label"
+            class="form-control"
+            formControlName="label"
+          />
+        </div>
+        <div class="field col-12 md:col-6">
+          <label for="tarif">Tarif</label>
+          <p-inputNumber
+            inputId="tarif"
+            class="form-control"
+            formControlName="tarif"
+          ></p-inputNumber>
+        </div>
+        <div class="field col-12 md:col-6">
+          <label for="nbMois">Nombre de mois</label>
+          <p-inputNumber
+            inputId="nbMois"
+            class="form-control"
+            formControlName="nbMois"
+          ></p-inputNumber>
+        </div>
+        <div class="field col-12 md:col-6">
+          <label for="debutMois">Mois de démarrage</label>
+          <p-inputNumber
+            inputId="debutMois"
+            class="form-control"
+            formControlName="debutMois"
+          ></p-inputNumber>
+        </div>
+      <div class="field col-12">
+        <!-- icon="pi pi-plus" -->
+        <button [disabled]="serviceForm.invalid" pButton type="submit" class="p-button p-button-lg">{{ isEdit ? 'Modifier' : 'Enregistrer' }}</button>
+    </div>
+    </div>
+  </form>
+</p-card>
