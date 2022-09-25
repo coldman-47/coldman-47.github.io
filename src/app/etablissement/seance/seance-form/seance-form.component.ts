@@ -13,7 +13,14 @@ import { SeanceService } from '../../../core/services/seance/seance.service';
 })
 export class SeanceFormComponent implements OnInit {
 
-  seanceForm!: FormGroup;
+  seanceForm = this.fb.group({
+    label: [null, Validators.required],
+    debut: [null, Validators.required],
+    fin: [null, Validators.required],
+    volumeHoraire: [null, Validators.required],
+    matiere: [null, Validators.required],
+    enseignant: [null, Validators.required]
+  });
   @Input() ues!: Ue[];
   @Input() classeId?: string;
   submitted = false;
@@ -41,14 +48,8 @@ export class SeanceFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.seanceForm = this.fb.group({
-      label: [null, Validators.required],
-      debut: [null, Validators.required],
-      fin: [null, Validators.required],
-      volumeHoraire: [null, Validators.required],
-      matiere: [null, Validators.required],
-      enseignant: [null, Validators.required]
-    });
+    console.log(this.controls);
+    
   }
   
     get controls(){
@@ -70,7 +71,7 @@ export class SeanceFormComponent implements OnInit {
     }
 
   create(){
-    const seance = this.seanceForm.value;
+    const seance: any = this.seanceForm.value;
     seance.classe = this.classeId;
     seance.programmation = this.programme;
     this.srv.addSeance(seance).subscribe({

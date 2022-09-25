@@ -3,31 +3,30 @@
         <ng-template pTemplate="title">
             <h2 class="text-center" style="font-size: 1.4em">Nouvelle programmation</h2>
         </ng-template>
-        {{(submitted && controls['label'].invalid) ? 'ng-invalid ng-dirty' : ''}}
         <div class="field mt-3 mb-4 px-4">
             <span class="p-float-label">
-                <p-dropdown [options]="['Cours', 'Td', 'TP']" formControlName="label" placeholder="Type de séances" [class]="'form-control ' + (submitted && controls['label'].invalid) ? 'ng-invalid ng-dirty' : ''"></p-dropdown>
+                <p-dropdown [options]="['Cours', 'Td', 'TP']" formControlName="label" placeholder="Type de séances" class="form-control {{(submitted && controls['label'].invalid) ? 'ng-invalid ng-dirty' : ''}}"></p-dropdown>
                 <label for="inputtext"><i class="pi pi-list"></i> &nbsp;Type de séances</label>
             </span>
             <small *ngIf="submitted && controls['label'].invalid" class="p-error">La date de début du module est requis.</small>
         </div>
         <div class="field mb-4 px-4">
             <span class="p-float-label">
-                <p-calendar appendTo="body" formControlName="debut" placeholder="Début du module" [class]="'form-control ' + (submitted && controls['debut'].invalid) ? 'ng-invalid ng-dirty' : ''"></p-calendar>
+                <p-calendar appendTo="body" formControlName="debut" placeholder="Début du module" class="form-control {{(submitted && controls['debut'].invalid) ? 'ng-invalid ng-dirty' : ''}}"></p-calendar>
                 <label for="inputtext"><i class="pi pi-calendar"></i> &nbsp;Début du module</label>
             </span>
             <small *ngIf="submitted && controls['debut'].invalid" class="p-error">La date de début du module est requis.</small>
         </div>
         <div class="field mb-4 px-4">
             <span class="p-float-label">
-                <p-calendar appendTo="body" formControlName="fin" placeholder="Fin du module" [class]="'form-control ' + (submitted && controls['fin'].invalid) ? 'ng-invalid ng-dirty' : ''"></p-calendar>
+                <p-calendar appendTo="body" formControlName="fin" placeholder="Fin du module" class="form-control {{(submitted && controls['fin'].invalid) ? 'ng-invalid ng-dirty' : ''}}"></p-calendar>
                 <label for="inputtext"><i class="pi pi-calendar"></i> &nbsp;Fin du module</label>
             </span>
             <small *ngIf="submitted && controls['fin'].invalid" class="p-error">La date de fin du module est requis.</small>
         </div>
         <div class="field mb-4 px-4">
             <span class="p-float-label">
-                <p-inputNumber [min]="10" [max]="20" formControlName="volumeHoraire" placeholder="Fin du module" [class]="'form-control ' + (submitted && controls['volumeHoraire'].invalid) ? 'ng-invalid ng-dirty' : ''"></p-inputNumber>
+                <p-inputNumber [min]="10" [max]="20" formControlName="volumeHoraire" placeholder="Fin du module" class="form-control {{(submitted && controls['volumeHoraire'].invalid) ? 'ng-invalid ng-dirty' : ''}}"></p-inputNumber>
                 <label for="inputtext"><i class="pi pi-clock"></i> &nbsp;Volume horaire du module</label>
             </span>
             <small *ngIf="submitted && controls['volumeHoraire'].invalid" class="p-error">Le volume horaire du module est requis.</small>
@@ -41,7 +40,7 @@
         <div class="field my-4 px-4">
             <span class="p-float-label">
                 <p-dropdown appendTo="body" optionValue="_id" optionLabel="label" [options]="matieres" formControlName="matiere" placeholder="Matière"
-                    [class]="'form-control' + submitted && controls['matiere'].invalid ? 'ng-invalid ng-dirty' : ''"></p-dropdown>
+                    class="form-control {{submitted && controls['matiere'].invalid ? 'ng-invalid ng-dirty' : ''}}"></p-dropdown>
                 <label for="inputtext"><i class="pi pi-file"></i> &nbsp;Matière du cours</label>
             </span>
             <small *ngIf="submitted && controls['matiere'].invalid" id="username-help" class="p-error">Une matière est requise.</small>
@@ -49,7 +48,7 @@
         <div class="field my-4 px-4">
             <span class="p-float-label">
                 <p-dropdown appendTo="body" [options]="enseignants" optionLabel="fullName" optionValue="_id" formControlName="enseignant" placeholder="Enseignant"
-                [class]="'form-control' + submitted && controls['matiere'].invalid ? 'ng-invalid ng-dirty' : ''"></p-dropdown>
+                class="form-control {{submitted && controls['matiere'].invalid ? 'ng-invalid ng-dirty' : ''}}"></p-dropdown>
                 <label for="inputtext"><i class="pi pi-user"></i> &nbsp;Enseignant</label>
             </span>
             <small *ngIf="submitted && controls['matiere'].invalid" id="username-help" class="p-error">Une matière est requise.</small>
@@ -63,7 +62,7 @@
                             <p-accordion>
                                 <p-accordionTab *ngFor="let day of days" [header]="day.label">
                                    <span class="p-float-label p-input-filled">
-                                       <p-inputNumber (onInput)="getDays(day.jour, $event)" [min]="0" placeholder="Durée" [class]="'form-control'"></p-inputNumber>
+                                       <p-inputNumber (onInput)="getDays(day.jour, $event)" [min]="0" placeholder="Durée" class="form-control"></p-inputNumber>
                                        <label for="inputtext"><i class="pi pi-clock"></i> &nbsp;Durée</label>
                                    </span>
                                 </p-accordionTab>
