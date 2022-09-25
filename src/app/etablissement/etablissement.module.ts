@@ -47,6 +47,7 @@ import { SeanceFormComponent } from './seance/seance-form/seance-form.component'
 import { TimetableComponent } from './timetable/timetable.component';
 import { NewUeComponent } from './ue/new-ue/new-ue.component';
 import { UesComponent } from './ue/ues/ues.component';
+import { EvaluationFormComponent } from './evaluation/evaluation-form/evaluation-form.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { UesComponent } from './ue/ues/ues.component';
     DataUriToBlobPipe,
     UesComponent,
     TimetableComponent,
-    SeanceFormComponent
+    SeanceFormComponent,
+    EvaluationFormComponent
   ],
   imports: [
     CommonModule,

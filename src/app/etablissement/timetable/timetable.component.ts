@@ -44,9 +44,27 @@ export class TimetableComponent implements OnInit {
     viewDidMount: (info) => (this.cView = info.view),
   };
   display = false;
+  visible = false;
   @Input() classe!: Classe;
   ue: Ue[] = [];
   cours: Cours[] = [];
+  btnItems = [
+    {
+      icon: "pi pi-map",
+      command: () => this.display = true,
+      tooltipOptions: {
+        tooltipLabel: "Cours",
+        tooltipPosition: "left"
+      }
+    },{
+      icon: "pi pi-pencil",
+      command: () => this.visible = true,
+      tooltipOptions: {
+        tooltipLabel: "Évaluation",
+        tooltipPosition: "left"
+      }
+    }
+  ]
 
   constructor(private coursSrv: CoursService, private ueSrv: UeService) {}
 
@@ -61,6 +79,7 @@ export class TimetableComponent implements OnInit {
             _cours.start = _cours.date;
             _cours.title = _cours.matiere.label;
             _cours.editable = true;
+            _cours.color = 'blue';
             this.cView.calendar.addEvent(_cours);
           });
           this.calendarOptions!.events = cours;

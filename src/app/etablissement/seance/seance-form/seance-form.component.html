@@ -1,8 +1,5 @@
 <form [formGroup]="seanceForm" class="h-100 overflow-y-auto fadeinup animation-duration-400 bg-white rounded" (submit)="create()">
     <p-card class="rounded">
-        <ng-template pTemplate="title">
-            <h2 class="text-center" style="font-size: 1.4em">Nouvelle programmation</h2>
-        </ng-template>
         <div class="field mt-3 mb-4 px-4">
             <span class="p-float-label">
                 <p-dropdown [options]="['Cours', 'Td', 'TP']" formControlName="label" placeholder="Type de séances" class="form-control {{(submitted && controls['label'].invalid) ? 'ng-invalid ng-dirty' : ''}}"></p-dropdown>
@@ -12,14 +9,14 @@
         </div>
         <div class="field mb-4 px-4">
             <span class="p-float-label">
-                <p-calendar appendTo="body" formControlName="debut" placeholder="Début du module" class="form-control {{(submitted && controls['debut'].invalid) ? 'ng-invalid ng-dirty' : ''}}"></p-calendar>
+                <p-calendar #debut appendTo="body" formControlName="debut" placeholder="Début du module" class="form-control {{(submitted && controls['debut'].invalid) ? 'ng-invalid ng-dirty' : ''}}"></p-calendar>
                 <label for="inputtext"><i class="pi pi-calendar"></i> &nbsp;Début du module</label>
             </span>
             <small *ngIf="submitted && controls['debut'].invalid" class="p-error">La date de début du module est requis.</small>
         </div>
         <div class="field mb-4 px-4">
             <span class="p-float-label">
-                <p-calendar appendTo="body" formControlName="fin" placeholder="Fin du module" class="form-control {{(submitted && controls['fin'].invalid) ? 'ng-invalid ng-dirty' : ''}}"></p-calendar>
+                <p-calendar [minDate]="debut.value" appendTo="body" formControlName="fin" placeholder="Fin du module" class="form-control {{(submitted && controls['fin'].invalid) ? 'ng-invalid ng-dirty' : ''}}"></p-calendar>
                 <label for="inputtext"><i class="pi pi-calendar"></i> &nbsp;Fin du module</label>
             </span>
             <small *ngIf="submitted && controls['fin'].invalid" class="p-error">La date de fin du module est requis.</small>

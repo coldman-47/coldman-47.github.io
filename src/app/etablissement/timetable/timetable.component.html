@@ -1,14 +1,26 @@
 <div class="h-100 w-100">
     <div style="margin-bottom: -8em;" class="p-5 d-flex justify-content-end flex-wrap">
-        <button (click)="display=true" pButton icon="pi pi-plus"></button>
+        <!-- <button (click)="display=true" pButton icon="pi pi-plus"></button> -->
+        <p-speedDial [transitionDelay]="80" buttonClassName="p-button-outlined" [model]="btnItems" direction="down"></p-speedDial>
     </div>
     <full-calendar id="calendar" #calendar (click)="toggleView($event)" [options]="calendarOptions"></full-calendar>
 </div>
-<p-dialog position="right" [modal]="true" [(visible)]="display">
+<p-dialog position="right" [modal]="true" [(visible)]="display" [style]="{'height': '100%'}">
+    <ng-template pTemplate="header">
+        <h2 class="text-center py-3">Nouvelle programmation</h2>
+    </ng-template>
     <ng-container *ngIf="display">
         <app-seance-form *ngIf="edit === false else edition" [classeId]="classe._id" [ues]="ue"></app-seance-form>
         <ng-template #edition>
             <app-edit-cours *ngIf="selected" [cours]="selected" [classeId]="classe._id" [ues]="ue"></app-edit-cours>
         </ng-template>
+    </ng-container>
+</p-dialog>
+<p-dialog position="right" [modal]="true" [(visible)]="visible" [style]="{'height': '100%'}">
+    <ng-template pTemplate="header">
+        <h2 class="text-center py-3">Nouvel évaluation</h2>
+    </ng-template>
+    <ng-container *ngIf="visible">
+        <app-evaluation-form [classeId]="classe._id" [ues]="ue"></app-evaluation-form>
     </ng-container>
 </p-dialog>
