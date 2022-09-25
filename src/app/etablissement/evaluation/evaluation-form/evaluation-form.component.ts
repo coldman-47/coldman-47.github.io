@@ -11,10 +11,6 @@ import { EvaluationService } from '../../../core/services/evaluation/evaluation.
   styleUrls: ['./evaluation-form.component.sass']
 })
 export class EvaluationFormComponent implements OnInit {
-
-  
-  
-  
   
   evaluationForm = this.fb.group({
     titre: [null, Validators.required],
