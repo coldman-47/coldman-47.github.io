@@ -7,19 +7,21 @@ import {
 } from '@fullcalendar/web-component';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import { Classe } from '../../../core/models/classe/classe';
-import { UeService } from '../../../core/services/ue/ue.service';
-import { Ue } from '../../../core/models/ue/ue';
-import { CoursService } from '../../../core/services/cours/cours.service';
 import { Cours } from 'src/app/core/models/cours/cours';
-// defineFullCalendarElement();
+import { Classe } from 'src/app/core/models/classe/classe';
+import { Ue } from 'src/app/core/models/ue/ue';
+import { CoursService } from 'src/app/core/services/cours/cours.service';
+import { UeService } from 'src/app/core/services/ue/ue.service';
+defineFullCalendarElement();
+
 
 @Component({
-  selector: 'app-cours',
-  templateUrl: './cours.component.html',
-  styleUrls: ['./cours.component.sass'],
+  selector: 'app-timetable',
+  templateUrl: './timetable.component.html',
+  styleUrls: ['./timetable.component.sass']
 })
-export class CoursComponent implements OnInit {
+export class TimetableComponent implements OnInit {
+
   monthly = true;
   edit = false;
   cView!: ViewApi;
@@ -46,14 +48,14 @@ export class CoursComponent implements OnInit {
   ue: Ue[] = [];
   cours: Cours[] = [];
 
-  constructor(private srv: CoursService, private ueSrv: UeService) {}
+  constructor(private coursSrv: CoursService, private ueSrv: UeService) {}
 
   ngOnInit(): void {}
 
   ngOnChanges(changes: any) {
     const change = changes.classe;
     if (change.previousValue !== change.currentValue) {
-      this.srv.getCours(change.currentValue._id).subscribe({
+      this.coursSrv.getCours(change.currentValue._id).subscribe({
         next: (cours: any) => {
           cours = cours.map((_cours: any) => {
             _cours.start = _cours.date;
@@ -74,7 +76,6 @@ export class CoursComponent implements OnInit {
   }
 
   ngDoCheck() {
-    
     const el = document.getElementById('calendar');
     if (el && !(<any>this.cView?.calendar).isRendered) {
       const calendar = new Calendar(el, this.calendarOptions);
@@ -92,4 +93,5 @@ export class CoursComponent implements OnInit {
       this.cView.calendar.setOption('headerToolbar', options);
     }
   }
+
 }

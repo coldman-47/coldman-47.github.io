@@ -15,6 +15,10 @@ export class MatiereService {
     return this.http.get(this.baseUrl+'/ue/'+UeId);
   }
 
+  getMatiere(id: string){
+    return this.http.get(this.baseUrl+'/'+id);
+  }
+
   addMatiere(matiere: any){
     return this.http.post(this.baseUrl+'/add', matiere);
   }

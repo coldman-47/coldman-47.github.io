@@ -13,7 +13,8 @@ export class UesComponent implements OnInit {
   @Input() classeId?: string;
   submitted = false;
   matiereForm!: FormGroup;
-  selected?: Ue;
+  selected?: any;
+  matieres: any[] = [];
 
   constructor(private matiereSrv: MatiereService, fb: FormBuilder) {
     this.matiereForm = fb.group({
@@ -43,6 +44,22 @@ export class UesComponent implements OnInit {
       })
     }
 
+  }
+
+  getMatieres(ue: Ue){
+    this.selected = this.selected !== ue ? ue : undefined;
+    if(this.selected){
+      this.selected.matieres.forEach((matiereId: string) => {
+        this.matiereSrv.getMatiere(matiereId).subscribe({
+          next: (_matiere) => {
+            this.matieres.push(_matiere);
+            console.log(this.matieres);
+            
+          }
+        })
+      });
+    }else this.matieres = [];
+    
   }
 
 }

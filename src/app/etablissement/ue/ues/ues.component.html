@@ -15,36 +15,26 @@
                     <tr>
                         <th></th>
                         <th>Ue</th>
-                        <th>Crédit</th>
-                        <th>Ajouter une matière</th>
+                        <th class="text-right">Crédit</th>
+                        <th class="text-center">Ajouter une matière</th>
                         <th>Archiver</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-ue let-expanded="expanded">
                     <tr>
                         <td>
-                            <button type="button" pButton pRipple [pRowToggler]="ue" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                            <button (click)="getMatieres(ue)" type="button" pButton pRipple [pRowToggler]="ue" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
                         </td>
                         <td class="text-pink-500">{{ue.label}}</td>
-                        <td>{{ue.totalCredits}}</td>
-                        <td><button (click)="selected = ue; op.toggle($event)" class="p-button p-button-outlined p-button-warning" pButton icon="pi pi-plus"></button></td>
+                        <td class="text-right">{{ue.totalCredits}}</td>
+                        <td class="text-center"><button (click)="selected = ue; op.toggle($event)" class="p-button p-button-outlined p-button-rounded p-button-warning" pButton icon="pi pi-plus"></button></td>
                         <td><button class="p-button p-button-text p-button-danger" pButton icon="pi pi-trash"></button></td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="rowexpansion" let-ue>
                     <tr class="p-5">
                         <td colspan="5">
-                            <p-table>
-                                <ng-template pTemplate="header">
-                                    <tr>
-                                        <th>Matière</th>
-                                        <th>Volume Horaire</th>
-                                        <th>Coeficient</th>
-                                        <th>Crédits</th>
-                                        <th>Enlever</th>
-                                    </tr>
-                                </ng-template>
-                            </p-table>
+                            <p-chip *ngFor="let matiere of matieres" [label]="matiere.label" [removable]="true"></p-chip>
                         </td>
                     </tr>
                 </ng-template>

@@ -22,7 +22,7 @@
                                     </div>
                                 </ng-container>
                                 <ng-template #empty>
-                                    <img height="500px" src="assets/imgs/cactus.jpg" alt="">
+                                    <img style="max-height: 550px;" class="img-fluid" src="assets/imgs/empty.png" alt="">
                                     <h3 class="text-center">Pas de niveau séléctionné ou pas de classes disponible pour ce niveau</h3>
                                 </ng-template>
                             </div>
@@ -54,7 +54,7 @@
     </ng-template>
 </p-card>
 <p-dialog [(visible)]="display" [modal]="true" [style]="{'height': '100%', 'width': '100%'}">
-    <app-cours *ngIf="display" [classe]="selected"></app-cours>
+    <app-timetable *ngIf="display" [classe]="selected"></app-timetable>
 </p-dialog>
 <p-dialog [(visible)]="visible" [modal]="true" [style]="{'height': '100%', 'width': '100%'}">
     <ng-template pTemplate="header">

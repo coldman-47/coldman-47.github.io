@@ -7,6 +7,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { ConfirmationService } from 'primeng/api';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
+import { ChipModule } from 'primeng/chip';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DialogModule } from 'primeng/dialog';
 import { FileUploadModule } from 'primeng/fileupload';
@@ -21,6 +22,7 @@ import { SpeedDialModule } from 'primeng/speeddial';
 import { StepsModule } from 'primeng/steps';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
+import { TreeSelectModule } from 'primeng/treeselect';
 import { DataUriToBlobPipe } from '../core/pipes/file/data-uri-to-blob.pipe';
 import { PipesModule } from '../core/pipes/pipes.module';
 import { ApprenantsComponent } from './apprenant/apprenants/apprenants.component';
@@ -41,6 +43,8 @@ import { PedagogieComponent } from './pedagogie/pedagogie.component';
 import { EditPersonnelComponent } from './personnel/edit-personnel/edit-personnel.component';
 import { NewPersonnelComponent } from './personnel/new-personnel/new-personnel.component';
 import { PersonnelComponent } from './personnel/personnel/personnel.component';
+import { SeanceFormComponent } from './seance/seance-form/seance-form.component';
+import { TimetableComponent } from './timetable/timetable.component';
 import { NewUeComponent } from './ue/new-ue/new-ue.component';
 import { UesComponent } from './ue/ues/ues.component';
 
@@ -65,7 +69,9 @@ import { UesComponent } from './ue/ues/ues.component';
     NewUeComponent,
     EditApprenantComponent,
     DataUriToBlobPipe,
-    UesComponent
+    UesComponent,
+    TimetableComponent,
+    SeanceFormComponent
   ],
   imports: [
     CommonModule,
@@ -74,6 +80,7 @@ import { UesComponent } from './ue/ues/ues.component';
     AccordionModule,
     CalendarModule,
     CardModule,
+    ChipModule,
     ConfirmPopupModule,
     DialogModule,
     FileUploadModule,
@@ -89,7 +96,8 @@ import { UesComponent } from './ue/ues/ues.component';
     SpeedDialModule,
     StepsModule,
     TableModule,
-    TooltipModule
+    TooltipModule,
+    TreeSelectModule
   ],
   providers: [ConfirmationService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

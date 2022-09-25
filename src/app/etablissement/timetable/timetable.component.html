@@ -1,12 +1,12 @@
-<!-- <div class="h-100 w-100">
+<div class="h-100 w-100">
     <div style="margin-bottom: -8em;" class="p-5 d-flex justify-content-end flex-wrap">
         <button (click)="display=true" pButton icon="pi pi-plus"></button>
     </div>
     <full-calendar id="calendar" #calendar (click)="toggleView($event)" [options]="calendarOptions"></full-calendar>
 </div>
 <p-dialog position="right" [modal]="true" [(visible)]="display">
-    <app-new-cours *ngIf="edit === false else edition" [classeId]="classe._id" [ues]="ue"></app-new-cours>
+    <app-seance-form *ngIf="edit === false else edition" [classeId]="classe._id" [ues]="ue"></app-seance-form>
     <ng-template #edition>
         <app-edit-cours *ngIf="selected" [cours]="selected" [classeId]="classe._id" [ues]="ue"></app-edit-cours>
     </ng-template>
-</p-dialog> -->
+</p-dialog>
