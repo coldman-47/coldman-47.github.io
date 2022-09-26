@@ -4,6 +4,7 @@ import { Enseignant } from 'src/app/core/models/enseignant/enseignant';
 import { Ue } from 'src/app/core/models/ue/ue';
 import { MatiereService } from 'src/app/core/services/matiere/matiere.service';
 import { EvaluationService } from '../../../core/services/evaluation/evaluation.service';
+import { CycleService } from '../../../core/services/cycle/cycle.service';
 
 @Component({
   selector: 'app-evaluation-form',
@@ -17,6 +18,7 @@ export class EvaluationFormComponent implements OnInit {
     date: [null, Validators.required],
     detail: [null],
     duree: [null, Validators.required],
+    periode: [null, Validators.required],
     matiere: [null, Validators.required],
     type: [null, Validators.required]
   });
@@ -26,8 +28,16 @@ export class EvaluationFormComponent implements OnInit {
   matieres = [];
   enseignants: Enseignant[] = [];
   programme: any[] = [];
+  types: any[] = [];
+  periodes: any[] = [];
 
-  constructor(private srv: EvaluationService, private matiereSrv: MatiereService, private fb: FormBuilder) {
+  constructor(private srv: EvaluationService, private matiereSrv: MatiereService, cycleSrv: CycleService, private fb: FormBuilder) {
+    srv.getTypes().subscribe({
+      next: (_types: any) => this.types = _types
+    });
+    this.periodes = cycleSrv.cycle.value.periodes;
+    console.log(cycleSrv.cycle.value);
+    
   }
 
   ngOnInit(): void {
@@ -46,12 +56,16 @@ export class EvaluationFormComponent implements OnInit {
   }
 
   create(){
-    const evaluation: any = this.evaluationForm.value;
-    evaluation.classe = this.classeId;
-    evaluation.programmation = this.programme;
-    this.srv.addEvaluation(evaluation).subscribe({
-      next: (_evaluation: any) => console.log(_evaluation)
-    });
+    if(this.evaluationForm.valid){
+      const evaluation: any = this.evaluationForm.value;
+      evaluation.classe = this.classeId;
+      evaluation.programmation = this.programme;
+      this.srv.addEvaluation(evaluation).subscribe({
+        next: (_evaluation: any) => {
+          this.evaluationForm.reset();
+        },
+      });
+    }
   }
 
 }

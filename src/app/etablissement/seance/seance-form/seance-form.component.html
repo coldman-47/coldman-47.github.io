@@ -17,7 +17,7 @@
         <div class="field mb-4 px-4">
             <span class="p-float-label">
                 <p-calendar [minDate]="debut.value" appendTo="body" formControlName="fin" placeholder="Fin du module" class="form-control {{(submitted && controls['fin'].invalid) ? 'ng-invalid ng-dirty' : ''}}"></p-calendar>
-                <label for="inputtext"><i class="pi pi-calendar"></i> &nbsp;Fin du module</label>
+                <label for="inputtext"><i class="pi pi-calendar-times"></i> &nbsp;Fin du module</label>
             </span>
             <small *ngIf="submitted && controls['fin'].invalid" class="p-error">La date de fin du module est requis.</small>
         </div>
@@ -31,7 +31,7 @@
         <div class="field my-4 px-4">
             <span class="p-float-label">
                 <p-dropdown appendTo="body" (onChange)="getMatieres($event)" [options]="ues" optionLabel="label" optionValue="_id" name="numeroCours" placeholder="Unité d'enseignement" class="form-control"></p-dropdown>
-                <label for="inputtext"><i class="pi pi-file"></i> &nbsp;Ue</label>
+                <label for="inputtext"><span class="material-icons-outlined">group_work</span> &nbsp;Ue</label>
             </span>
         </div>
         <div class="field my-4 px-4">
@@ -60,7 +60,7 @@
                                 <p-accordionTab *ngFor="let day of days" [header]="day.label">
                                    <span class="p-float-label p-input-filled">
                                        <p-inputNumber (onInput)="getDays(day.jour, $event)" [min]="0" placeholder="Durée" class="form-control"></p-inputNumber>
-                                       <label for="inputtext"><i class="pi pi-clock"></i> &nbsp;Durée</label>
+                                       <label for="inputtext"><span class="material-icons-round">hourglass_top</span> &nbsp;Durée</label>
                                    </span>
                                 </p-accordionTab>
                             </p-accordion>

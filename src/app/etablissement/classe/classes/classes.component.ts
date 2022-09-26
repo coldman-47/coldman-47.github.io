@@ -4,6 +4,7 @@ import { Filiere } from '../../../core/models/filiere/filiere';
 import { ClasseService } from '../../../core/services/classe/classe.service';
 import { UeService } from '../../../core/services/ue/ue.service';
 import { Ue } from 'src/app/core/models/ue/ue';
+import { CycleService } from '../../../core/services/cycle/cycle.service';
 
 @Component({
   selector: 'app-classes',
@@ -26,7 +27,7 @@ export class ClassesComponent implements OnInit {
   visible = false;
   ues?: Ue[];
 
-  constructor(private srv: ClasseService, private filiereSrv: FiliereService, private ueSrv: UeService) {
+  constructor(srv: ClasseService, private filiereSrv: FiliereService, private ueSrv: UeService, private cycleSrv: CycleService) {
     srv.serverSentEvent.subscribe({
       next: (classe: any) => {
         if(classe){
@@ -45,7 +46,7 @@ export class ClassesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.filiereSrv.cycles.subscribe({
+    this.cycleSrv.cycles.subscribe({
       next: (_cycles) => (this.cycles = _cycles),
     });
     this.filiereSrv.getFilieres().subscribe({

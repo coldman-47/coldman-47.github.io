@@ -14,4 +14,12 @@ export class EvaluationService {
   addEvaluation(evaluation: any){
     return this.http.post(this.baseUrl+'/add', evaluation);
   }
+
+  getTypes(){
+    return this.http.get(environment.backendUrl+'types');
+  }
+
+  getEvaluations(classeId: string){
+    return this.http.get(this.baseUrl+`/classe/${classeId}`);
+  }
 }

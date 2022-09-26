@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Classe } from 'src/app/core/models/classe/classe';
 import { ClasseService } from 'src/app/core/services/classe/classe.service';
-import { FiliereService } from 'src/app/core/services/filiere/filiere.service';
+import { CycleService } from '../../core/services/cycle/cycle.service';
 
 @Component({
   selector: 'app-pedagogie',
@@ -19,19 +19,21 @@ export class PedagogieComponent implements OnInit {
   ];
   classes: Classe[] = [];
 
-  constructor(filiereSrv: FiliereService, classeSrv: ClasseService) {
-    filiereSrv.getCycles();
-    filiereSrv.cycles.subscribe({
+  constructor(classeSrv: ClasseService, cycleSrv: CycleService) {
+    cycleSrv.getCycles();
+    cycleSrv.cycles.subscribe({
       next: (cycles: any) => {
         this.cycles = cycles.map((_cycle: any) => {
           _cycle.icon = 'pi pi-book';
           if (_cycle.niveaux.length)
             _cycle.items = _cycle.niveaux.map((_niveau: any) => {
               let { label } = _niveau;
-              let command = () =>
-                classeSrv.getClassesByGrade(_niveau._id).subscribe({
-                  next: (_res: any) => this.classes = _res,
-                });
+              let command = () => classeSrv.getClassesByGrade(_niveau._id).subscribe({
+                next: (_res: any) => {
+                  this.classes = _res;
+                  cycleSrv.cycle.next(_cycle);
+                },
+              });
               return { label, command };
             });
           return _cycle;

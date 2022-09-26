@@ -9,13 +9,13 @@
         </div>
         <div class="field mt-3 mb-4 px-4">
             <span class="p-float-label">
-                <textarea pInputTextarea formControlName="detail" class="form-control"></textarea>
-                <label for="inputtext"><i class="pi pi-list"></i> &nbsp;Détail de la seance</label>
+                <textarea pInputTextarea [autoResize]="true" formControlName="detail" class="form-control p-inputtextarea p-inputtextarea-resizable"></textarea>
+                <label for="inputtext"><span class="material-icons-outlined">details</span> &nbsp;Détail de la seance</label>
             </span>
         </div>
         <div class="field mt-3 mb-4 px-4">
             <span class="p-float-label">
-                <p-dropdown [options]="['Cours', 'Td', 'TP']" formControlName="type" class="form-control {{(submitted && controls['type'].invalid) ? 'ng-invalid ng-dirty' : ''}}"></p-dropdown>
+                <p-dropdown [autoDisplayFirst]="false" [options]="types" formControlName="type" class="form-control {{(submitted && controls['type'].invalid) ? 'ng-invalid ng-dirty' : ''}}"></p-dropdown>
                 <label for="inputtext"><i class="pi pi-list"></i> &nbsp;Type de seances</label>
             </span>
             <small *ngIf="submitted && controls['type'].invalid" class="p-error">La date de début du module est requis.</small>
@@ -36,8 +36,15 @@
         </div>
         <div class="field my-4 px-4">
             <span class="p-float-label">
-                <p-dropdown appendTo="body" (onChange)="getMatieres($event)" [options]="ues" optionLabel="label" optionValue="_id" name="numeroCours" placeholder="Unité d'enseignement" class="form-control"></p-dropdown>
-                <label for="inputtext"><i class="pi pi-file"></i> &nbsp;Ue</label>
+                <p-dropdown appendTo="body" formControlName="periode" [options]="periodes" optionLabel="label" optionValue="_id" placeholder="Période" class="form-control {{(submitted && controls['periode'].invalid) ? 'ng-invalid ng-dirty' : ''}}"></p-dropdown>
+                <label for="inputtext"><span class="material-icons-outlined">group_work</span> &nbsp;Période</label>
+            </span>
+            <small *ngIf="submitted && controls['periode'].invalid" class="p-error">Le volume horaire du module est requis.</small>
+        </div>
+        <div class="field my-4 px-4">
+            <span class="p-float-label">
+                <p-dropdown appendTo="body" (onChange)="getMatieres($event)" [options]="ues" optionLabel="label" optionValue="_id" placeholder="Unité d'enseignement" class="form-control"></p-dropdown>
+                <label for="inputtext"><span class="material-icons-outlined">group_work</span> &nbsp;Ue</label>
             </span>
         </div>
         <div class="field my-4 px-4">

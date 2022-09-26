@@ -12,6 +12,7 @@ import { Classe } from 'src/app/core/models/classe/classe';
 import { Ue } from 'src/app/core/models/ue/ue';
 import { CoursService } from 'src/app/core/services/cours/cours.service';
 import { UeService } from 'src/app/core/services/ue/ue.service';
+import { EvaluationService } from '../../core/services/evaluation/evaluation.service';
 defineFullCalendarElement();
 
 
@@ -48,6 +49,7 @@ export class TimetableComponent implements OnInit {
   @Input() classe!: Classe;
   ue: Ue[] = [];
   cours: Cours[] = [];
+  evaluations: any[] = [];
   btnItems = [
     {
       icon: "pi pi-map",
@@ -66,7 +68,7 @@ export class TimetableComponent implements OnInit {
     }
   ]
 
-  constructor(private coursSrv: CoursService, private ueSrv: UeService) {}
+  constructor(private coursSrv: CoursService, private evalSrv: EvaluationService, private ueSrv: UeService) {}
 
   ngOnInit(): void {}
 
@@ -84,6 +86,19 @@ export class TimetableComponent implements OnInit {
           });
           this.calendarOptions!.events = cours;
           this.cours = cours;
+        }
+      });
+      this.evalSrv.getEvaluations(change.currentValue._id).subscribe({
+        next: (evaluations: any) => {
+          evaluations = evaluations.map((_evaluation: any) => {
+            _evaluation.start = _evaluation.date;
+            _evaluation.title = _evaluation.matiere.label;
+            _evaluation.editable = true;
+            _evaluation.color = 'red';
+            this.cView.calendar.addEvent(_evaluation);
+          });
+          this.calendarOptions!.events = evaluations;
+          this.cours = evaluations;
         }
       });
       change.currentValue.ue.forEach((_ue: Ue) => {

@@ -13,6 +13,7 @@ import { DialogModule } from 'primeng/dialog';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { PaginatorModule } from 'primeng/paginator';
@@ -37,6 +38,7 @@ import { EditEnseignantComponent } from './enseignant/edit-enseignant/edit-ensei
 import { EnseignantsComponent } from './enseignant/enseignants/enseignants.component';
 import { NewEnseignantComponent } from './enseignant/new-enseignant/new-enseignant.component';
 import { EtablissementRoutingModule } from './etablissement-routing.module';
+import { EvaluationFormComponent } from './evaluation/evaluation-form/evaluation-form.component';
 import { FilieresComponent } from './filiere/filieres/filieres.component';
 import { NewFiliereComponent } from './filiere/new-filiere/new-filiere.component';
 import { PedagogieComponent } from './pedagogie/pedagogie.component';
@@ -47,7 +49,6 @@ import { SeanceFormComponent } from './seance/seance-form/seance-form.component'
 import { TimetableComponent } from './timetable/timetable.component';
 import { NewUeComponent } from './ue/new-ue/new-ue.component';
 import { UesComponent } from './ue/ues/ues.component';
-import { EvaluationFormComponent } from './evaluation/evaluation-form/evaluation-form.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { EvaluationFormComponent } from './evaluation/evaluation-form/evaluation
     FileUploadModule,
     InputNumberModule,
     InputTextModule,
+    InputTextareaModule,
     MatTabsModule,
     MultiSelectModule,
     OverlayPanelModule,
