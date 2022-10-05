@@ -1,4 +1,4 @@
-<form class="surface-50 p-3 rounded-3" (submit)="create()">
+<form class="surface-100 p-3 rounded-3" (submit)="create()">
     <h3 class="text-center">Nouvelle</h3>
     <div class="field my-4">
         <span class="p-float-label">
@@ -31,7 +31,7 @@
     </div>
     <div class="field my-4">
         <span class="p-float-label">
-            <p-dropdown [disabled]="!_cycle.value" [options]="filieres" optionLabel="label" optionValue="_id" name="username" [(ngModel)]="classe.filiere" placeholder="Nom d'utilisateur"
+            <p-dropdown [disabled]="!_cycle.value" [options]="_filieres" optionLabel="label" optionValue="_id" name="username" [(ngModel)]="classe.filiere" placeholder="Nom d'utilisateur"
                 class="form-control {{submitted && !classe.filiere ? 'ng-invalid ng-dirty' : ''}}"></p-dropdown>
             <label for="inputtext"><i class="pi pi-hashtag"></i> &nbsp;&nbsp;Filière</label>
         </span>

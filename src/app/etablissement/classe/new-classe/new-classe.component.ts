@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Filiere } from 'src/app/core/models/filiere/filiere';
 import { Classe } from '../../../core/models/classe/classe';
 import { ClasseService } from '../../../core/services/classe/classe.service';
+import { FiliereService } from 'src/app/core/services/filiere/filiere.service';
 
 @Component({
   selector: 'app-new-classe',
@@ -15,10 +16,15 @@ export class NewClasseComponent implements OnInit {
   @Input() filieres!: Filiere[];
   @Input() cycles: any;
   niveaux: any;
+  _filieres: any[] = this.filiereSrv.filieres.value;
 
-  constructor(private srv: ClasseService) { }
+  constructor(private srv: ClasseService, private filiereSrv: FiliereService) { }
 
   ngOnInit(): void {
+    this.filiereSrv.filieres.subscribe({
+      next: (matieres) => this._filieres = matieres
+    });
+    
   }
 
   getNiveaux(e: any){

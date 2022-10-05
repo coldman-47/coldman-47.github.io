@@ -19,6 +19,10 @@ export class MatiereService {
     return this.http.get(this.baseUrl+'/'+id);
   }
 
+  getMatieresByNiveauFiliere(niveau: string, filiere: string){
+    return this.http.get(this.baseUrl+`/${niveau}/${filiere}`)
+  }
+
   addMatiere(matiere: any){
     return this.http.post(this.baseUrl+'/add', matiere);
   }

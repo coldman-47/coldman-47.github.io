@@ -6,69 +6,89 @@ import {
   ViewApi,
 } from '@fullcalendar/web-component';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
 import { Cours } from 'src/app/core/models/cours/cours';
 import { Classe } from 'src/app/core/models/classe/classe';
 import { Ue } from 'src/app/core/models/ue/ue';
 import { CoursService } from 'src/app/core/services/cours/cours.service';
 import { UeService } from 'src/app/core/services/ue/ue.service';
 import { EvaluationService } from '../../core/services/evaluation/evaluation.service';
+import { ApprenantService } from 'src/app/core/services/apprenant/apprenant.service';
 defineFullCalendarElement();
 
 
 @Component({
   selector: 'app-timetable',
   templateUrl: './timetable.component.html',
-  styleUrls: ['./timetable.component.sass']
+  styleUrls: ['./timetable.component.sass'],
 })
 export class TimetableComponent implements OnInit {
-
   monthly = true;
   edit = false;
   cView!: ViewApi;
-  selected?: Cours;
+  selected?: any;
   calendarOptions?: CalendarOptions = {
     plugins: [dayGridPlugin],
     editable: true,
     initialView: 'dayGridWeek',
     locale: 'fr',
     firstDay: 1,
-    showNonCurrentDates: false,
     buttonText: {
-      today: "Aujourd'hui"
+      today: "Aujourd'hui",
+      week: 'Hebdo',
+      month: 'Changer la vue',
+    },
+    headerToolbar: {
+      center: !this.monthly ? 'dayGridWeek' : 'dayGridMonth',
     },
     eventClick: (event) => {
-      this.selected = <Cours>event.event.extendedProps;
+      this.selected = event.event.extendedProps;
+      if(this.selected.seance) this._seance = this.selected;
       this.edit = true;
-      this.display = true;
+      this.choices = true;
     },
     viewDidMount: (info) => (this.cView = info.view),
   };
   display = false;
   visible = false;
+  choices = false;
+  showEval = false;
+  choice?: string;
   @Input() classe!: Classe;
   ue: Ue[] = [];
   cours: Cours[] = [];
   evaluations: any[] = [];
   btnItems = [
     {
-      icon: "pi pi-map",
-      command: () => this.display = true,
+      icon: 'pi pi-pencil',
+      command: () => (this.display = true),
       tooltipOptions: {
-        tooltipLabel: "Cours",
-        tooltipPosition: "left"
-      }
-    },{
-      icon: "pi pi-pencil",
-      command: () => this.visible = true,
+        tooltipLabel: 'Cours',
+        tooltipPosition: 'left',
+      },
+    },
+    {
+      icon: 'pi pi-copy',
+      command: () => (this.visible = true),
       tooltipOptions: {
-        tooltipLabel: "Évaluation",
-        tooltipPosition: "left"
-      }
+        tooltipLabel: 'Évaluation',
+        tooltipPosition: 'left',
+      },
     }
-  ]
+  ];
+  _seance?: any;
+  apprenants = [];
 
-  constructor(private coursSrv: CoursService, private evalSrv: EvaluationService, private ueSrv: UeService) {}
+  constructor(
+    private coursSrv: CoursService,
+    private evalSrv: EvaluationService,
+    private ueSrv: UeService,
+    apprenantSrv: ApprenantService
+  ) {
+    this.apprenants = apprenantSrv.apprenants.value;
+    apprenantSrv.apprenants.subscribe({
+      next: (_apprenants) => this.apprenants = _apprenants
+    })
+  }
 
   ngOnInit(): void {}
 
@@ -86,7 +106,7 @@ export class TimetableComponent implements OnInit {
           });
           this.calendarOptions!.events = cours;
           this.cours = cours;
-        }
+        },
       });
       this.evalSrv.getEvaluations(change.currentValue._id).subscribe({
         next: (evaluations: any) => {
@@ -99,12 +119,13 @@ export class TimetableComponent implements OnInit {
           });
           this.calendarOptions!.events = evaluations;
           this.cours = evaluations;
-        }
+        },
       });
-      change.currentValue.ue.forEach((_ue: Ue) => {
-        this.ueSrv.getUe(<string>_ue).subscribe({
-          next: (_res) => this.ue.push(_res),
-        });
+      this.ueSrv.getUes().subscribe({
+        next: (_res: any) => {
+          this.ue = _res[0].ues;
+          console.log(this.ue);
+        },
       });
     }
   }
@@ -114,18 +135,20 @@ export class TimetableComponent implements OnInit {
     if (el && !(<any>this.cView?.calendar).isRendered) {
       const calendar = new Calendar(el, this.calendarOptions);
       calendar.render();
-      
     }
   }
 
   toggleView(e: any) {
     let btn = (<HTMLButtonElement>e.target).classList.value.split(' ')[0];
-    if (btn === 'fc-timeGridWeek-button' || btn === 'fc-dayGridMonth-button') {
-      this.monthly = btn === 'fc-timeGridWeek-button' ? false : true;
+    if (btn === 'fc-dayGridWeek-button' || btn === 'fc-dayGridMonth-button') {
+      this.monthly = btn === 'fc-dayGridWeek-button' ? true : false;
       let options: any = this.cView.calendar.getOption('headerToolbar');
-      options.center = this.monthly ? 'timeGridWeek' : 'dayGridMonth';
-      this.cView.calendar.setOption('headerToolbar', options);
+      options.center =
+        options.center === 'dayGridMonth' ? 'dayGridWeek' : 'dayGridMonth';
+      console.log(options);
+      this.cView.calendar.changeView(
+        options.center === 'dayGridMonth' ? 'dayGridWeek' : 'dayGridMonth'
+      );
     }
   }
-
 }

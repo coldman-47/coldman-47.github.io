@@ -12,6 +12,7 @@ export class ApprenantService {
 
   baseUrl = environment.backendUrl+'apprenants';
   serverSentEvent = new BehaviorSubject(null);
+  apprenants = new BehaviorSubject([]);
 
   constructor(private http: HttpClient, socket: ListenerService) {
     socket.listener('apprenants', ['add', 'put']);

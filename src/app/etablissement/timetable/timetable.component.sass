@@ -81,8 +81,13 @@ $tertiary: #00a9c0
     
     
     .fc-toolbar-chunk:nth-child(2)
-        text-align: right !important
+        text-align: center !important
         padding: 1em 0 0
+        margin-bottom: -3em
+        z-index: 10
+        width: fit-content
+        margin: 0 auto
+        margin-bottom: -2.5em
     
     
     .fc-timeGridWeek-button, .fc-dayGridMonth-button
@@ -92,9 +97,12 @@ $tertiary: #00a9c0
     .fc-timeGridWeek-button:hover, .fc-timeGridWeek-button:focus, .fc-dayGridMonth-button:hover, .fc-dayGridMonth-button:focus
        color: white!important
        background-color: transparent !important
+    
+    // .fc-toolbar-chunk:has(> .fc-dayGridMonth-button), .fc-toolbar-chunk:has(> .fc-dayGridWeek-button)
 
     .p-speeddial
         position: inherit
+        z-index: 20 !important
 
     .p-speeddial-list
         position: absolute
@@ -110,3 +118,5 @@ $tertiary: #00a9c0
     .p-speeddial-action
         background: $tertiary
    
+    .p-dialog
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3)

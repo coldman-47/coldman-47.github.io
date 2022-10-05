@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Classe } from 'src/app/core/models/classe/classe';
 import { ClasseService } from 'src/app/core/services/classe/classe.service';
 import { CycleService } from '../../core/services/cycle/cycle.service';
+import { MatiereService } from '../../core/services/matiere/matiere.service';
+import { FiliereService } from 'src/app/core/services/filiere/filiere.service';
+import { NiveauService } from '../../core/services/niveaux/niveau.service';
 
 @Component({
   selector: 'app-pedagogie',
@@ -11,7 +14,7 @@ import { CycleService } from '../../core/services/cycle/cycle.service';
 export class PedagogieComponent implements OnInit {
 
   cycles = [];
-  activeTab = 'classes';
+  activeTab?: string;
   display = false;
   items = [
     { label: 'Filières', icon: 'pi pi-fw pi-home', id: 'filieres' },
@@ -19,7 +22,7 @@ export class PedagogieComponent implements OnInit {
   ];
   classes: Classe[] = [];
 
-  constructor(classeSrv: ClasseService, cycleSrv: CycleService) {
+  constructor(classeSrv: ClasseService, cycleSrv: CycleService, filiereSrv: FiliereService, niveauSrv: NiveauService) {
     cycleSrv.getCycles();
     cycleSrv.cycles.subscribe({
       next: (cycles: any) => {
@@ -31,6 +34,13 @@ export class PedagogieComponent implements OnInit {
               let command = () => classeSrv.getClassesByGrade(_niveau._id).subscribe({
                 next: (_res: any) => {
                   this.classes = _res;
+                  filiereSrv.getFilieres(_niveau._id).subscribe({
+                    next: (_filieres: any) => {
+                      filiereSrv.filieres.next(_filieres);
+                      niveauSrv.niveau.next(_niveau._id);
+                      this.activeTab = "classes";
+                    }
+                  });
                   cycleSrv.cycle.next(_cycle);
                 },
               });

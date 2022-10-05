@@ -33,7 +33,10 @@ export class ApprenantsComponent implements OnInit {
 
   ngOnInit(): void {
     this.srv.getApprenants(this.classe._id).subscribe({
-      next: (apprenants: any) => this.apprenants = apprenants
+      next: (apprenants: any) => {
+        this.apprenants = apprenants;
+        this.srv.apprenants.next(apprenants);
+      }
     });
   }
 }

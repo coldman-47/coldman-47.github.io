@@ -1,26 +1,69 @@
 <div class="h-100 w-100">
-    <div style="margin-bottom: -8em;" class="p-5 d-flex justify-content-end flex-wrap">
+    <div style="margin-bottom: -8em;" class="pt-5 pb-3 d-flex justify-content-end flex-wrap">
         <!-- <button (click)="display=true" pButton icon="pi pi-plus"></button> -->
         <p-speedDial [transitionDelay]="80" buttonClassName="p-button-outlined" [model]="btnItems" direction="down"></p-speedDial>
     </div>
     <full-calendar id="calendar" #calendar (click)="toggleView($event)" [options]="calendarOptions"></full-calendar>
 </div>
-<p-dialog position="right" [modal]="true" [(visible)]="display" [style]="{'height': '100%'}">
+
+<p-dialog (onHide)="_seance = choice = undefined" position="right" [modal]="true" [(visible)]="display" [style]="{'height': '100%'}">
     <ng-template pTemplate="header">
-        <h2 class="text-center py-3">Nouvelle programmation</h2>
+        <h2 class="text-center py-3">{{choice === 'edit' ? 'Editer la' : 'Nouvelle'}} programmation</h2>
     </ng-template>
     <ng-container *ngIf="display">
-        <app-seance-form *ngIf="edit === false else edition" [classeId]="classe._id" [ues]="ue"></app-seance-form>
-        <ng-template #edition>
+        <app-seance-form [seance]="_seance" [classeId]="classe._id" [ues]="ue"></app-seance-form>
+        <!-- <ng-template #edition>
             <app-edit-cours *ngIf="selected" [cours]="selected" [classeId]="classe._id" [ues]="ue"></app-edit-cours>
-        </ng-template>
+        </ng-template> -->
     </ng-container>
 </p-dialog>
 <p-dialog position="right" [modal]="true" [(visible)]="visible" [style]="{'height': '100%'}">
     <ng-template pTemplate="header">
-        <h2 class="text-center py-3">Nouvel évaluation</h2>
+        <h2 class="text-center py-3">Nouvelle évaluation</h2>
     </ng-template>
     <ng-container *ngIf="visible">
-        <app-evaluation-form [classeId]="classe._id" [ues]="ue"></app-evaluation-form>
+        <app-evaluation-form [evaluation]="selected" [classeId]="classe._id" [ues]="ue"></app-evaluation-form>
     </ng-container>
+</p-dialog>
+
+<!-- Calendar event click modal -->
+<p-dialog [(visible)]="choices">
+    <div class="d-flex flex-column align-items-center p-3">
+        <div class="form group my-3"><button icon="pi pi-eye" (click)="choice = 'view'; showEval = true; choices = !choices" class="p-button-outlined p-button-info" pButton label="Consulter"></button></div>
+        <div class="form group my-3 w-100"><button icon="pi pi-pencil" (click)="choice = 'edit'; display = _seance ? true : false; visible = !display; choices = !choices" class="p-button-info  w-100" pButton label="Editer"></button></div>
+    </div>
+</p-dialog>
+
+<!-- Details évaluation -->
+<p-dialog [(visible)]="showEval" [style]="{height: '100%', width: '100%'}" [modal]="true" header="Évaluation">
+    <div class="row">
+        <div class="col-lg-4">
+            <p-card>
+                <h4>Apprenants</h4>
+                <p-table *ngIf="selected" [value]="apprenants" styleClass="p-datatable-striped">
+                    <ng-template pTemplate="header" let-yourColumnArrayVaraible>
+                        <tr>
+                            <th class="fw-bold">Prénom</th>
+                            <th class="fw-bold">Nom</th>
+                            <th class="fw-bold">Note</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-apprenant>
+                        <tr>
+                            <td class="text-teal-500">{{apprenant.prenom}}</td>
+                            <td class="text-teal-500">{{apprenant.nom | uppercase}}</td>
+                            <td></td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="footer" let-yourColumnArrayVaraible>
+                        <tr>
+                            <td *ngFor="let yourColumnVaraible of yourColumnArrayVaraible">
+                                {{yourColumnVaraible.header}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </p-card>
+        </div>
+    </div>
 </p-dialog>

@@ -7,11 +7,11 @@
     <ng-template pTemplate="content">
         <div class="container-fluid">
             <div class="row justify-content-between">
-                <app-filieres (_filieres)="getFilieres($event)" (status)="activeIndex = 1" *ngIf="activeIndex === 0 else _classes"></app-filieres>
+                <app-filieres (_filieres)="getFilieres($event)" (_filiere)="getClasses($event)" *ngIf="activeIndex === 0 else _classes"></app-filieres>
                 <ng-template #_classes>
                     <ng-container *ngIf="activeIndex === 1 else boom">
                         <div class="col-xl-8 px-5 h-100 overflow-y-auto">
-                            <div class="surface-50 row m-0">
+                            <div class="surface-100 row m-0">
                                 <ng-container *ngIf="classes.length else empty">
                                     <div class="col-lg-4 p-3" *ngFor="let class of classes">
                                         <p-card class="cursor-pointer"
@@ -37,8 +37,6 @@
                 </ng-template>
             </div>
             <div class="container-fluid d-flex">
-                <!-- <button icon="pi pi-chevron-right" iconPos="right" *ngIf="activeIndex<2" (click)="activeIndex = activeIndex+1"
-                    class="ms-auto" pButton label="Suivant"></button> -->
             </div>
         </div>
     </ng-template>
@@ -47,7 +45,7 @@
             <button *ngIf="activeIndex > 0" icon="pi pi-chevron-left" (click)="activeIndex = activeIndex-1"
                 class="me-auto" pButton label="Retour"></button>
                 <ng-container *ngIf="activeIndex === 2">
-                    <button label="Unités d'enseignements" iconPos="right" pButton icon="pi pi-book" (click)="getUes(); visible=true;" class="p-button-outlined ms-auto p-button-success"></button>
+                    <button label="Unités d'enseignements" iconPos="right" pButton icon="pi pi-book" (click)="visible=true;" class="p-button-outlined ms-auto p-button-success"></button>
                     <button label="Emplois du temps" iconPos="right" pButton icon="pi pi-map" (click)="display=true" class="p-button-outlined ms-3"></button>
                 </ng-container>
         </div>
@@ -60,5 +58,5 @@
     <ng-template pTemplate="header">
         <h1 class="text-center p-3 titre mb-0">Unités d'enseignement</h1>
     </ng-template>
-    <app-ues *ngIf="ues" [ues]="ues" [classeId]="selected._id"></app-ues>
+    <app-ues *ngIf="selected" [classeId]="selected._id"></app-ues>
 </p-dialog>

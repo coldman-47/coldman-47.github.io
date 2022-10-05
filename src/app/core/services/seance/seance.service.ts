@@ -14,4 +14,8 @@ export class SeanceService {
   addSeance(seance: any){
     return this.http.post(this.baseUrl+'/add', seance);
   }
+
+  getSeance(seanceId: string){
+    return this.http.get(this.baseUrl+'/'+seanceId);
+  }
 }
