@@ -29,6 +29,21 @@
                     <span class="material-icons-outlined">class</span> <span class="ms-3">Pédagogie</span>
                 </div>
             </a>
+            <a [routerLink]="['/etablissement/redevances']" [routerLinkActive]="'active'">
+                <div class="navs">
+                    <span class="material-icons-outlined">class</span> <span class="ms-3">Redevance</span>
+                </div>
+            </a>
+            <a [routerLink]="['/etablissement/services']" [routerLinkActive]="'active'">
+                <div class="navs">
+                    <span class="material-icons-outlined">class</span> <span class="ms-3">Services Extra</span>
+                </div>
+            </a>
+            <a [routerLink]="['/etablissement/bourses']" [routerLinkActive]="'active'">
+                <div class="navs">
+                    <span class="material-icons-outlined">class</span> <span class="ms-3">Bourses</span>
+                </div>
+            </a>
         <ng-template #clients>
             <a [routerLink]="['/main/departements']" [routerLinkActive]="'active'">
                 <div class="navs">
@@ -48,7 +63,7 @@
         <div class="W-100">
             <div id="mainBody" class="w-100 h-100">
                 <div class="h-100 w-100">
-                    <div id="content" class="h-100 w-100 pb-4 overflow-hidden">
+                    <div id="content" class="h-100 w-100 pb-4 overflow-y-auto">
                         <router-outlet class="my-0"></router-outlet>
                     </div>
                 </div>

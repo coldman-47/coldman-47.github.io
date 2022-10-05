@@ -1,0 +1,57 @@
+<p-card>
+  <div class="d-flex justify-content-between align-items-center">
+    <h2>Services extra</h2>
+    <button
+      pButton
+      pRipple
+      [routerLink]="['nouveau']"
+      type="button"
+      icon="pi pi-plus"
+      class="p-button-rounded p-button-primary p-button-text"
+    ></button>
+  </div>
+  <!-- <ng-container *ngIf="services$ | async as services"> -->
+    <p-table [value]="services">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nom</th>
+          <th>Prix</th>
+          <th>Mois démarrage</th>
+          <th>Nombre de mois</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-service>
+        <tr>
+          <td>{{ service.label }}</td>
+          <td>{{ service.tarif }}</td>
+          <td>{{ service.debutMois }}</td>
+          <td>{{ service.nbMois }}</td>
+          <td>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-pencil"
+              class="p-button-rounded p-button-warning p-button-text"
+              [routerLink]="[service._id, 'modifier']"
+            ></button>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-danger p-button-text"
+              (click)="onDeleteService(service._id)"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  <!-- </ng-container> -->
+</p-card>
+
+<p-confirmDialog
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+  rejectButtonStyleClass="p-button-text"
+></p-confirmDialog>
+<p-toast></p-toast>
