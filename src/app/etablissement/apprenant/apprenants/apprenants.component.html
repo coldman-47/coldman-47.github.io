@@ -1,9 +1,9 @@
 <div class="row justify-content-between">
     <div class="col-xl-8 px-3">
-        <div class="surface-50 row m-0">
+        <div class="surface-100 row m-0">
             <div class="col-lg-4 p-3" *ngFor="let student of apprenants">
                 <p-card *ngIf="student" class="cursor-pointer" (click)="selected = student; edition = true">
-                    <ng-template pTemplate="title"><h3>{{student.prenom+' '+student.nom}}</h3></ng-template>
+                    <ng-template pTemplate="title"><h5>{{student.prenom+' '+student.nom}}</h5></ng-template>
                     <ng-template pTemplate="footer">
                         <i class="pi pi-phone"></i> : {{student.telephone | phone}}<hr>
                         <i class="pi pi-at"></i> : {{student.email}}<br>
@@ -16,7 +16,7 @@
         <app-new-apprenant *ngIf="!edition else edit"  classe="h-100" [classeId]="classe._id"></app-new-apprenant>
         <ng-template #edit>
             <ng-container *ngIf="selected">
-                <app-edit-apprenant (status)="selected = undefined; edition = false" [apprenant]="selected"></app-edit-apprenant>
+                <app-edit-apprenant [classeId]="classe._id" (status)="selected = undefined; edition = false" [apprenant]="selected"></app-edit-apprenant>
             </ng-container>
         </ng-template>
     </div>

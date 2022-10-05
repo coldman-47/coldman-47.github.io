@@ -12,12 +12,17 @@ export class ApprenantService {
 
   baseUrl = environment.backendUrl+'apprenants';
   serverSentEvent = new BehaviorSubject(null);
+  apprenants = new BehaviorSubject([]);
 
   constructor(private http: HttpClient, socket: ListenerService) {
     socket.listener('apprenants', ['add', 'put']);
     socket.data.subscribe({
       next: (ssEvent: any) => this.serverSentEvent.next(ssEvent)
     });
+  }
+
+  getApprenants(classeId: string){
+    return this.http.get(this.baseUrl+'/classe/'+classeId);
   }
 
   getApprenant(id: string){

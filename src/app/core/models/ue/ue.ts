@@ -3,4 +3,6 @@ export class Ue {
     label?: string;
     totalCredits?: number;
     classes?: any[];
+    niveau?: any;
+    filiere?: any;
 }

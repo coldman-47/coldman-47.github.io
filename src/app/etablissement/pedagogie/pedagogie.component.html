@@ -1,11 +1,12 @@
-<div class="row px-5 pt-4 justify-content-evenly h-100 overflow-y-hidden">
-    <div class="col-2 bg-white rounded overflow-y-auto h-100">
+<div class="row px-5 bg-white rounded justify-content-evenly h-100 overflow-y-hidden" style="height: calc(100% + 24px) !important;">
+    <div class="col-2 overflow-y-auto h-100">
         <p-card>
             <h2 class="p-3">Cycles</h2>
-            <p-panelMenu orientation="vertical" [model]="cycles"></p-panelMenu>
+            <p-panelMenu [multiple]="false" orientation="vertical" [model]="cycles"></p-panelMenu>
         </p-card>
     </div>
     <div class="col-10 rounded d-flex flex-column ps-4 py-0 h-100 overflow-y-hidden">
+        <ng-container *ngIf="activeTab">
             <div *ngIf="activeTab === 'filieres' else other" class="m-auto d-flex justify-content-center align-items-center flex-column">
                 <img src="assets/imgs/empty.jpg" width="600px" alt="">
                 <h3 class="">Aucune filière n'a encore été selectionnée</h3>
@@ -13,6 +14,6 @@
             <ng-template #other>
                 <app-classes class="h-100 overflow-y-hidden" [classes]="classes"></app-classes>
             </ng-template>
-        
+        </ng-container>
     </div>
 </div>
