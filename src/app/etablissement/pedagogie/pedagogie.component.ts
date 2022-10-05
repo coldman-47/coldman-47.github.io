@@ -34,7 +34,7 @@ export class PedagogieComponent implements OnInit {
               let command = () => classeSrv.getClassesByGrade(_niveau._id).subscribe({
                 next: (_res: any) => {
                   this.classes = _res;
-                  filiereSrv.getFilieres(_niveau._id).subscribe({
+                  filiereSrv.getFilieresByNiveau(_niveau._id).subscribe({
                     next: (_filieres: any) => {
                       filiereSrv.filieres.next(_filieres);
                       niveauSrv.niveau.next(_niveau._id);
