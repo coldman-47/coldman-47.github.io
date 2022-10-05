@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Redevance } from 'src/app/core/models/redevance/redevance.model';
 import { FiliereService } from 'src/app/core/services/filiere/filiere.service';
 import { RedevanceService } from 'src/app/core/services/redevance/redevance.service';
+import { CycleService } from '../../../core/services/cycle/cycle.service';
 
 @Component({
   selector: 'app-new-redevance',
@@ -36,17 +37,18 @@ export class NewRedevanceComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _filiereService: FiliereService,
-    private _redevanceService: RedevanceService
+    private _redevanceService: RedevanceService,
+    private _cycleService: CycleService
   ) { }
 
   ngOnInit(): void {
-    this._filiereService.cycles.subscribe({
+    this._cycleService.cycles.subscribe({
       next: (cycles) => this.cycles = cycles
     });
     this._filiereService.getFilieres().subscribe({
       next: (filieres) => this.filieres = filieres
     });
-    this._filiereService.getCycles();
+    this._cycleService.getCycles();
     this._route.params.subscribe((params: Params) => {
       if (params['id']) {
         this._redevanceService.getRedevance(params['id']).subscribe((data: Redevance) => {
