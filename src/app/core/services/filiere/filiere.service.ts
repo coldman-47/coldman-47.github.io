@@ -1,39 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { Filiere } from 'src/app/core/models/filiere/filiere';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FiliereService {
 
-  cycles = new BehaviorSubject<any>([]);
-
-  private baseUrl = environment.backendUrl;
+  private baseUrl = environment.backendUrl+'filieres';
+  filiere = new BehaviorSubject<string>('');
+  filieres = new BehaviorSubject<any[]>([]);
 
   constructor(private http: HttpClient) { }
-
-  getFilieres(){
-    return this.http.get(this.baseUrl + 'filieres');
+  
+  getFilieres(id: string){
+    return this.http.get(this.baseUrl + '/niveau/'+id);
   }
-
+  
   getFiliere(id: string){
-    return this.http.get(this.baseUrl + 'filieres/'+id);
-  }
-
-  getNiveaux(id: string){
-    return this.http.get(this.baseUrl + 'niveaux/'+id);
-  }
-
-  getCycles(){
-    this.http.get(this.baseUrl + 'cycles').subscribe({
-      next: (_cycles => this.cycles.next(_cycles))
-    });
+    return this.http.get(this.baseUrl+'/'+id);
   }
 
   addFiliere(filiere: Filiere){
-    return this.http.post(this.baseUrl+'filieres/add', filiere);
+    return this.http.post(this.baseUrl+'/add', filiere);
   }
 }

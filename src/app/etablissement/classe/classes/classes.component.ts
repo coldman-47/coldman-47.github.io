@@ -2,6 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FiliereService } from '../../../core/services/filiere/filiere.service';
 import { Filiere } from '../../../core/models/filiere/filiere';
 import { ClasseService } from '../../../core/services/classe/classe.service';
+import { UeService } from '../../../core/services/ue/ue.service';
+import { Ue } from 'src/app/core/models/ue/ue';
+import { CycleService } from '../../../core/services/cycle/cycle.service';
+import { NiveauService } from '../../../core/services/niveaux/niveau.service';
 
 @Component({
   selector: 'app-classes',
@@ -18,11 +22,14 @@ export class ClassesComponent implements OnInit {
     { label: 'Apprenants' },
     { label: 'Details' },
   ];
-  activeIndex = 1;
+  activeIndex = 0;
   selected: any;
   display = false;
+  visible = false;
+  ues?: Ue[];
+  private niveau = this.niveauSrv.niveau.value;
 
-  constructor(private srv: ClasseService, private filiereSrv: FiliereService) {
+  constructor(srv: ClasseService, private filiereSrv: FiliereService, private ueSrv: UeService, private cycleSrv: CycleService, private niveauSrv: NiveauService) {
     srv.serverSentEvent.subscribe({
       next: (classe: any) => {
         if(classe){
@@ -38,18 +45,37 @@ export class ClassesComponent implements OnInit {
         }
       },
     });
+    niveauSrv.niveau.subscribe({
+      next: (_niveau) => {
+        if(_niveau !== this.niveau){
+          this.activeIndex = 0;
+        }
+      }
+    })
   }
 
   ngOnInit(): void {
-    this.filiereSrv.cycles.subscribe({
+    this.cycleSrv.cycles.subscribe({
       next: (_cycles) => (this.cycles = _cycles),
     });
-    this.filiereSrv.getFilieres().subscribe({
+    this.filiereSrv.filieres.subscribe({
       next: (_filieres: any) => this.filieres = _filieres
     });
   }
 
   getFilieres(e:any){
     this.filieres = e;
+  }
+
+  // getUes(){
+  //   this.ueSrv.getUesByClass(this.selected._id).subscribe({
+  //     next: (ues: any) => this.ues = ues
+  //   })
+  // }
+
+  getClasses(e: any){
+    this.activeIndex = 1;
+    this.filiereSrv.filiere.next(e);
+    
   }
 }

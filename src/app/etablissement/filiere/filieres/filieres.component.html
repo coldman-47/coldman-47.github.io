@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-between surface-50">
+<div class="d-flex justify-content-between surface-100">
     <div class="my-auto">
         <nav class="flex-grow-1" mat-tab-nav-bar [tabPanel]="tabPanel">
             <a [active]="active === link.id" class="text-black" (click)="active = link.id" mat-tab-link
@@ -10,9 +10,9 @@
     </div>
 </div>
 <mat-tab-nav-panel #tabPanel>
-    <div class="surface-50 mt-3 rounded p-5 row justify-content-center">
+    <div class="surface-100 mt-3 rounded p-5 row justify-content-center">
         <div class="col-3" *ngFor="let filiere of filieres">
-            <p-card class="cursor-pointer" (click)="status.emit(true)">
+            <p-card class="cursor-pointer" (click)="_filiere.emit(filiere._id)">
                 <h3>{{filiere.label}}</h3>
             </p-card>
         </div>

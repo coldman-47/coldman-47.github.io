@@ -1,0 +1,62 @@
+<form [formGroup]="evaluationForm" class="h-100 overflow-y-auto fadeinup animation-duration-400 bg-white rounded" (submit)="create()">
+    <div class="field mt-3 mb-4 px-4">
+        <span class="p-float-label">
+            <input pInputText formControlName="titre" class="form-control {{(submitted && controls['titre'].invalid) ? 'ng-invalid ng-dirty' : ''}}">
+            <label for="inputtext"><i class="pi pi-list"></i> &nbsp;Titre de la seance</label>
+        </span>
+        <small *ngIf="submitted && controls['titre'].invalid" class="p-error">La date de début du module est requis.</small>
+    </div>
+    <div class="field mt-3 mb-4 px-4">
+        <span class="p-float-label">
+            <textarea pInputTextarea [autoResize]="true" formControlName="detail" class="form-control p-inputtextarea p-inputtextarea-resizable"></textarea>
+            <label for="inputtext"><span class="material-icons-outlined">details</span> &nbsp;Détail de la seance</label>
+        </span>
+    </div>
+    <div class="field mt-3 mb-4 px-4">
+        <span class="p-float-label">
+            <p-dropdown optionValue="_id" [autoDisplayFirst]="false" [options]="types" formControlName="type" class="form-control {{(submitted && controls['type'].invalid) ? 'ng-invalid ng-dirty' : ''}}"></p-dropdown>
+            <label for="inputtext"><i class="pi pi-list"></i> &nbsp;Type de seances</label>
+        </span>
+        <small *ngIf="submitted && controls['type'].invalid" class="p-error">La date de début du module est requis.</small>
+    </div>
+    <div class="field mb-4 px-4">
+        <span class="p-float-label">
+            <p-calendar #date appendTo="body" formControlName="date" placeholder="Début du module" class="form-control {{(submitted && controls['date'].invalid) ? 'ng-invalid ng-dirty' : ''}}"></p-calendar>
+            <label for="inputtext"><i class="pi pi-calendar"></i> &nbsp;Début du module</label>
+        </span>
+        <small *ngIf="submitted && controls['date'].invalid" class="p-error">La date de début du module est requis.</small>
+    </div>
+    <div class="field mb-4 px-4">
+        <span class="p-float-label">
+            <p-inputNumber [min]="10" [max]="20" formControlName="duree" class="form-control {{(submitted && controls['duree'].invalid) ? 'ng-invalid ng-dirty' : ''}}"></p-inputNumber>
+            <label for="inputtext"><i class="pi pi-clock"></i> &nbsp;Volume horaire du module</label>
+        </span>
+        <small *ngIf="submitted && controls['duree'].invalid" class="p-error">Le volume horaire du module est requis.</small>
+    </div>
+    <div class="field my-4 px-4">
+        <span class="p-float-label">
+            <p-dropdown appendTo="body" formControlName="periode" [options]="periodes" optionLabel="label" optionValue="_id" placeholder="Période" class="form-control {{(submitted && controls['periode'].invalid) ? 'ng-invalid ng-dirty' : ''}}"></p-dropdown>
+            <label for="inputtext"><span class="material-icons-outlined">group_work</span> &nbsp;Période</label>
+        </span>
+        <small *ngIf="submitted && controls['periode'].invalid" class="p-error">Le volume horaire du module est requis.</small>
+    </div>
+    <!-- <div class="field my-4 px-4">
+        <span class="p-float-label">
+            <p-dropdown appendTo="body" (onChange)="getMatieres($event)" [options]="ues" optionLabel="label" optionValue="_id" placeholder="Unité d'enseignement" class="form-control"></p-dropdown>
+            <label for="inputtext"><span class="material-icons-outlined">group_work</span> &nbsp;Ue</label>
+        </span>
+    </div> -->
+    <div class="field my-4 px-4">
+        <span class="p-float-label">
+            <p-dropdown appendTo="body" optionValue="_id" [options]="matieres" formControlName="matiere" placeholder="Matière"
+                class="form-control {{submitted && controls['matiere'].invalid ? 'ng-invalid ng-dirty' : ''}}"></p-dropdown>
+            <label for="inputtext"><i class="pi pi-file"></i> &nbsp;Matière du cours</label>
+        </span>
+        <small *ngIf="submitted && controls['matiere'].invalid" id="username-help" class="p-error">Une matière est requise.</small>
+    </div>
+    <div class="field mx-4">
+        <div class="d-flex">
+            <button icon="pi pi-plus" iconPos="right" pButton class="p-button p-button-lg flex-grow-1 button" label="Créer"></button>
+        </div>
+    </div>
+</form>

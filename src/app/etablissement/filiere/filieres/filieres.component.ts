@@ -11,8 +11,9 @@ import { MenuItem } from 'primeng/api';
 })
 export class FilieresComponent extends StepEvent implements OnInit {
 
-  filieres: Filiere[] = [];
+  filieres: Filiere[] = this.srv.filieres.value;
   @Output() _filieres = new EventEmitter();
+  @Output() _filiere = new EventEmitter();
   display = false;
   ue = false;
   btnItems!: MenuItem[];
@@ -29,9 +30,9 @@ export class FilieresComponent extends StepEvent implements OnInit {
   ];
   active = 0;
 
-  constructor(srv: FiliereService) {
+  constructor(private srv: FiliereService) {
     super();
-    srv.getFilieres().subscribe({
+    srv.filieres.subscribe({
       next: (_filieres: any) => {
         this.filieres = _filieres;
         this._filieres.emit(_filieres);
@@ -61,5 +62,9 @@ export class FilieresComponent extends StepEvent implements OnInit {
     ];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.srv.filieres.subscribe({
+      next: (_filieres) => this.filieres = _filieres
+    });
+  }
 }
