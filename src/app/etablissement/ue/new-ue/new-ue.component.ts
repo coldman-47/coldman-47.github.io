@@ -6,6 +6,7 @@ import { Ue } from 'src/app/core/models/ue/ue';
 import { ClasseService } from 'src/app/core/services/classe/classe.service';
 import { UeService } from '../../../core/services/ue/ue.service';
 import { Cancel } from '../../../shared/utilities/cancel/cancel';
+import { NiveauService } from '../../../core/services/niveaux/niveau.service';
 
 @Component({
   selector: 'app-new-ue',
@@ -19,7 +20,7 @@ export class NewUeComponent extends Cancel implements OnInit {
   classes?: Classe[];
   @ViewChild('filiereField') filiereField: any;
 
-  constructor(private srv: UeService, private messageSrv: MessageService, confirmSrv: ConfirmationService, private classSrv: ClasseService) {
+  constructor(private srv: UeService, private messageSrv: MessageService, confirmSrv: ConfirmationService, private classSrv: ClasseService, private nivaeauSrv: NiveauService) {
     super(confirmSrv);
   }
 
@@ -28,6 +29,7 @@ export class NewUeComponent extends Cancel implements OnInit {
 
   create() {
     this.submitted = true;
+    this.ue.niveau = this.nivaeauSrv.niveau.value;
     this.srv.addUe(this.ue).subscribe({
       next: (res) => {
         this.ue = new Ue();

@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import localeFr from '@angular/common/locales/fr';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
@@ -16,10 +17,11 @@ import { environment } from 'src/environments/environment';
 import { AdministrationModule } from './administration/administration.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { LayoutComponent } from './shared/layout/layout.component';
 import { LoginComponent } from './shared/login/login.component';
-import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 
+registerLocaleData(localeFr);
 const config: SocketIoConfig = {
   url: environment.backendUrl.split('api')[0],
   options: {},

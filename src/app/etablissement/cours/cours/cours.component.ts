@@ -12,7 +12,7 @@ import { UeService } from '../../../core/services/ue/ue.service';
 import { Ue } from '../../../core/models/ue/ue';
 import { CoursService } from '../../../core/services/cours/cours.service';
 import { Cours } from 'src/app/core/models/cours/cours';
-defineFullCalendarElement();
+// defineFullCalendarElement();
 
 @Component({
   selector: 'app-cours',
@@ -43,10 +43,9 @@ export class CoursComponent implements OnInit {
   };
   display = false;
   @Input() classe!: Classe;
-  ue: Ue[] = [];
   cours: Cours[] = [];
 
-  constructor(private srv: CoursService, private ueSrv: UeService) {}
+  constructor(private srv: CoursService) {}
 
   ngOnInit(): void {}
 
@@ -64,11 +63,6 @@ export class CoursComponent implements OnInit {
           this.calendarOptions!.events = cours;
           this.cours = cours;
         }
-      });
-      change.currentValue.ue.forEach((_ue: Ue) => {
-        this.ueSrv.getUe(<string>_ue).subscribe({
-          next: (_res) => this.ue.push(_res),
-        });
       });
     }
   }
