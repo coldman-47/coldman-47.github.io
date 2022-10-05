@@ -8,14 +8,14 @@
       <div class="col-6 md:col-4" *ngFor="let d of data">
         <p-panel [header]="getTitle(d.filieres)">
           <div class="flex flex-column gap-2">
-            <p>Montant :  <span class="font-bold">{{d.redevance?.montant}} FCFA</span></p>
-            <p>Inscription :  <span class="font-bold">{{d.redevance?.montantInscription}} FCFA</span></p>
-            <p>Nbr Mois :  <span class="font-bold">{{d.redevance?.nbMois}}</span></p>
+            <p>Montant :  <span class="font-bold">{{d.redevance.montant}} FCFA</span></p>
+            <p>Inscription :  <span class="font-bold">{{d.redevance.montantInscription}} FCFA</span></p>
+            <p>Nbr Mois :  <span class="font-bold">{{d.redevance.nbMois}}</span></p>
             <p>Niveaux :  <span class="font-bold">{{getNiveaux(d.niveaux)}}</span></p>
           </div>
           <ng-template pTemplate="footer">
             <div class="d-flex justify-content-between align-items-center">
-              <button pButton pRipple type="button" [routerLink]="[d.redevance?._id, 'modifier']" icon="pi pi-pencil" class="p-button-rounded p-button-success p-button-text"></button>
+              <button pButton pRipple type="button" [routerLink]="[d.redevance._id, 'modifier']" icon="pi pi-pencil" class="p-button-rounded p-button-success p-button-text"></button>
               <button pButton (click)="onDelete(d)" pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger p-button-text"></button>
             </div>
           </ng-template>

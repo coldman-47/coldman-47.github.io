@@ -17,23 +17,23 @@ export class ServicesListComponent implements OnInit {
     private _messageService: MessageService,
     private _serviecExtraService: ServicesExtraService
   ) {
-    this._serviecExtraService.serverSentEvent.subscribe({
-      next: (data) => {
-        console.log(data);
+    // this._serviecExtraService.serverSentEvent.subscribe({
+    //   next: (data) => {
+    //     console.log(data);
 
-        if (data) {
-          // if (agent.method === 'put') {
-          //   const idx = this.services.findIndex(
-          //     (s) => s._id === agent._data._id
-          //   );
-          //   if (idx !== -1) this.enseignant[idx] = agent._data;
-          // } else {
-          //   if (this.enseignant.length < 10) this.enseignant.push(agent._data);
-          //   this.pagination.totalElements++;
-          // }
-        }
-      },
-    })
+    //     if (data) {
+    //       // if (agent.method === 'put') {
+    //       //   const idx = this.services.findIndex(
+    //       //     (s) => s._id === agent._data._id
+    //       //   );
+    //       //   if (idx !== -1) this.enseignant[idx] = agent._data;
+    //       // } else {
+    //       //   if (this.enseignant.length < 10) this.enseignant.push(agent._data);
+    //       //   this.pagination.totalElements++;
+    //       // }
+    //     }
+    //   },
+    // })
   }
 
   ngOnInit(): void {
