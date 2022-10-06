@@ -76,19 +76,12 @@ export class TimetableComponent implements OnInit {
     }
   ];
   _seance?: any;
-  apprenants = [];
 
   constructor(
     private coursSrv: CoursService,
     private evalSrv: EvaluationService,
-    private ueSrv: UeService,
-    apprenantSrv: ApprenantService
-  ) {
-    this.apprenants = apprenantSrv.apprenants.value;
-    apprenantSrv.apprenants.subscribe({
-      next: (_apprenants) => this.apprenants = _apprenants
-    })
-  }
+    private ueSrv: UeService
+  ) {}
 
   ngOnInit(): void {}
 

@@ -22,6 +22,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { StepsModule } from 'primeng/steps';
 import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
 import { TreeSelectModule } from 'primeng/treeselect';
 import { DataUriToBlobPipe } from '../core/pipes/file/data-uri-to-blob.pipe';
@@ -38,6 +39,7 @@ import { EditEnseignantComponent } from './enseignant/edit-enseignant/edit-ensei
 import { EnseignantsComponent } from './enseignant/enseignants/enseignants.component';
 import { NewEnseignantComponent } from './enseignant/new-enseignant/new-enseignant.component';
 import { EtablissementRoutingModule } from './etablissement-routing.module';
+import { DetailsEvaluationComponent } from './evaluation/details-evaluation/details-evaluation.component';
 import { EvaluationFormComponent } from './evaluation/evaluation-form/evaluation-form.component';
 import { FilieresComponent } from './filiere/filieres/filieres.component';
 import { NewFiliereComponent } from './filiere/new-filiere/new-filiere.component';
@@ -74,7 +76,8 @@ import { UesComponent } from './ue/ues/ues.component';
     UesComponent,
     TimetableComponent,
     SeanceFormComponent,
-    EvaluationFormComponent
+    EvaluationFormComponent,
+    DetailsEvaluationComponent
   ],
   imports: [
     CommonModule,
@@ -100,6 +103,7 @@ import { UesComponent } from './ue/ues/ues.component';
     SpeedDialModule,
     StepsModule,
     TableModule,
+    ToastModule,
     TooltipModule,
     TreeSelectModule
   ],
