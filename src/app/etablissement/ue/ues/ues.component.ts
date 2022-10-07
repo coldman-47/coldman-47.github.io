@@ -67,6 +67,9 @@ export class UesComponent implements OnInit {
   }
 
   getMatieres(ue: Ue) {
+    this.matiereSrv.getMatieres(<string>ue._id).subscribe({
+      next: (_matieres) => console.log(_matieres)
+    })
     this.selected = this.selected !== ue ? ue : undefined;
     this.matieres = []
     if (this.selected) {

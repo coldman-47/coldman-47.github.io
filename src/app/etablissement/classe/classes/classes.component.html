@@ -11,7 +11,7 @@
                 <ng-template #_classes>
                     <ng-container *ngIf="activeIndex === 1 else boom">
                         <div class="col-xl-8 px-5 h-100 overflow-y-auto">
-                            <div class="surface-100 row m-0">
+                            <div class="surface-100 row m-0 justify-content-center h-100">
                                 <ng-container *ngIf="classes.length else empty">
                                     <div class="col-lg-4 p-3" *ngFor="let class of classes">
                                         <p-card class="cursor-pointer"

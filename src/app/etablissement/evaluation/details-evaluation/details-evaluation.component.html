@@ -1,34 +1,32 @@
-<div class="row justify-content-between">
-    <div class="col-3 surface-100 p-3">
-        <p-card>
-            <p-table [value]="absents" styleClass="p-datatable-striped">
-                <ng-template pTemplate="caption">
-                    <h4 class="m-0">Absents</h4>
-                </ng-template>
-                <ng-template pTemplate="header" let-yourColumnArrayVaraible>
-                    <tr>
-                        <th class="fw-bold">Prénom</th>
-                        <th class="fw-bold">Nom</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-absent>
-                    <tr>
-                        <td class="text-pink-500">{{absent.prenom}}</td>
-                        <td class="text-pink-500">{{absent.nom | uppercase}}</td>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="footer" let-yourColumnArrayVaraible>
-                    <tr>
-                        <td *ngFor="let yourColumnVaraible of yourColumnArrayVaraible">
-                            {{yourColumnVaraible.header}}
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </p-card>
+<div class="row">
+    <div class="col-md-2 p-3">
+        <p-table [responsiveLayout]="'scroll'" [responsive]="true" [value]="absents" styleClass="p-datatable-striped">
+            <ng-template pTemplate="caption">
+                <h4 class="m-0">Absents</h4>
+            </ng-template>
+            <ng-template pTemplate="header" let-yourColumnArrayVaraible>
+                <tr>
+                    <th class="fw-bold">Prénom</th>
+                    <th class="fw-bold">Nom</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-absent>
+                <tr>
+                    <td class="text-pink-500">{{absent.prenom}}</td>
+                    <td class="text-pink-500">{{absent.nom | uppercase}}</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="footer" let-yourColumnArrayVaraible>
+                <tr>
+                    <td *ngFor="let yourColumnVaraible of yourColumnArrayVaraible">
+                        {{yourColumnVaraible.header}}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
     </div>
-    <!-- <div class="col-4">{{apprenants | json}}</div> -->
-    <div class="col-lg-4 surface-100 p-3">
+    <div class="col-md-5"><p-chart #chart type="bar" width="100%" height="100%" [data]="data"></p-chart></div>
+    <div class="col-lg-5 surface-100 p-3">
         <p-card>
             <p-table [value]="apprenants" styleClass="p-datatable-striped">
                 <ng-template pTemplate="caption">

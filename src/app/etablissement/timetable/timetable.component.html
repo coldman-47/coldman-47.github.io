@@ -19,7 +19,7 @@
 </p-dialog>
 <p-dialog position="right" [modal]="true" [(visible)]="visible" [style]="{'height': '100%'}">
     <ng-template pTemplate="header">
-        <h2 class="text-center py-3">Nouvelle évaluation</h2>
+        <h2 class="text-center py-3">{{choice === 'edit' ? "Editer l'" : 'Nouvelle'}}évaluation</h2>
     </ng-template>
     <ng-container *ngIf="visible">
         <app-evaluation-form [evaluation]="selected" [classeId]="classe._id" [ues]="ue"></app-evaluation-form>
@@ -35,7 +35,7 @@
 </p-dialog>
 
 <!-- Details évaluation -->
-<p-dialog [(visible)]="showEval" [style]="{height: '100%', width: '100%'}" [modal]="true">
+<p-dialog [(visible)]="showEval" [maximizable]="true" [style]="{height: '100%', width: '100%'}" [modal]="true">
     <ng-template pTemplate="header">
         <div class="w-100"><h2 class="text-center p-2">Évaluation</h2></div>
     </ng-template>

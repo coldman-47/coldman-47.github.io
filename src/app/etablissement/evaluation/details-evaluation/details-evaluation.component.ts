@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Apprenant } from 'src/app/core/models/apprenant/apprenant';
 import { ApprenantService } from 'src/app/core/services/apprenant/apprenant.service';
 import { NoteService } from '../../../core/services/note/note.service';
@@ -14,13 +14,15 @@ export class DetailsEvaluationComponent implements OnInit {
   apprenants: Apprenant[] | any[] = [];
   absents: Apprenant[] = [];
   @Input() evaluation: any;
+  data: any;
+  @ViewChild('chart') chart: any;
 
   constructor(apprenantSrv: ApprenantService, private noteSrv: NoteService, private msgSrv: MessageService) {
     this.apprenants = apprenantSrv.apprenants.value;
     apprenantSrv.apprenants.subscribe({
       next: (_apprenants) => {
         this.apprenants = _apprenants;
-        this.getNotes();
+        if(this.evaluation) this.getNotes();
       }
     })
   }
@@ -31,9 +33,15 @@ export class DetailsEvaluationComponent implements OnInit {
   }
 
   getNotes(){
+    this.data = {labels: [], datasets: [{data: [], backgroundColor: '#2e71b0'}]};
     this.apprenants.forEach(
       (_apprenant: Apprenant, idx: number) => this.noteSrv.getNoteApprenantByEvaluation(this.evaluation._id, <string>_apprenant._id).subscribe({
-        next: (note) => this.apprenants[idx].note = note ? note : {}
+        next: (note: any) => {
+          this.apprenants[idx].note = note ? note : {};
+          this.data.labels.push(_apprenant.prenom+' '+_apprenant.nom);
+          this.data.datasets[0].data.push(note ? note.note: 0);
+          this.chart.reinit();
+        }
       })
     );
   }

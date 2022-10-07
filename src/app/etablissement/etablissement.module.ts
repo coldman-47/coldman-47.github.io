@@ -5,8 +5,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AccordionModule } from 'primeng/accordion';
 import { ConfirmationService } from 'primeng/api';
+import { AvatarModule } from 'primeng/avatar';
 import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
+import { ChartModule } from 'primeng/chart';
 import { ChipModule } from 'primeng/chip';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DialogModule } from 'primeng/dialog';
@@ -84,8 +86,10 @@ import { UesComponent } from './ue/ues/ues.component';
     ReactiveFormsModule,
     EtablissementRoutingModule,
     AccordionModule,
+    AvatarModule,
     CalendarModule,
     CardModule,
+    ChartModule,
     ChipModule,
     ConfirmPopupModule,
     DialogModule,
