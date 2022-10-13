@@ -31,6 +31,14 @@ export class BourseService {
     return this._httpClient.post<BourseModel>(`${BASE_URL}/add`, bourse);
   }
 
+  addBourseApprenant(idBourse: string, idApprenant: string): Observable<any> {
+    return this._httpClient.get(`${BASE_URL}/${idBourse}/apprenant/${idApprenant}/add`);
+  }
+
+  deleteBourseApprenant(idBourse: string, idApprenant: string): Observable<any> {
+    return this._httpClient.get(`${BASE_URL}/${idBourse}/apprenant/${idApprenant}/delete`);
+  }
+
   updateBourse(bourse: BourseModel): Observable<BourseModel> {
     return this._httpClient.put<BourseModel>(`${BASE_URL}/${bourse._id}`, bourse);
   }

@@ -1,0 +1,38 @@
+<p-card>
+  <div class="d-flex justify-content-between align-items-center">
+    <h2>{{ title }}</h2>
+    <button
+      pButton
+      pRipple
+      type="button"
+      [routerLink]="['/etablissement/bourses']"
+      icon="pi pi-times"
+      class="p-button-rounded p-button-secondary p-button-text"
+    ></button>
+  </div>
+
+  <form [formGroup]="depenseForm" (ngSubmit)="onSubmit()">
+    <div class="grid">
+        <div class="field col-12 md:col-6">
+          <label for="label">Libelle</label>
+          <input
+            pInputText
+            inputId="label"
+            class="form-control"
+            formControlName="label"
+          >
+        </div>
+        <div class="field col-12 md:col-6">
+          <label for="montant">montant</label>
+          <p-inputNumber
+            inputId="montant"
+            class="form-control"
+            formControlName="montant"
+          ></p-inputNumber>
+        </div>
+      <div class="field col-12">
+        <button [disabled]="depenseForm.invalid" pButton type="submit" class="p-button p-button-lg">{{ isEdit ? 'Modifier' : 'Enregistrer' }}</button>
+    </div>
+    </div>
+  </form>
+</p-card>

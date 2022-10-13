@@ -14,11 +14,13 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
+import { ChipModule } from 'primeng/chip';
 
 const PRIME_MODULES = [
   // PrimeNG Modules
   ButtonModule,
   CardModule,
+  ChipModule,
   ConfirmDialogModule,
   DropdownModule,
   InputNumberModule,
