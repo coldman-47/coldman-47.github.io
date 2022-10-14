@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { DepenseModel } from '../../models/depense.model';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 const BASE_URL = environment.backendUrl + 'depenses';
 
@@ -23,7 +23,9 @@ export class DepenseService {
   }
 
   getDepensesByMonth(month: number) {
-    this._httpClient.get<DepenseModel[]>(`${BASE_URL}/mois/${month}`).subscribe(depenses => {
+    this._httpClient.get<any>(`${BASE_URL}/mois/${month}`)
+      .pipe(map(data => data.depenses))
+      .subscribe(depenses => {
       this._depenses.next(depenses);
     });;
   }

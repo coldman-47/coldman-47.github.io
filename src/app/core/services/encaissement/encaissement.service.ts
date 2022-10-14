@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { EncaissementModel } from '../../models/encaissement.model';
 
 const BASE_URL = environment.backendUrl + 'encaissements';
@@ -23,7 +23,9 @@ export class EncaissementService {
   }
 
   getEncaissementsByMonth(month: number) {
-    this._httpClient.get<EncaissementModel[]>(`${BASE_URL}/mois/${month}`).subscribe(encaissements => {
+    this._httpClient.get<any>(`${BASE_URL}/mois/${month}`)
+      .pipe(map(data => data.encaissements))
+      .subscribe(encaissements => {
       this._encaissements.next(encaissements);
     });;
   }

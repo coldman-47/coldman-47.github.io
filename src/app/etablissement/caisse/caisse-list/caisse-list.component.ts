@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { DepenseModel } from 'src/app/core/models/depense.model';
 import { EncaissementModel } from 'src/app/core/models/encaissement.model';
@@ -28,25 +29,85 @@ export class CaisseListComponent implements OnInit {
   now = new Date();
   selectedMonth: { name: string; value: number };
 
-  depenses$: Observable<DepenseModel[]>
-  encaissement$: Observable<EncaissementModel[]>
+  depenses: DepenseModel[] = [];
+  encaissements: EncaissementModel[] = [];
 
   constructor(
+    private _confirmationService: ConfirmationService,
+    private _messageService: MessageService,
     private _depenseService: DepenseService,
     private _encaissementService: EncaissementService
   ) {}
 
   ngOnInit(): void {
     this.selectedMonth = this.months[this.now.getMonth()];
-    this.depenses$ = this._depenseService.depenses$;
-    this.encaissement$ = this._encaissementService.encaissements$;
-    this.depenses$.subscribe((depenses) => console.log(depenses));
-    this.encaissement$.subscribe((encaissements) => console.log(encaissements));
+    this._depenseService.depenses$.subscribe(data => this.depenses = data);
+    this._encaissementService.encaissements$.subscribe(data => this.encaissements = data);
     this.loadCaisse();
   }
 
   loadCaisse() {
     this._depenseService.getDepensesByMonth(this.selectedMonth.value)
     this._encaissementService.getEncaissementsByMonth(this.selectedMonth.value)
+  }
+
+  onDeleteDepense(id: string): void {
+    this._confirmationService.confirm({
+      message: 'Voulez-vous supprimer cette dépense?',
+      header: 'Suppression',
+      acceptLabel: 'Supprimer',
+      acceptButtonStyleClass: 'p-button-danger',
+      rejectLabel: 'Annuler',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this._depenseService.deleteDepense(id).subscribe({
+          next: (data) => {
+            this._messageService.add({
+              severity: 'info',
+              summary: 'Confirmation',
+              detail: 'Dépense supprimée',
+            });
+            this._depenseService.getDepensesByMonth(this.selectedMonth.value);
+          },
+          error: (err) => {
+            this._messageService.add({
+              severity: 'error',
+              summary: 'Erreur',
+              detail: err.error.message,
+            });
+          }
+        });
+      },
+    });
+  }
+
+  onDeleteEncaissement(id: string): void {
+    this._confirmationService.confirm({
+      message: 'Voulez-vous supprimer cet encaissement?',
+      header: 'Suppression',
+      acceptLabel: 'Supprimer',
+      acceptButtonStyleClass: 'p-button-danger',
+      rejectLabel: 'Annuler',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this._encaissementService.deleteEncaissement(id).subscribe({
+          next: (data) => {
+            this._messageService.add({
+              severity: 'info',
+              summary: 'Confirmation',
+              detail: 'Encaissement supprimé',
+            });
+            this._encaissementService.getEncaissementsByMonth(this.selectedMonth.value);
+          },
+          error: (err) => {
+            this._messageService.add({
+              severity: 'error',
+              summary: 'Erreur',
+              detail: err.error.message,
+            });
+          }
+        });
+      },
+    });
   }
 }
