@@ -7,6 +7,7 @@ import { EvaluationService } from '../../../core/services/evaluation/evaluation.
 import { CycleService } from '../../../core/services/cycle/cycle.service';
 import { FiliereService } from 'src/app/core/services/filiere/filiere.service';
 import { NiveauService } from 'src/app/core/services/niveaux/niveau.service';
+import { EnseignantService } from 'src/app/core/services/enseignant/enseignant.service';
 
 @Component({
   selector: 'app-evaluation-form',
@@ -21,6 +22,7 @@ export class EvaluationFormComponent implements OnInit {
     duree: [null, Validators.required],
     periode: [null, Validators.required],
     matiere: [null, Validators.required],
+    enseignant: [null, Validators.required],
     type: [null, Validators.required],
   });
   @Input() ues!: Ue[];
@@ -39,17 +41,23 @@ export class EvaluationFormComponent implements OnInit {
     cycleSrv: CycleService,
     private fb: FormBuilder,
     private filiereSrv: FiliereService,
-    private niveauSrv: NiveauService
+    private niveauSrv: NiveauService,
+    enseignantSrv: EnseignantService
   ) {
     srv.getTypes().subscribe({
       next: (_types: any) => this.types = _types
     });
     this.periodes = cycleSrv.cycle.value.periodes;
-    console.log(cycleSrv.cycle.value);
+    enseignantSrv.getEnseignants().subscribe({
+      next: (_enseignants) =>
+        (this.enseignants = _enseignants.data.map((_enseignant: any) => {
+          _enseignant.fullName = _enseignant.prenom + ' ' + _enseignant.nom;
+          return _enseignant;
+        })),
+    });
   }
 
   ngOnInit(): void {
-    console.log(this.evaluation);
     this.evaluationForm.patchValue(this.evaluation);
     this.matiereSrv
     .getMatieresByNiveauFiliere(
@@ -58,7 +66,7 @@ export class EvaluationFormComponent implements OnInit {
     )
     .subscribe({
       next: (res: any) =>
-        (this.matieres = res.map((_val: any) => _val.matiere)),
+        (this.matieres = res),
     });
   }
 

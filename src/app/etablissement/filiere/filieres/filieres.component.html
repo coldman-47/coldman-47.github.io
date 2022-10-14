@@ -12,7 +12,7 @@
 <mat-tab-nav-panel #tabPanel>
     <div class="surface-100 mt-3 rounded p-5 row justify-content-center">
         <div class="col-3" *ngFor="let filiere of filieres">
-            <p-card class="cursor-pointer" (click)="_filiere.emit(filiere._id)">
+            <p-card class="cursor-pointer" (click)="getClasses(filiere._id)">
                 <h3>{{filiere.label}}</h3>
             </p-card>
         </div>

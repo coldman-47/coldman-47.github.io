@@ -51,7 +51,7 @@
         </div>
     </ng-template>
 </p-card>
-<p-dialog [(visible)]="display" [modal]="true" [style]="{'height': '100%', 'width': '100%', 'maxHeight': '100%'}">
+<p-dialog [closeOnEscape]="false" [(visible)]="display" [modal]="true" [style]="{'height': '100%', 'width': '100%', 'maxHeight': '100%'}">
     <app-timetable *ngIf="display" [classe]="selected"></app-timetable>
 </p-dialog>
 <p-dialog [(visible)]="visible" [modal]="true" [style]="{'height': '100%', 'width': '100%'}">

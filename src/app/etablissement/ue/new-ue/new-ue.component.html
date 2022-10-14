@@ -10,11 +10,11 @@
     </div>
     <div class="field my-4">
         <span class="p-float-label">
-            <p-inputNumber [min]="0" name="label" [(ngModel)]="ue.totalCredits" placeholder="Nombre de crédit"
-                class="form-control {{submitted && !ue.totalCredits ? 'ng-invalid ng-dirty' : ''}}"></p-inputNumber>
+            <p-inputNumber [min]="0" name="label" [(ngModel)]="ue.totalCredit" placeholder="Nombre de crédit"
+                class="form-control {{submitted && !ue.totalCredit ? 'ng-invalid ng-dirty' : ''}}"></p-inputNumber>
             <label for="inputtext"><i class="pi pi-hashtag"></i> &nbsp;&nbsp;Crédits</label>
         </span>
-        <small *ngIf="submitted && !ue.totalCredits" id="username-help" class="p-error">Le nombre de crédit est
+        <small *ngIf="submitted && !ue.totalCredit" id="username-help" class="p-error">Le nombre de crédit est
             requis.</small>
     </div>
     <div class="field my-4">
@@ -24,12 +24,12 @@
             <label for="inputtext"><i class="pi pi-hashtag"></i> &nbsp;&nbsp;Filière</label>
         </span>
     </div>
-    <!-- <div class="field my-4">
+    <div class="field my-4">
         <span class="p-float-label p-input-filled">
-            <p-multiSelect appendTo="body" [disabled]="!classes" name="classes" optionValue="_id" [options]="classes!" [(ngModel)]="ue.classes" [showClear]="true" display="chip" optionLabel="label"></p-multiSelect>
+            <p-multiSelect appendTo="body" [disabled]="!periodes" name="periodes" optionValue="_id" [options]="periodes" [(ngModel)]="ue.periodes" [showClear]="true" display="chip" optionLabel="label"></p-multiSelect>
             <label for="inputtext">Classes</label>
         </span>
-    </div> -->
+    </div>
     <div class="field my-4">
         <div class="d-flex">
             <button pButton label="CRÉER" icon="pi pi-plus" type="submit" class="p-button p-button-lg flex-grow-1"></button>

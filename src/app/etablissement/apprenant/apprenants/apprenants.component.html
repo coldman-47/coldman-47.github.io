@@ -3,7 +3,7 @@
         <div class="surface-100 row m-0 h-100">
             <div class="col-lg-4 p-3" *ngFor="let student of apprenants">
                 <p-card *ngIf="student" class="cursor-pointer" (click)="selected = student; edition = true">
-                    <ng-template pTemplate="title"><h5>{{student.prenom+' '+student.nom}}</h5></ng-template>
+                    <ng-template pTemplate="title"><h5 class="text-center">{{(student.prenom | titlecase)+' '+(student.nom | uppercase)}}</h5></ng-template>
                     <div class="d-flex justify-content-center">
                         <p-avatar *ngIf="student.photo else icon" [image]="student.photo" shape="circle"  size="xlarge"></p-avatar>
                         <ng-template #icon>

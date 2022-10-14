@@ -22,4 +22,8 @@ export class NoteService {
   getNoteApprenantByEvaluation(evaluationId: string, apprenantId: string){
     return this.http.get(this.baseUrl+`${evaluationId}/${apprenantId}`);
   }
+
+  getNotesApprenantByMatiere(matiereId: string, typeId: string, periodeId: string){
+    return this.http.get(this.baseUrl+`apprenant/${matiereId}/${typeId}/${periodeId}`);
+  }
 }

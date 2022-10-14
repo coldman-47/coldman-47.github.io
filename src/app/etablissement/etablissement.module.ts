@@ -14,8 +14,10 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DialogModule } from 'primeng/dialog';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { KnobModule } from 'primeng/knob';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { PaginatorModule } from 'primeng/paginator';
@@ -49,6 +51,7 @@ import { PedagogieComponent } from './pedagogie/pedagogie.component';
 import { EditPersonnelComponent } from './personnel/edit-personnel/edit-personnel.component';
 import { NewPersonnelComponent } from './personnel/new-personnel/new-personnel.component';
 import { PersonnelComponent } from './personnel/personnel/personnel.component';
+import { RelevePeriodiqueComponent } from './releve/releve-periodique/releve-periodique.component';
 import { SeanceFormComponent } from './seance/seance-form/seance-form.component';
 import { TimetableComponent } from './timetable/timetable.component';
 import { NewUeComponent } from './ue/new-ue/new-ue.component';
@@ -79,7 +82,8 @@ import { UesComponent } from './ue/ues/ues.component';
     TimetableComponent,
     SeanceFormComponent,
     EvaluationFormComponent,
-    DetailsEvaluationComponent
+    DetailsEvaluationComponent,
+    RelevePeriodiqueComponent
   ],
   imports: [
     CommonModule,
@@ -95,8 +99,10 @@ import { UesComponent } from './ue/ues/ues.component';
     DialogModule,
     FileUploadModule,
     InputNumberModule,
+    InputSwitchModule,
     InputTextModule,
     InputTextareaModule,
+    KnobModule,
     MatTabsModule,
     MultiSelectModule,
     OverlayPanelModule,

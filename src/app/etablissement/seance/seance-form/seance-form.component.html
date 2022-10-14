@@ -1,5 +1,16 @@
 <form [formGroup]="seanceForm" class="h-100 overflow-y-auto fadeinup animation-duration-400 bg-white rounded" (submit)="!seance ? create() : update()">
     <p-card class="rounded">
+        <ng-template pTemplate="header">
+            <div class="row px-4 m-0" *ngIf="volumeHoraire">
+                <div class="col-lg-7 d-flex">
+                    <h4 class="my-auto">Heures effectuées</h4>
+                </div>
+                <div class="col-lg-5 d-flex flex-column align-items-center">
+                    <p-knob [valueColor]="'#7c9fcc'" formControlName="rapportHoraire" [readonly]="true" [max]="controls.volumeHoraire.value!" [size]="70"></p-knob>
+                    <h6 class="text-blue-800" *ngIf="controls.volumeHoraire">0/{{volumeHoraire}}</h6>
+                </div>
+            </div>
+        </ng-template>
         <div class="field mt-3 mb-4 px-4">
             <span class="p-float-label">
                 <p-dropdown [options]="['Cours', 'Td', 'TP']" formControlName="label" placeholder="Type de séances" class="form-control {{(submitted && controls['label'].invalid) ? 'ng-invalid ng-dirty' : ''}}"></p-dropdown>

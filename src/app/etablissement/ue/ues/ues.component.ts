@@ -12,7 +12,7 @@ import { NiveauService } from '../../../core/services/niveaux/niveau.service';
   styleUrls: ['./ues.component.sass'],
 })
 export class UesComponent implements OnInit {
-  @Input() ues!: Ue[];
+  @Input() ues!: any[];
   @Input() classeId?: string;
   submitted = false;
   matiereForm!: FormGroup;
@@ -35,15 +35,18 @@ export class UesComponent implements OnInit {
     filiereSrv.filiere.subscribe({
       next: () =>
         srv.getUes().subscribe({
-          next: (res: any) => (this.ues = res[0].ues),
+          next: (res: any) => {
+            const ues: Ue[] = [];
+            res.forEach((_obj: any) => {
+              if(_obj.ue) ues.push(_obj.ue);
+            });
+            this.ues = ues;
+          }
         }),
     });
   }
 
   ngOnInit(): void {
-    // this.srv.getUes().subscribe({
-    //   next: ue => console.log(ue)
-    // });
   }
 
   get controls() {
@@ -67,20 +70,18 @@ export class UesComponent implements OnInit {
   }
 
   getMatieres(ue: Ue) {
-    this.matiereSrv.getMatieres(<string>ue._id).subscribe({
-      next: (_matieres) => console.log(_matieres)
-    })
     this.selected = this.selected !== ue ? ue : undefined;
     this.matieres = []
-    if (this.selected) {
-      this.selected.matieres.forEach((matiereId: string) => {
-        this.matiereSrv.getMatiere(matiereId).subscribe({
-          next: (_matiere) => {
-            console.log(_matiere);
-            if(_matiere) this.matieres.push(_matiere);
-          },
-        });
+    if (this.selected) this.matiereSrv.getMatieres(<string>ue._id).subscribe({
+        next: (_matieres: any) => this.matieres = _matieres
       });
-    }
+      // this.selected.matieres.forEach((matiereId: string) => {
+      //   this.matiereSrv.getMatiere(matiereId).subscribe({
+      //     next: (_matiere) => {
+      //       console.log(_matiere);
+      //       if(_matiere) this.matieres.push(_matiere);
+      //     },
+      //   });
+      // });
   }
 }

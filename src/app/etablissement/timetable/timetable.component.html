@@ -1,6 +1,8 @@
 <div class="h-100 w-100">
     <div style="margin-bottom: -8em;" class="pt-5 pb-3 d-flex justify-content-end flex-wrap">
-        <!-- <button (click)="display=true" pButton icon="pi pi-plus"></button> -->
+        <div class="pe-3">
+            <p-dropdown (onChange)="filterTimetableEvents($event)" (onClear)="resetTimetable()" class="form-control" [options]="enseignants" [showClear]="true" appendTo="body" optionLabel="fullName" optionValue="_id" placeholder="Enseignant"></p-dropdown>
+        </div>
         <p-speedDial [transitionDelay]="80" buttonClassName="p-button-outlined" [model]="btnItems" direction="down"></p-speedDial>
     </div>
     <full-calendar id="calendar" #calendar (click)="toggleView($event)" [options]="calendarOptions"></full-calendar>
