@@ -1,0 +1,30 @@
+<p-card class="w-100 h-100">
+  <div class="grid">
+    <div class="col-12 md:col-4">
+      <h2>Caisse</h2>
+    </div>
+    <div class="col-12 md:col-4">
+      <p-dropdown [options]="months" [(ngModel)]="selectedMonth" optionLabel="name"></p-dropdown>
+    </div>
+    <div class="col-12 md:col-4 d-flex justify-content-end">
+      <button
+        pButton
+        pRipple
+        [routerLink]="['nouvelle-depense']"
+        type="button"
+        label="Nouvelle dépense"
+        icon="pi pi-plus"
+        class="p-button-rounded p-button-primary p-button-text"
+      ></button>
+    </div>
+  </div>
+
+  <p-tabView>
+    <p-tabPanel header="Dépenses">
+      mes depenses
+    </p-tabPanel>
+    <p-tabPanel header="Encaissements">
+      Encaissements
+    </p-tabPanel>
+  </p-tabView>
+</p-card>

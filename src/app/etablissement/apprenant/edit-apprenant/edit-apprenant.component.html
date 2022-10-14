@@ -113,7 +113,9 @@
 </div>
 <p-dialog [(visible)]="visible" [modal]="true" [responsive]="true" [style]="{width: '100%', minHeight: '100%'}">
     <ng-template pTemplate="header">
-        <h1 class="text-center p-3 titre mb-0">Relevé provisoire</h1>
+        <h1 class="text-center p-3 titre mb-0">Détails de l'apprenant</h1>
     </ng-template>
-    <app-releve-periodique *ngIf="visible" [apprenant]="apprenant"></app-releve-periodique>
+    <!--app-releve-periodique *ngIf="visible" [apprenant]="apprenant"></app-releve-periodique-->
+
+    <app-apprenant-detail [apprenant]="apprenant"></app-apprenant-detail>
 </p-dialog>

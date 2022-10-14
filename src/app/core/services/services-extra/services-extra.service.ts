@@ -35,6 +35,18 @@ export class ServicesExtraService {
     return this._httpClient.get<ServiceExtraModel>(`${BASE_URL}/${id}`);
   }
 
+  getServicesApprenant(id: string): Observable<ServiceExtraModel[]> {
+    return this._httpClient.get<ServiceExtraModel[]>(`${BASE_URL}/apprenant/${id}`);
+  }
+
+  addServiceApprenant(idService: string, idApprenant: string): Observable<any> {
+    return this._httpClient.get(`${BASE_URL}/${idService}/apprenant/${idApprenant}/add`);
+  }
+
+  deleteServiceApprenant(idService: string, idApprenant: string): Observable<any> {
+    return this._httpClient.get(`${BASE_URL}/${idService}/apprenant/${idApprenant}/delete`);
+  }
+
   addServiceExtra(serviceExtra: ServiceExtraModel): Observable<ServiceExtraModel> {
     return this._httpClient.post<ServiceExtraModel>(`${BASE_URL}/add`, serviceExtra);
   }

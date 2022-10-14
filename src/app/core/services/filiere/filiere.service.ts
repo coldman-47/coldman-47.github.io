@@ -14,15 +14,15 @@ export class FiliereService {
   filieres = new BehaviorSubject<any[]>([]);
 
   constructor(private http: HttpClient) { }
-  
+
   getFilieres(): Observable<any[]>{
-    return this.http.get<any[]>(this.baseUrl + 'filieres');
+    return this.http.get<any[]>(this.baseUrl);
   }
-  
+
   getFilieresByNiveau(id: string){
     return this.http.get(this.baseUrl + '/niveau/'+id);
   }
-  
+
   getFiliere(id: string){
     return this.http.get(this.baseUrl+'/'+id);
   }
