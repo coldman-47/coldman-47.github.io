@@ -3,6 +3,7 @@ import { FiliereService } from 'src/app/core/services/filiere/filiere.service';
 import { Filiere } from '../../../core/models/filiere/filiere';
 import { StepEvent } from '../../../shared/utilities/step-event/step-event';
 import { MenuItem } from 'primeng/api';
+import { ClasseService } from '../../../core/services/classe/classe.service';
 
 @Component({
   selector: 'app-filieres',
@@ -30,7 +31,7 @@ export class FilieresComponent extends StepEvent implements OnInit {
   ];
   active = 0;
 
-  constructor(private srv: FiliereService) {
+  constructor(private srv: FiliereService, private classeSrv: ClasseService) {
     super();
     srv.filieres.subscribe({
       next: (_filieres: any) => {
@@ -65,6 +66,16 @@ export class FilieresComponent extends StepEvent implements OnInit {
   ngOnInit(): void {
     this.srv.filieres.subscribe({
       next: (_filieres) => this.filieres = _filieres
+    });
+  }
+
+  getClasses(idFiliere?: string){
+    this.classeSrv.getClassesByGrade(<string>idFiliere).subscribe({
+      next:(res) => {
+        this._filiere.emit(res);
+        this.srv.filiere.next(<string>idFiliere);
+      }
+      
     });
   }
 }

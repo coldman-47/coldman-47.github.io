@@ -34,7 +34,7 @@ export class PersonnelService {
   }
 
   addPersonnel(personnel: Personnel){
-    return this.http.post(this.baseUrl + 'personnels/add', personnel);
+    return this.http.post(this.baseUrl + 'personnels', personnel);
   }
 
   editPersonnel(id:string, personnel: Personnel){

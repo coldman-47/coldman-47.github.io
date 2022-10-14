@@ -1,6 +1,8 @@
 <div class="h-100 w-100">
     <div style="margin-bottom: -8em;" class="pt-5 pb-3 d-flex justify-content-end flex-wrap">
-        <!-- <button (click)="display=true" pButton icon="pi pi-plus"></button> -->
+        <div class="pe-3">
+            <p-dropdown (onChange)="filterTimetableEvents($event)" (onClear)="resetTimetable()" class="form-control" [options]="enseignants" [showClear]="true" appendTo="body" optionLabel="fullName" optionValue="_id" placeholder="Enseignant"></p-dropdown>
+        </div>
         <p-speedDial [transitionDelay]="80" buttonClassName="p-button-outlined" [model]="btnItems" direction="down"></p-speedDial>
     </div>
     <full-calendar id="calendar" #calendar (click)="toggleView($event)" [options]="calendarOptions"></full-calendar>
@@ -19,7 +21,7 @@
 </p-dialog>
 <p-dialog position="right" [modal]="true" [(visible)]="visible" [style]="{'height': '100%'}">
     <ng-template pTemplate="header">
-        <h2 class="text-center py-3">Nouvelle évaluation</h2>
+        <h2 class="text-center py-3">{{choice === 'edit' ? "Editer l'" : 'Nouvelle'}}évaluation</h2>
     </ng-template>
     <ng-container *ngIf="visible">
         <app-evaluation-form [evaluation]="selected" [classeId]="classe._id" [ues]="ue"></app-evaluation-form>
@@ -35,35 +37,9 @@
 </p-dialog>
 
 <!-- Details évaluation -->
-<p-dialog [(visible)]="showEval" [style]="{height: '100%', width: '100%'}" [modal]="true" header="Évaluation">
-    <div class="row">
-        <div class="col-lg-4">
-            <p-card>
-                <h4>Apprenants</h4>
-                <p-table *ngIf="selected" [value]="apprenants" styleClass="p-datatable-striped">
-                    <ng-template pTemplate="header" let-yourColumnArrayVaraible>
-                        <tr>
-                            <th class="fw-bold">Prénom</th>
-                            <th class="fw-bold">Nom</th>
-                            <th class="fw-bold">Note</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-apprenant>
-                        <tr>
-                            <td class="text-teal-500">{{apprenant.prenom}}</td>
-                            <td class="text-teal-500">{{apprenant.nom | uppercase}}</td>
-                            <td></td>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="footer" let-yourColumnArrayVaraible>
-                        <tr>
-                            <td *ngFor="let yourColumnVaraible of yourColumnArrayVaraible">
-                                {{yourColumnVaraible.header}}
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </p-card>
-        </div>
-    </div>
+<p-dialog [(visible)]="showEval" [maximizable]="true" [style]="{height: '100%', width: '100%'}" [modal]="true">
+    <ng-template pTemplate="header">
+        <div class="w-100"><h2 class="text-center p-2">Évaluation</h2></div>
+    </ng-template>
+    <app-details-evaluation *ngIf="showEval" [evaluation]="selected"></app-details-evaluation>
 </p-dialog>

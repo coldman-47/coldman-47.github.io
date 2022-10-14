@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { BehaviorSubject } from 'rxjs';
@@ -27,6 +27,7 @@ export class EditApprenantComponent extends Cancel implements OnInit {
   avatar: any;
   photo: any;
   ues?: Ue[];
+  disableCrls = true;
 
   constructor(private srv: ApprenantService, private ueSrv: UeService, private fb: FormBuilder,private messageSrv: MessageService, confirmSrv: ConfirmationService) {
     super(confirmSrv);
@@ -54,14 +55,10 @@ export class EditApprenantComponent extends Cancel implements OnInit {
           })
         });
         this.srv.getTuteur(<string>_apprenant.tuteur).subscribe({
-          next: (_tuteur: any) => this.controls['tuteur'] = this.fb.group({
-            prenom: [_tuteur.prenom, Validators.required],
-            nom: [_tuteur.nom, Validators.required],
-            email: [_tuteur.email, [Validators.email, Validators.required]],
-            telephone: [_tuteur.telephone, Validators.required],
-            adresse: [_tuteur.adresse, Validators.required]
-          })
+          next: (_tuteur: any) => this.controls['tuteur'].patchValue(_tuteur)
         });
+        this.apprenantForm.disable();
+        
         this.apprenant = _apprenant;
         this.controls;
         this.loading = false;
