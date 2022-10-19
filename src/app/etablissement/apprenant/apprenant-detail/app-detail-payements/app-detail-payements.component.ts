@@ -1,7 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Apprenant } from 'src/app/core/models/apprenant/apprenant';
+import { Etablissement } from 'src/app/core/models/etablissement/etablissement';
 import { PayementModel } from 'src/app/core/models/payement.model';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { EtablissementService } from 'src/app/core/services/etablissement/etablissement.service';
 import { PayementService } from 'src/app/core/services/payement/payement.service';
 import { RedevanceService } from 'src/app/core/services/redevance/redevance.service';
 
@@ -18,13 +21,19 @@ export class AppDetailPayementsComponent implements OnInit {
   payementSelected: PayementModel;
   redevance$: Observable<number>;
   displayFacture = false;
+  etablissement: Etablissement;
 
   constructor(
     private _payementService: PayementService,
+    private _authService: AuthService,
+    private _etablissementService: EtablissementService,
     private _redevanceService: RedevanceService
   ) { }
 
   ngOnInit(): void {
+    this._authService.user.subscribe((user) => {
+      console.log(user);
+    });
     this._payementService.payements$.subscribe(data => {
       this.payements = data
     });
