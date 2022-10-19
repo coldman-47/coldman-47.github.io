@@ -9,6 +9,7 @@ import { ConfirmationService } from 'primeng/api';
 import { DataUriToBlobPipe } from 'src/app/core/pipes/file/data-uri-to-blob.pipe';
 import { UeService } from '../../../core/services/ue/ue.service';
 import { Ue } from 'src/app/core/models/ue/ue';
+import { TuteurModel } from 'src/app/core/models/tuteur.model';
 
 @Component({
   selector: 'app-edit-apprenant',
@@ -19,6 +20,7 @@ export class EditApprenantComponent extends Cancel implements OnInit {
 
   @Input() apprenant!: Apprenant;
   @Input() classeId!: string;
+  tuteurApprenant: TuteurModel;
   submitted = false;
   visible = false;
   loading = false;
@@ -32,8 +34,8 @@ export class EditApprenantComponent extends Cancel implements OnInit {
   constructor(private srv: ApprenantService, private ueSrv: UeService, private fb: FormBuilder,private messageSrv: MessageService, confirmSrv: ConfirmationService) {
     super(confirmSrv);
   }
-  
-  ngOnInit(): void {    
+
+  ngOnInit(): void {
     const pipe = new DataUriToBlobPipe();
     this.loading = true;
     this.srv.getApprenant(<string>this.apprenant._id).subscribe({
@@ -54,11 +56,16 @@ export class EditApprenantComponent extends Cancel implements OnInit {
             adresse: [null, Validators.required]
           })
         });
+        console.log(_apprenant);
+
         this.srv.getTuteur(<string>_apprenant.tuteur).subscribe({
-          next: (_tuteur: any) => this.controls['tuteur'].patchValue(_tuteur)
+          next: (_tuteur: any) => {
+            this.tuteurApprenant = _tuteur;
+            this.controls['tuteur'].patchValue(_tuteur);
+          }
         });
         this.apprenantForm.disable();
-        
+
         this.apprenant = _apprenant;
         this.controls;
         this.loading = false;

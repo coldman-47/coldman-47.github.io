@@ -1,5 +1,76 @@
-<div class="row p-4">
-  <div class="col-sm-4 p-2">
+<div class="col">
+  <p-tabView>
+    <p-tabPanel header="Détails">
+      <div class="grid">
+        <div class="col-12">
+          <div class="d-flex justify-content-center">
+            <p-avatar *ngIf="apprenant.photo else icon" [image]="apprenant.photo" shape="circle"  size="xlarge"></p-avatar>
+            <ng-template #icon>
+                <p-avatar icon="pi pi-user" shape="circle"  size="xlarge"></p-avatar>
+            </ng-template>
+          </div>
+        </div>
+        <p-divider class="col-12" [align]="'center'">
+          <b>Informations personnelles</b>
+        </p-divider>
+        <div class="col-12 d-flex flex-column">
+          <div class="d-flex align-items-center mt-2">
+            <i class="pi pi-at mr-4"></i>
+            <span>{{ apprenant.prenom | titlecase }} {{ apprenant.nom | uppercase }}</span>
+          </div>
+          <div class="d-flex align-items-center mt-2">
+            <i class="pi pi-briefcase mr-4"></i>
+            <span>{{ apprenant.classe?.label }}</span>
+          </div>
+          <div class="d-flex align-items-center mt-2">
+            <i class="pi pi-calendar mr-4"></i>
+            <span>{{ apprenant.dateNaiss }}</span>
+          </div>
+          <div class="d-flex align-items-center mt-2">
+            <i class="pi pi-map-marker mr-4"></i>
+            <span>{{ apprenant.lieuNaiss }}</span>
+          </div>
+          <!-- <pre>{{apprenant | json}}</pre> -->
+        </div>
+        <p-divider class="col-12" [align]="'center'">
+          <b>Tuteurs</b>
+        </p-divider>
+        <div class="col-12">
+          <div class="d-flex align-items-center mt-2">
+            <span class="pi pi-user mr-2"></span>
+            <span class="mr-4">Père: </span>
+            <span>{{ tuteur.pere | titlecase }}</span>
+          </div>
+          <div class="d-flex align-items-center mt-2">
+            <span class="pi pi-phone mr-2"></span>
+            <span class="mr-4">Téléphone du père: </span>
+            <span>{{ tuteur.telephonePere }}</span>
+          </div>
+          <div class="d-flex align-items-center mt-2">
+            <span class="pi pi-user mr-2"></span>
+            <span class="mr-4">Mère: </span>
+            <span>{{ tuteur.mere | titlecase }}</span>
+          </div>
+          <div class="d-flex align-items-center mt-2">
+            <span class="pi pi-phone mr-2"></span>
+            <span class="mr-4">Téléphone de la mère: </span>
+            <span>{{ tuteur.telephoneMere }}</span>
+          </div>
+          <!-- <pre>{{tuteur | json}}</pre> -->
+        </div>
+      </div>
+    </p-tabPanel>
+    <!-- SERVICES -->
+    <p-tabPanel header="Services">
+      <app-app-detail-services [apprenant]="apprenant"></app-app-detail-services>
+    </p-tabPanel>
+    <!-- PAYEMENTS -->
+    <p-tabPanel header="Payements">
+      <app-app-detail-payements [apprenant]="apprenant"></app-app-detail-payements>
+    </p-tabPanel>
+
+  </p-tabView>
+  <!-- <div class="col-sm-4 p-2">
     <p-card>
       <h5>{{ apprenant.prenom + " " + apprenant.nom }}</h5>
       <i class="pi pi-phone"></i> : {{ apprenant.telephone | phone }}
@@ -32,33 +103,5 @@
           <button (click)="onAddNewService()" class="ml-2" pButton>Ajouter</button>
         </div>
       </p-card>
-    </div>
-    <div class="col-12 p-2">
-      <p-card>
-        <ng-template pTemplate="title">Bourses</ng-template>
-        <div class="d-flex flex-wrap align-items-center">
-          <!-- <ng-container *ngFor="let b of bourses$ | async">
-            <p-chip class="mr-2" [label]="s.label | titlecase" [removable]="true" (onRemove)="removeService(s._id)"></p-chip>
-          </ng-container> -->
-          <ng-container *ngIf="visibleBourse">
-            <div class="field col-12">
-              <p-dropdown
-                [options]="allBourses"
-                (onChange)="addBourse($event.value)"
-                class="form-control"
-                placeholder="Choisir une bourse"
-                [(ngModel)]="idBourse"
-                [optionValue]="'_id'"
-              >
-
-            <ng-template pTemplate="item" let-bourse>{{ bourse.annee + ' ' + bourse.pourcentage + '%' }}</ng-template>
-            </p-dropdown>
-            </div>
-          </ng-container>
-
-          <button (click)="onAddBourse()" class="ml-2" pButton>Ajouter</button>
-        </div>
-      </p-card>
-    </div>
-  </div>
+    </div> -->
 </div>

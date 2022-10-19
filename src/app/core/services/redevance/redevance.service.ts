@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Redevance } from '../../models/redevance/redevance.model';
 
@@ -25,6 +25,10 @@ export class RedevanceService {
         this._redevancesSubject.next(redevances);
       }
     });
+  }
+
+  getRedevancePonctuel(idApprenant: string): Observable<number> {
+    return this._hhtpClient.get<number>(`${BASE_URL}/apprenant/${idApprenant}`);
   }
 
   getRedevance(idRedevance: Redevance) {

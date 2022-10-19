@@ -5,7 +5,7 @@
         </div>
         <div class="col-md-9 p-0 d-flex justify-content-end">
             <div>
-                <button (click)="visible = true; getUes()" pButton icon="pi pi-info" class="p-button p-button-sm p-button-info p-button-rounded me-3"></button>
+                <button (click)="visible = true;" pButton icon="pi pi-info" class="p-button p-button-sm p-button-info p-button-rounded me-3"></button>
                 <button (click)="status.emit(true)" type="button" class="p-button p-button-sm flex-grow-1 p-button-outlined p-button-secondary p-button-rounded" pButton icon="pi pi-times"></button>
             </div>
         </div>
@@ -17,42 +17,42 @@
         <form *ngIf="!loading" [formGroup]="apprenantForm" (submit)="update()">
             <div class="field m-4">
                 <span class="p-float-label">
-                    <input [autocomplete]="true" formControlName="prenom" placeholder="Prénom" class="form-control {{submitted && controls['prenom'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="text" pInputText> 
+                    <input [autocomplete]="true" formControlName="prenom" placeholder="Prénom" class="form-control {{submitted && controls['prenom'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="text" pInputText>
                     <label for="inputtext"><i class="pi pi-user"></i>&nbsp;Prénom</label>
                 </span>
                 <small *ngIf="submitted && controls['prenom'].invalid" id="username-help" class="p-error">Un prénom est requis.</small>
             </div>
             <div class="field m-4">
                 <span class="p-float-label">
-                    <input [autocomplete]="true" formControlName="nom" placeholder="Nom" class="form-control {{submitted && controls['nom'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="text" pInputText> 
+                    <input [autocomplete]="true" formControlName="nom" placeholder="Nom" class="form-control {{submitted && controls['nom'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="text" pInputText>
                     <label for="inputtext"><i class="pi pi-user"></i>&nbsp;Nom</label>
                 </span>
                 <small *ngIf="submitted && controls['nom'].invalid" id="username-help" class="p-error">Un nom est requis.</small>
             </div>
             <div class="field m-4">
                 <span class="p-float-label">
-                    <p-calendar appendTo="body" [yearNavigator]="true" formControlName="dateNaiss" placeholder="Date de naissance" class="form-control {{submitted && controls['nom'].invalid ? 'ng-invalid ng-dirty' : ''}}"></p-calendar> 
+                    <p-calendar appendTo="body" [yearNavigator]="true" formControlName="dateNaiss" placeholder="Date de naissance" class="form-control {{submitted && controls['nom'].invalid ? 'ng-invalid ng-dirty' : ''}}"></p-calendar>
                     <label for="inputtext"><i class="pi pi-calendar"></i>&nbsp;Date de naissance</label>
                 </span>
                 <small *ngIf="submitted && controls['dateNaiss'].invalid" id="username-help" class="p-error">Un nom est requis.</small>
             </div>
             <div class="field m-4">
                 <span class="p-float-label">
-                    <input [autocomplete]="true" formControlName="email" placeholder="Adresse electronique" class="form-control {{submitted && controls['email'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="email" pInputText> 
+                    <input [autocomplete]="true" formControlName="email" placeholder="Adresse electronique" class="form-control {{submitted && controls['email'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="email" pInputText>
                     <label for="inputtext"><i class="pi pi-at"></i>&nbsp;Email</label>
                 </span>
                 <small *ngIf="submitted && controls['email'].invalid" id="username-help" class="p-error">Une adresse email valide est requise.</small>
             </div>
             <div class="field m-4">
                 <span class="p-float-label">
-                    <input [autocomplete]="true" formControlName="telephone" placeholder="Numéro de téléphone" class="form-control {{submitted && controls['telephone'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="tel" pInputText> 
+                    <input [autocomplete]="true" formControlName="telephone" placeholder="Numéro de téléphone" class="form-control {{submitted && controls['telephone'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="tel" pInputText>
                     <label for="inputtext"><i class="pi pi-phone"></i>&nbsp;Téléphone</label>
                 </span>
                 <small *ngIf="submitted && controls['telephone'].invalid" id="username-help" class="p-error">Un numéro de téléphone est requis.</small>
             </div>
             <div class="field m-4">
                 <span class="p-float-label">
-                    <input [autocomplete]="true" formControlName="adresse" placeholder="Adresse" class="form-control {{submitted && controls['telephone'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="tel" pInputText> 
+                    <input [autocomplete]="true" formControlName="adresse" placeholder="Adresse" class="form-control {{submitted && controls['telephone'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="tel" pInputText>
                     <label for="inputtext"><i class="pi pi-phone"></i>&nbsp;Adresse</label>
                 </span>
                 <small *ngIf="submitted && controls['telephone'].invalid" id="username-help" class="p-error">Une adresse est requise.</small>
@@ -67,35 +67,35 @@
                     <p-accordionTab [formGroup]="tuteur" header="Tuteur">
                         <div class="field">
                             <span class="p-float-label">
-                                <input [autocomplete]="true" formControlName="prenom" placeholder="Prénom" class="form-control {{submitted && controls['prenom'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="text" pInputText> 
+                                <input [autocomplete]="true" formControlName="prenom" placeholder="Prénom" class="form-control {{submitted && controls['prenom'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="text" pInputText>
                                 <label for="inputtext"><i class="pi pi-user"></i>&nbsp;Prénom</label>
                             </span>
                             <small *ngIf="submitted && controls['prenom'].invalid" id="username-help" class="p-error">Un prénom est requis.</small>
                         </div>
                         <div class="field">
                             <span class="p-float-label">
-                                <input [autocomplete]="true" formControlName="nom" placeholder="Nom" class="form-control {{submitted && controls['nom'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="text" pInputText> 
+                                <input [autocomplete]="true" formControlName="nom" placeholder="Nom" class="form-control {{submitted && controls['nom'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="text" pInputText>
                                 <label for="inputtext"><i class="pi pi-user"></i>&nbsp;Nom</label>
                             </span>
                             <small *ngIf="submitted && controls['nom'].invalid" id="username-help" class="p-error">Un nom est requis.</small>
                         </div>
                         <div class="field">
                             <span class="p-float-label">
-                                <input [autocomplete]="true" formControlName="email" placeholder="Adresse electronique" class="form-control {{submitted && controls['email'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="email" pInputText> 
+                                <input [autocomplete]="true" formControlName="email" placeholder="Adresse electronique" class="form-control {{submitted && controls['email'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="email" pInputText>
                                 <label for="inputtext"><i class="pi pi-at"></i>&nbsp;Email</label>
                             </span>
                             <small *ngIf="submitted && controls['email'].invalid" id="username-help" class="p-error">Une adresse email valide est requise.</small>
                         </div>
                         <div class="field">
                             <span class="p-float-label">
-                                <input [autocomplete]="true" formControlName="telephone" placeholder="Numéro de téléphone" class="form-control {{submitted && controls['telephone'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="tel" pInputText> 
+                                <input [autocomplete]="true" formControlName="telephone" placeholder="Numéro de téléphone" class="form-control {{submitted && controls['telephone'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="tel" pInputText>
                                 <label for="inputtext"><i class="pi pi-phone"></i>&nbsp;Téléphone</label>
                             </span>
                             <small *ngIf="submitted && controls['telephone'].invalid" id="username-help" class="p-error">Un numéro de téléphone est requis.</small>
                         </div>
                         <div class="field">
                             <span class="p-float-label">
-                                <input [autocomplete]="true" formControlName="adresse" placeholder="Adresse" class="form-control {{submitted && controls['telephone'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="tel" pInputText> 
+                                <input [autocomplete]="true" formControlName="adresse" placeholder="Adresse" class="form-control {{submitted && controls['telephone'].invalid ? 'ng-invalid ng-dirty' : ''}}" type="tel" pInputText>
                                 <label for="inputtext"><i class="pi pi-home"></i>&nbsp;Adresse</label>
                             </span>
                             <small *ngIf="submitted && controls['telephone'].invalid" id="username-help" class="p-error">Une adresse est requise.</small>
@@ -112,10 +112,10 @@
     </p-card>
 </div>
 <p-dialog [(visible)]="visible" [modal]="true" [responsive]="true" [style]="{width: '100%', minHeight: '100%'}">
-    <ng-template pTemplate="header">
-        <h1 class="text-center p-3 titre mb-0">Détails de l'apprenant</h1>
-    </ng-template>
+    <!-- <ng-template pTemplate="header">
+        <h1 class="text-center p-3 titre mb-0"></h1>
+    </ng-template> -->
     <!--app-releve-periodique *ngIf="visible" [apprenant]="apprenant"></app-releve-periodique-->
 
-    <app-apprenant-detail [apprenant]="apprenant"></app-apprenant-detail>
+    <app-apprenant-detail *ngIf="visible" [tuteur]="tuteurApprenant" [apprenant]="apprenant"></app-apprenant-detail>
 </p-dialog>
