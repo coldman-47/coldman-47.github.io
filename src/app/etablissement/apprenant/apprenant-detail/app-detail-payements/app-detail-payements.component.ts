@@ -18,7 +18,7 @@ export class AppDetailPayementsComponent implements OnInit {
   visiblePaymentForm = false;
   montant: number;
   payements: PayementModel[] = [];
-  payementSelected: PayementModel;
+  payementSelected: PayementModel | null;
   redevance$: Observable<number>;
   displayFacture = false;
   etablissement: Etablissement;
@@ -51,6 +51,12 @@ export class AppDetailPayementsComponent implements OnInit {
 
   showFacture(payment: PayementModel) {
     this.displayFacture = true;
+    this.payementSelected = payment;
+  }
+
+  closeDialog() {
+    this.displayFacture = false;
+    this.payementSelected = null;
   }
 
   addPayment() {

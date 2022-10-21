@@ -61,6 +61,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { AppDetailServicesComponent } from './apprenant/apprenant-detail/app-detail-services/app-detail-services.component';
 import { AppDetailPayementsComponent } from './apprenant/apprenant-detail/app-detail-payements/app-detail-payements.component';
 import {DividerModule} from 'primeng/divider';
+import { NgxPrintElementModule } from 'ngx-print-element';
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import {DividerModule} from 'primeng/divider';
     AvatarModule,
     CalendarModule,
     CardModule,
+    NgxPrintElementModule,
     ChartModule,
     ChipModule,
     DividerModule,

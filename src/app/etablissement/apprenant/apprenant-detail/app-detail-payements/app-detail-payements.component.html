@@ -55,9 +55,9 @@
   </div>
 </div>
 
-<p-dialog [(visible)]="displayFacture" [style]="{width: '100%'}">
+<p-dialog (onHide)="closeDialog()" [(visible)]="displayFacture && payementSelected" [style]="{width: '100%'}">
 
-  <div class="grid">
+  <div class="grid" id="facture">
     <div class="col-12 d-flex flex-column align-items-start">
       <h4>Ecole Saint Pierre</h4>
       <span>Keur Ndiaye Lo</span>
@@ -65,11 +65,11 @@
       <span>ecole@gmail.com</span>
     </div>
     <div class="col-12 d-flex flex-column align-items-end">
-      <h5>Mamad Diouf</h5>
+      <h5>{{apprenant.prenom | titlecase}} {{apprenant.nom | uppercase}}</h5>
       <span>Second S2 B</span>
     </div>
     <div class="col-12 d-flex p-2 align-items-center justify-content-between">
-      <span>Facture N° 123</span>
+      <span>Facture N° {{payementSelected?._id}}</span>
       <span>le 01 Janvier 2021</span>
     </div>
     <div class="col-12 grid">
@@ -85,12 +85,12 @@
         <span>10000 FCFA</span>
         <span>1000 FCFA</span>
         <span>1000 FCFA</span>
-        <span>12000 FCFA</span>
+        <span>{{ payementSelected?.montant }} FCFA</span>
       </div>
     </div>
   </div>
 
   <ng-template pTemplate="footer">
-      <p-button icon="pi pi-print" (click)="displayFacture=false" label="Génére facture" styleClass="p-button-text"></p-button>
+      <p-button icon="pi pi-print" [print]="['facture']" label="Génére facture" styleClass="p-button-text"></p-button>
   </ng-template>
 </p-dialog>
