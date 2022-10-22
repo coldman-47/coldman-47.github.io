@@ -5,57 +5,69 @@
                 image="assets/imgs/avatar.png" shape="circle"></p-avatar>
             <!-- <strong class="my-2">{{user.prenom | titlecase}} <br> {{user.nom | uppercase}}</strong> -->
         </header>
-        <div class="navs">
-            <a> <i class="pi pi-home" style="font-size: 1.5em"></i> <span class="ms-3">Accueil</span></a>
+        <div>
+            <div class="navs">
+                <a> <i class="pi pi-home" style="font-size: 1.5em"></i> <span class="ms-3">Accueil</span></a>
+            </div>
+            <!-- <ng-container *ngIf="user.isAdmin else clients"> -->
+                <a [routerLink]="['/administration/etablissements']" [routerLinkActive]="'active'">
+                    <div class="navs">
+                        <i class="pi pi-building" style="font-size: 1.5em"></i> <span class="ms-3">Etablissements</span>
+                    </div>
+                </a>
+                <a [routerLink]="['/etablissement/personnel']" [routerLinkActive]="'active'">
+                    <div class="navs">
+                        <i class="pi pi-user" style="font-size: 1.5em"></i> <span class="ms-3">Personnel</span>
+                    </div>
+                </a>
+                <a [routerLink]="['/etablissement/enseignants']" [routerLinkActive]="'active'">
+                    <div class="navs">
+                        <i class="pi pi-user" style="font-size: 1.5em"></i> <span class="ms-3">Enseignants</span>
+                    </div>
+                </a>
+                <a [routerLink]="['/etablissement/pedagogie']" [routerLinkActive]="'active'">
+                    <div class="navs">
+                        <span class="material-icons-outlined">class</span> <span class="ms-3">Pédagogie</span>
+                    </div>
+                </a>
+                <a [routerLink]="['/etablissement/redevances']" [routerLinkActive]="'active'">
+                    <div class="navs">
+                        <span class="material-icons-outlined">class</span> <span class="ms-3">Redevance</span>
+                    </div>
+                </a>
+                <a [routerLink]="['/etablissement/services']" [routerLinkActive]="'active'">
+                    <div class="navs">
+                        <span class="material-icons-outlined">class</span> <span class="ms-3">Services Extra</span>
+                    </div>
+                </a>
+                <a [routerLink]="['/etablissement/bourses']" [routerLinkActive]="'active'">
+                    <div class="navs">
+                        <span class="material-icons-outlined">class</span> <span class="ms-3">Bourses</span>
+                    </div>
+                </a>
+                <a [routerLink]="['/etablissement/caisses']" [routerLinkActive]="'active'">
+                    <div class="navs">
+                        <span class="material-icons-outlined">class</span> <span class="ms-3">Caisse</span>
+                    </div>
+                </a>
+                <a [routerLink]="['/etablissement/infos']" [routerLinkActive]="'active'">
+                    <div class="navs">
+                        <i class="pi pi-info-circle"></i> <span class="ms-3">Infos</span>
+                    </div>
+                </a>
+                <a [routerLink]="['/etablissement/roles']" [routerLinkActive]="'active'">
+                    <div class="navs">
+                        <i class="pi pi-key"></i> <span class="ms-3">Roles</span>
+                    </div>
+                </a>
+            <ng-template #clients>
+                <a [routerLink]="['/main/departements']" [routerLinkActive]="'active'">
+                    <div class="navs">
+                        <i class="pi pi-users" style="font-size: 1.5em"></i> <span class="ms-3">Départements</span>
+                    </div>
+                </a>
+            </ng-template>
         </div>
-        <!-- <ng-container *ngIf="user.isAdmin else clients"> -->
-            <a [routerLink]="['/administration/etablissements']" [routerLinkActive]="'active'">
-                <div class="navs">
-                    <i class="pi pi-building" style="font-size: 1.5em"></i> <span class="ms-3">Etablissements</span>
-                </div>
-            </a>
-            <a [routerLink]="['/etablissement/personnel']" [routerLinkActive]="'active'">
-                <div class="navs">
-                    <i class="pi pi-user" style="font-size: 1.5em"></i> <span class="ms-3">Personnel</span>
-                </div>
-            </a>
-            <a [routerLink]="['/etablissement/enseignants']" [routerLinkActive]="'active'">
-                <div class="navs">
-                    <i class="pi pi-user" style="font-size: 1.5em"></i> <span class="ms-3">Enseignants</span>
-                </div>
-            </a>
-            <a [routerLink]="['/etablissement/pedagogie']" [routerLinkActive]="'active'">
-                <div class="navs">
-                    <span class="material-icons-outlined">class</span> <span class="ms-3">Pédagogie</span>
-                </div>
-            </a>
-            <a [routerLink]="['/etablissement/redevances']" [routerLinkActive]="'active'">
-                <div class="navs">
-                    <span class="material-icons-outlined">class</span> <span class="ms-3">Redevance</span>
-                </div>
-            </a>
-            <a [routerLink]="['/etablissement/services']" [routerLinkActive]="'active'">
-                <div class="navs">
-                    <span class="material-icons-outlined">class</span> <span class="ms-3">Services Extra</span>
-                </div>
-            </a>
-            <a [routerLink]="['/etablissement/bourses']" [routerLinkActive]="'active'">
-                <div class="navs">
-                    <span class="material-icons-outlined">class</span> <span class="ms-3">Bourses</span>
-                </div>
-            </a>
-            <a [routerLink]="['/etablissement/caisses']" [routerLinkActive]="'active'">
-                <div class="navs">
-                    <span class="material-icons-outlined">class</span> <span class="ms-3">Caisse</span>
-                </div>
-            </a>
-        <ng-template #clients>
-            <a [routerLink]="['/main/departements']" [routerLinkActive]="'active'">
-                <div class="navs">
-                    <i class="pi pi-users" style="font-size: 1.5em"></i> <span class="ms-3">Départements</span>
-                </div>
-            </a>
-        </ng-template>
         <div (click)="logout()" class="navs btn btn-danger mt-auto text-white">
             <i class="pi pi-sign-out" style="font-size: 1.5em"></i> <span class="ms-3">Déconnexion</span>
         </div>

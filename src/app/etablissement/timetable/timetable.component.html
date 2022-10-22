@@ -31,7 +31,7 @@
 <!-- Calendar event click modal -->
 <p-dialog [(visible)]="choices">
     <div class="d-flex flex-column align-items-center p-3">
-        <div class="form group my-3"><button icon="pi pi-eye" (click)="choice = 'view'; showEval = true; choices = !choices" class="p-button-outlined p-button-info" pButton label="Consulter"></button></div>
+        <div class="form group my-3"><button icon="pi pi-eye" (click)="choice = 'view'; showCours = _seance ? true : false; showEval = !showCours; choices = !choices" class="p-button-outlined p-button-info" pButton label="Consulter"></button></div>
         <div class="form group my-3 w-100"><button icon="pi pi-pencil" (click)="choice = 'edit'; display = _seance ? true : false; visible = !display; choices = !choices" class="p-button-info  w-100" pButton label="Editer"></button></div>
     </div>
 </p-dialog>
@@ -42,4 +42,12 @@
         <div class="w-100"><h2 class="text-center p-2">Évaluation</h2></div>
     </ng-template>
     <app-details-evaluation *ngIf="showEval" [evaluation]="selected"></app-details-evaluation>
+</p-dialog>
+
+<!-- Details cours -->
+<p-dialog [(visible)]="showCours" [maximizable]="true" [style]="{height: '100%', width: '100%'}" [modal]="true">
+    <ng-template pTemplate="header">
+        <div class="w-100"><h2 class="text-center p-2">Cours</h2></div>
+    </ng-template>
+    <app-details-cours *ngIf="showCours" [cours]="selected"></app-details-cours>
 </p-dialog>
