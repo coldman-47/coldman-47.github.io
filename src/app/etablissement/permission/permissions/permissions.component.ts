@@ -13,10 +13,7 @@ export class PermissionsComponent implements OnInit {
   _permissions: any[];
   @Input() role: any;
 
-  constructor(srv: PermissionsService, private roleSrv: RoleService) {
-    srv.getPermissions().subscribe({
-      next: (res: any) => this.permissions = res
-    })
+  constructor(private srv: PermissionsService, private roleSrv: RoleService) {
   }
 
   ngOnInit(): void {
@@ -25,6 +22,9 @@ export class PermissionsComponent implements OnInit {
   ngOnChanges(changes: any){
     const role = changes.role.currentValue;
     this._permissions = [];
+    this.srv.getPermissions().subscribe({
+      next: (res: any) => this.permissions = res
+    });
     if(role){
       role.permissions.forEach((permission: any) => {
         const idx = this.permissions.findIndex(_permission => permission._id === _permission._id);
