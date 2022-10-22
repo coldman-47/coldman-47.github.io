@@ -3,7 +3,8 @@ export class PayementModel {
   montant: number;
   mois?: number;
   date?: Date;
-  preuves?: any[];
+  moisAregler: number;
+  preuves?: any;
   apprenant?: any;
   encaissement?: any;
 }

@@ -21,7 +21,6 @@ export class RedevanceService {
   getRedevances( ) {
     this._hhtpClient.get<Redevance[]>(`${BASE_URL}`).subscribe({
       next: (redevances) => {
-        console.log(redevances);
         this._redevancesSubject.next(redevances);
       }
     });

@@ -10,9 +10,9 @@ import { ServicesExtraService } from 'src/app/core/services/services-extra/servi
 })
 export class AppDetailServicesComponent implements OnInit {
   @Input() apprenant: Apprenant;
+  @Input() services: ServiceExtraModel[] = [];
   idService: string;
   allServices: ServiceExtraModel[] = [];
-  services: ServiceExtraModel[] = [];
   visibleService = false;
 
   constructor(private _servicesExtraService: ServicesExtraService) {}
@@ -22,9 +22,9 @@ export class AppDetailServicesComponent implements OnInit {
     this._servicesExtraService.servicesExtra$.subscribe(
       (data) => (this.allServices = data)
     );
-    this._servicesExtraService
-      .getServicesApprenant(this.apprenant._id)
-      .subscribe((data) => (this.services = data));
+    // this._servicesExtraService
+    //   .getServicesApprenant(this.apprenant._id)
+    //   .subscribe((data) => (this.services = data));
   }
 
   onAddNewService() {
@@ -35,7 +35,6 @@ export class AppDetailServicesComponent implements OnInit {
     this._servicesExtraService
       .addServiceApprenant(id, this.apprenant._id)
       .subscribe((data) => {
-        console.log(data);
         this.visibleService = false;
         this._servicesExtraService
           .getServicesApprenant(this.apprenant._id)
@@ -47,7 +46,6 @@ export class AppDetailServicesComponent implements OnInit {
     this._servicesExtraService
       .deleteServiceApprenant(id, this.apprenant._id)
       .subscribe((data) => {
-        console.log(data);
         this._servicesExtraService
           .getServicesApprenant(this.apprenant._id)
           .subscribe((data) => (this.services = data));

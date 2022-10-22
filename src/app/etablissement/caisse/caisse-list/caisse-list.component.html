@@ -50,6 +50,13 @@
                 class="p-button-rounded p-button-danger p-button-text"
                 (click)="onDeleteDepense(depense._id)"
               ></button>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-book"
+                class="p-button-rounded p-button p-button-text"
+                (click)="showPreuve(depense.preuves)"
+              ></button>
             </td>
           </tr>
         </ng-template>
@@ -90,3 +97,10 @@
   rejectButtonStyleClass="p-button-text"
 ></p-confirmDialog>
 <p-toast></p-toast>
+
+
+<p-dialog (onHide)="closePreuve" [(visible)]="displayPreuve"  [style]="{width: '100%'}">
+  <div class="w-100">
+    <img class="preuve" [src]="baseUrl+preuveSelected" alt="">
+  </div>
+</p-dialog>

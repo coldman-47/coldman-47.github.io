@@ -5,6 +5,7 @@ import { DepenseModel } from 'src/app/core/models/depense.model';
 import { EncaissementModel } from 'src/app/core/models/encaissement.model';
 import { DepenseService } from 'src/app/core/services/depense/depense.service';
 import { EncaissementService } from 'src/app/core/services/encaissement/encaissement.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-caisse-list',
@@ -26,6 +27,9 @@ export class CaisseListComponent implements OnInit {
     { name: 'Novembre', value: 11 },
     { name: 'Décembre', value: 12 },
   ];
+  readonly baseUrl = environment.baseUrl;
+  displayPreuve = false;
+  preuveSelected: any;
   now = new Date();
   selectedMonth: { name: string; value: number };
 
@@ -49,6 +53,16 @@ export class CaisseListComponent implements OnInit {
   loadCaisse() {
     this._depenseService.getDepensesByMonth(this.selectedMonth.value)
     this._encaissementService.getEncaissementsByMonth(this.selectedMonth.value)
+  }
+
+  showPreuve(preuve: any) {
+    this.preuveSelected = preuve;
+    this.displayPreuve = this.preuveSelected !== null;
+  }
+
+  closePreuve() {
+    this.preuveSelected = null;
+    this.displayPreuve = false;
   }
 
   onDeleteDepense(id: string): void {

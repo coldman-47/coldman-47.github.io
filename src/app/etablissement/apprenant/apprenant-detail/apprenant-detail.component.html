@@ -62,11 +62,11 @@
     </p-tabPanel>
     <!-- SERVICES -->
     <p-tabPanel header="Services">
-      <app-app-detail-services [apprenant]="apprenant"></app-app-detail-services>
+      <app-app-detail-services [apprenant]="apprenant" [services]="services"></app-app-detail-services>
     </p-tabPanel>
     <!-- PAYEMENTS -->
     <p-tabPanel header="Payements">
-      <app-app-detail-payements [apprenant]="apprenant"></app-app-detail-payements>
+      <app-app-detail-payements [apprenant]="apprenant" [services]="services"></app-app-detail-payements>
     </p-tabPanel>
 
   </p-tabView>

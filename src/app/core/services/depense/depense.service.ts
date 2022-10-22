@@ -31,7 +31,13 @@ export class DepenseService {
   }
 
   addDepense(depense: DepenseModel): Observable<DepenseModel> {
-    return this._httpClient.post<DepenseModel>(`${BASE_URL}/add`, depense);
+    const formData = new FormData();
+    formData.append('label', depense.label);
+    formData.append('montant', `${depense.montant}`);
+    if (depense.preuves) {
+      formData.append('preuves', depense.preuves);
+    }
+    return this._httpClient.post<DepenseModel>(`${BASE_URL}/add`, formData);
   }
 
   updateDepense(depense: DepenseModel): Observable<DepenseModel> {

@@ -41,7 +41,14 @@ export class PayementService {
   }
 
   createPayement(payement: PayementModel) {
-    return this._httpClient.post<PayementModel>(`${BASE_URL}/add`, payement);
+    const formData = new FormData();
+    formData.append('montant', `${payement.montant}`);
+    formData.append('moisAregler', `${payement.moisAregler}`);
+    formData.append('apprenant', payement.apprenant);
+    if (payement.preuves) {
+      formData.append('preuves', payement.preuves);
+    }
+    return this._httpClient.post<PayementModel>(`${BASE_URL}/add`, formData);
   }
 
   updatePayement(payment: PayementModel) {

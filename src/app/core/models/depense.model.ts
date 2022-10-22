@@ -5,6 +5,6 @@ export class DepenseModel {
   montant: number;
   mois?: number;
   date?: Date;
-  preuves: any[];
+  preuves: any;
 
 }

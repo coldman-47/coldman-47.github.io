@@ -56,7 +56,6 @@ export class EditApprenantComponent extends Cancel implements OnInit {
             adresse: [null, Validators.required]
           })
         });
-        console.log(_apprenant);
 
         this.srv.getTuteur(<string>_apprenant.tuteur).subscribe({
           next: (_tuteur: any) => {

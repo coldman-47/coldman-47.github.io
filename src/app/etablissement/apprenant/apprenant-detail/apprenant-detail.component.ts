@@ -23,12 +23,16 @@ export class ApprenantDetailComponent implements OnInit {
   allBourses: BourseModel[] = [];
 
   constructor(
-    private _bourseService: BourseService
+    private _bourseService: BourseService,
+    private _serviceExtraService: ServicesExtraService
   ) {}
 
   ngOnInit(): void {
     this._bourseService.getBourses();
     this._bourseService.bourses$.subscribe(data => this.allBourses = data);
+    this._serviceExtraService
+      .getServicesApprenant(this.apprenant._id)
+      .subscribe((data) => (this.services = data));
   }
 
   onAddBourse() {
@@ -37,13 +41,11 @@ export class ApprenantDetailComponent implements OnInit {
 
   addBourse(id: string) {
     this._bourseService.addBourseApprenant(id, this.apprenant._id).subscribe((data) => {
-      console.log(data);
       this.visibleBourse = false;
     });
   }
   deleteBourse(id: string) {
     this._bourseService.deleteBourseApprenant(id, this.apprenant._id).subscribe((data) => {
-      console.log(data);
       this.visibleBourse = false;
     });
   }
