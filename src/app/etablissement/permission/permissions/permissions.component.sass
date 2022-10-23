@@ -1,0 +1,33 @@
+.sup
+  display: block
+  position: relative
+  width: 50%
+  float: left
+  padding-bottom: 15%
+  line-height: 100%
+  text-align: center
+  z-index: 1
+
+
+.inf
+  display: block
+  position: relative
+  width: 50%
+  float: left
+  padding-top: 15%
+  line-height: 100%
+  text-align: center
+  z-index: 1
+
+
+.inf::after
+  content: ""
+  position: absolute
+  z-index: 0
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background-color: #4dbc1a80
+  background-size: cover
+  clip-path: polygon(0% 0%, 0% 0%, 100% 100%)

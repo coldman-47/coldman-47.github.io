@@ -31,12 +31,14 @@ import { TooltipModule } from 'primeng/tooltip';
 import { TreeSelectModule } from 'primeng/treeselect';
 import { DataUriToBlobPipe } from '../core/pipes/file/data-uri-to-blob.pipe';
 import { PipesModule } from '../core/pipes/pipes.module';
+import { ApprenantDetailComponent } from './apprenant/apprenant-detail/apprenant-detail.component';
 import { ApprenantsComponent } from './apprenant/apprenants/apprenants.component';
 import { EditApprenantComponent } from './apprenant/edit-apprenant/edit-apprenant.component';
 import { NewApprenantComponent } from './apprenant/new-apprenant/new-apprenant.component';
 import { ClassesComponent } from './classe/classes/classes.component';
 import { NewClasseComponent } from './classe/new-classe/new-classe.component';
 import { CoursComponent } from './cours/cours/cours.component';
+import { DetailsCoursComponent } from './cours/details-cours/details-cours.component';
 import { EditCoursComponent } from './cours/edit-cours/edit-cours.component';
 import { NewCoursComponent } from './cours/new-cours/new-cours.component';
 import { EditEnseignantComponent } from './enseignant/edit-enseignant/edit-enseignant.component';
@@ -47,16 +49,18 @@ import { DetailsEvaluationComponent } from './evaluation/details-evaluation/deta
 import { EvaluationFormComponent } from './evaluation/evaluation-form/evaluation-form.component';
 import { FilieresComponent } from './filiere/filieres/filieres.component';
 import { NewFiliereComponent } from './filiere/new-filiere/new-filiere.component';
+import { InfosComponent } from './info/infos/infos.component';
 import { PedagogieComponent } from './pedagogie/pedagogie.component';
+import { PermissionsComponent } from './permission/permissions/permissions.component';
 import { EditPersonnelComponent } from './personnel/edit-personnel/edit-personnel.component';
 import { NewPersonnelComponent } from './personnel/new-personnel/new-personnel.component';
 import { PersonnelComponent } from './personnel/personnel/personnel.component';
 import { RelevePeriodiqueComponent } from './releve/releve-periodique/releve-periodique.component';
+import { RolesComponent } from './role/roles/roles.component';
 import { SeanceFormComponent } from './seance/seance-form/seance-form.component';
 import { TimetableComponent } from './timetable/timetable.component';
 import { NewUeComponent } from './ue/new-ue/new-ue.component';
 import { UesComponent } from './ue/ues/ues.component';
-import { ApprenantDetailComponent } from './apprenant/apprenant-detail/apprenant-detail.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +89,11 @@ import { ApprenantDetailComponent } from './apprenant/apprenant-detail/apprenant
     EvaluationFormComponent,
     DetailsEvaluationComponent,
     RelevePeriodiqueComponent,
-    ApprenantDetailComponent
+    ApprenantDetailComponent,
+    DetailsCoursComponent,
+    InfosComponent,
+    RolesComponent,
+    PermissionsComponent
   ],
   imports: [
     CommonModule,
