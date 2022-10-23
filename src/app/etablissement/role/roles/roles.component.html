@@ -1,12 +1,12 @@
 <div class="container-fluid">
-    <h1 class="text-center titre p-3">Administration des rôles</h1>
-    <div class="row p-3">
+    <h1 class="text-center titre pt-3 mb-0">Administration des rôles</h1>
+    <div class="row px-3">
         <div class="col-4">
             <p-table selectionMode="single" [(selection)]="selected" [autoLayout]="true" styleClass="p-datatable-striped" [value]="roles" class="card border-0 p-3">
                 <ng-template pTemplate="header" let-yourColumnArrayVaraible>
                     <tr>
                         <th>#</th>
-                        <th>Libellé</th>
+                        <th>Rôle</th>
                         <th>Statut</th>
                     </tr>
                 </ng-template>

@@ -1,4 +1,4 @@
-<p-table [loading]="!role" loadingIcon="" [autoLayout]="true" [value]="permissions" styleClass="p-datatable-striped">
+<p-table [paginator]="true" [rows]="7" [loading]="!role" loadingIcon="" [autoLayout]="true" [value]="permissions" styleClass="p-datatable-striped">
     <ng-template pTemplate="header">
         <tr>
             <th>Module</th>
