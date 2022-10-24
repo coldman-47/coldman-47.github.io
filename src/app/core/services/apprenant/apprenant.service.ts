@@ -36,4 +36,8 @@ export class ApprenantService {
   getTuteur(id: string){
     return this.http.get(environment.backendUrl+'tuteurs/'+id);
   }
+
+  delete(id: string){
+    return this.http.delete(this.baseUrl+'/'+id);
+  }
 }

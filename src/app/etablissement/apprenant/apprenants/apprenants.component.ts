@@ -39,4 +39,10 @@ export class ApprenantsComponent implements OnInit {
       }
     });
   }
+
+  delete(id?: string){
+    this.srv.delete(id!).subscribe({
+      next: (res) => console.log(res)
+    });
+  }
 }

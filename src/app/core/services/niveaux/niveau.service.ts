@@ -13,4 +13,8 @@ export class NiveauService {
   private baseUrl = environment.backendUrl+'niveau';
 
   constructor(private http: HttpClient) { }
+
+  delete(id: string){
+    return this.http.delete(this.baseUrl+'/'+id);
+  }
 }

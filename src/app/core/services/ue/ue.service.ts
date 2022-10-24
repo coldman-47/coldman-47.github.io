@@ -29,4 +29,8 @@ export class UeService {
   addUe(ue: Ue){
     return this.http.post(this.baseUrl+'/add', ue);
   }
+
+  delete(id: string){
+    return this.http.delete(this.baseUrl+'/'+id);
+  }
 }
