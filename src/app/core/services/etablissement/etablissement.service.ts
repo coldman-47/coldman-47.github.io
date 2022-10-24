@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, map } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Etablissement } from '../../models/etablissement/etablissement';
 import { ListenerService } from '../listener/listener.service';
@@ -35,6 +35,10 @@ export class EtablissementService {
 
   addEtablissement(etablissement: Etablissement){
     return this.http.post(this.baseUrl + 'etablissements/add', etablissement);
+  }
+
+  getEtablissementById(id: string): Observable<Etablissement>{
+    return this.http.get<Etablissement>(this.baseUrl + 'etablissements/' + id);
   }
 
   editEtablissement(etablissement: Etablissement){

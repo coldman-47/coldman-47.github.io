@@ -61,6 +61,12 @@ import { SeanceFormComponent } from './seance/seance-form/seance-form.component'
 import { TimetableComponent } from './timetable/timetable.component';
 import { NewUeComponent } from './ue/new-ue/new-ue.component';
 import { UesComponent } from './ue/ues/ues.component';
+import { ApprenantDetailComponent } from './apprenant/apprenant-detail/apprenant-detail.component';
+import { TabViewModule } from 'primeng/tabview';
+import { AppDetailServicesComponent } from './apprenant/apprenant-detail/app-detail-services/app-detail-services.component';
+import { AppDetailPayementsComponent } from './apprenant/apprenant-detail/app-detail-payements/app-detail-payements.component';
+import {DividerModule} from 'primeng/divider';
+import { NgxPrintElementModule } from 'ngx-print-element';
 
 @NgModule({
   declarations: [
@@ -90,6 +96,8 @@ import { UesComponent } from './ue/ues/ues.component';
     DetailsEvaluationComponent,
     RelevePeriodiqueComponent,
     ApprenantDetailComponent,
+    AppDetailServicesComponent,
+    AppDetailPayementsComponent,
     DetailsCoursComponent,
     InfosComponent,
     RolesComponent,
@@ -103,8 +111,10 @@ import { UesComponent } from './ue/ues/ues.component';
     AvatarModule,
     CalendarModule,
     CardModule,
+    NgxPrintElementModule,
     ChartModule,
     ChipModule,
+    DividerModule,
     ConfirmPopupModule,
     DialogModule,
     FileUploadModule,
@@ -122,6 +132,7 @@ import { UesComponent } from './ue/ues/ues.component';
     SkeletonModule,
     SpeedDialModule,
     StepsModule,
+    TabViewModule,
     TableModule,
     ToastModule,
     TooltipModule,

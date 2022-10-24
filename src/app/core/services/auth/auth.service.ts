@@ -14,7 +14,7 @@ export class AuthService {
   private loggedUserToken = new BehaviorSubject<string | null>(null);
   user = new BehaviorSubject<any>(null);
   conError = new Subject<string>();
-  
+
   constructor(private http: HttpClient, private router: Router) {
     this.getUser();
   }
@@ -46,9 +46,9 @@ export class AuthService {
   private getUser(){
     const helper = new JwtHelperService();
     this.loggedUserToken.next(localStorage.getItem('token'));
-    if(this.loggedUserToken.value){
-      var {prenom, nom, isAdmin, entreprise} = helper.decodeToken(this.loggedUserToken.value);
-      this.user.next({prenom, nom, entreprise, isAdmin});
+    if (this.loggedUserToken.value) {
+      var {prenom, nom, isAdmin, etablissement} = helper.decodeToken(this.loggedUserToken.value);
+      this.user.next({prenom, nom, etablissement, isAdmin});
     }
   }
 

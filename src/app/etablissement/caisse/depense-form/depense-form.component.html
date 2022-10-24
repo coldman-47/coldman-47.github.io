@@ -5,7 +5,7 @@
       pButton
       pRipple
       type="button"
-      [routerLink]="['/etablissement/bourses']"
+      [routerLink]="['/etablissement/caisses']"
       icon="pi pi-times"
       class="p-button-rounded p-button-secondary p-button-text"
     ></button>
@@ -13,26 +13,51 @@
 
   <form [formGroup]="depenseForm" (ngSubmit)="onSubmit()">
     <div class="grid">
-        <div class="field col-12 md:col-6">
-          <label for="label">Libelle</label>
-          <input
-            pInputText
-            inputId="label"
-            class="form-control"
-            formControlName="label"
-          >
-        </div>
-        <div class="field col-12 md:col-6">
-          <label for="montant">montant</label>
-          <p-inputNumber
-            inputId="montant"
-            class="form-control"
-            formControlName="montant"
-          ></p-inputNumber>
-        </div>
+      <div class="field col-12 md:col-6">
+        <label for="label">Libelle</label>
+        <input
+          pInputText
+          inputId="label"
+          class="form-control"
+          formControlName="label"
+        />
+      </div>
+      <div class="field col-12 md:col-6">
+        <label for="montant">montant</label>
+        <p-inputNumber
+          inputId="montant"
+          class="form-control"
+          formControlName="montant"
+        ></p-inputNumber>
+      </div>
+
       <div class="field col-12">
-        <button [disabled]="depenseForm.invalid" pButton type="submit" class="p-button p-button-lg">{{ isEdit ? 'Modifier' : 'Enregistrer' }}</button>
-    </div>
+        <!-- <label for="">Preuve</label> -->
+        <p-fileUpload
+          name="preuve"
+          chooseLabel="Preuve"
+          cancelLabel="Annuler"
+          chooseStyleClass="bg-secondary"
+          (onClear)="clear()"
+          (onRemove)="clear()"
+          uploadStyleClass="hidden"
+          (onSelect)="onUpload($event)"
+          accept="image/*"
+          [maxFileSize]="1000000"
+        >
+        </p-fileUpload>
+      </div>
+
+      <div class="field col-12">
+        <button
+          [disabled]="depenseForm.invalid"
+          pButton
+          type="submit"
+          class="p-button p-button-lg"
+        >
+          {{ isEdit ? "Modifier" : "Enregistrer" }}
+        </button>
+      </div>
     </div>
   </form>
 </p-card>

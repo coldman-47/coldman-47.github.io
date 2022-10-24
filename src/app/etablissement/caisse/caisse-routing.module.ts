@@ -16,6 +16,10 @@ const routes: Routes = [
       {
         path: 'nouvelle-depense',
         component: DepenseFormComponent
+      },
+      {
+        path: 'modifier-depense/:id',
+        component: DepenseFormComponent
       }
     ]
   }

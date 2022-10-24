@@ -6,6 +6,7 @@ export class User {
   prenom?: string;
   email?: string;
   telephone?: string;
+  lieuNaiss?: string;
   adresse?: string;
   etablissement?: string | Etablissement;
   sexe?: string;
