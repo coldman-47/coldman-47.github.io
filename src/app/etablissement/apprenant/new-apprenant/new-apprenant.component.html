@@ -1,5 +1,9 @@
 <div class="fadeoutdown surface-100 p-3 overflow-y-auto h-100">
-    <h2 class="text-center">Nouveau</h2>
+    <div class="d-flex pb-2 justify-content-center">
+        <h2 class="mx-auto">Nouveau</h2>
+        <button class="p-button-success p-button-text" iconPos="right" pButton icon="pi pi-file-excel"></button>
+    </div>
+
     <form [formGroup]="apprenantForm" (submit)="create()">
         <div class="field m-4">
             <span class="p-float-label">

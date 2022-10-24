@@ -1,7 +1,7 @@
 <div class="row justify-content-between">
     <div class="col-xl-8 px-3">
-        <div class="surface-100 row m-0 h-100">
-            <div class="col-lg-4 p-3" *ngFor="let student of apprenants">
+        <div class="surface-100 row flex-wrap align-content-start align-items-end justify-content-end m-0 h-100">
+            <div class="col-4 p-3 h-fit" *ngFor="let student of apprenants">
                 <p-card *ngIf="student" class="cursor-pointer" (click)="selected = student; edition = true">
                     <ng-template pTemplate="title"><h5 class="text-center">{{(student.prenom | titlecase)+' '+(student.nom | uppercase)}}</h5></ng-template>
                     <div class="d-flex justify-content-center">
@@ -10,9 +10,14 @@
                             <p-avatar icon="pi pi-user" shape="circle"  size="xlarge"></p-avatar>
                         </ng-template>
                     </div>
-                    <ng-template pTemplate="footer">
+                    <ng-template pTemplate="subheader">
                         <i class="pi pi-phone"></i> : {{student.telephone | phone}}<br>
-                        <i class="pi pi-at"></i> : {{student.email}}<br>
+                        <i class="pi pi-at"></i> : <blockquote class="text-wrap">{{student.email}}</blockquote><br>
+                    </ng-template>
+                    <ng-template pTemplate="footer">
+                        <div class="d-flex justify-content-end">
+                            <button class="p-button p-button-text p-button-danger" pButton icon="pi pi-trash"></button>
+                        </div>
                     </ng-template>
                 </p-card>
             </div>

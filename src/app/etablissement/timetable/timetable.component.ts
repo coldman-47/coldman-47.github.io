@@ -43,6 +43,8 @@ export class TimetableComponent implements OnInit {
     eventClick: (event) => {
       this.selected = event.event.extendedProps;
       if(this.selected.seance) this._seance = this.selected;
+      else this._seance = undefined;
+      
       this.edit = true;
       this.choices = true;
     },
@@ -52,6 +54,7 @@ export class TimetableComponent implements OnInit {
   visible = false;
   choices = false;
   showEval = false;
+  showCours = false;
   choice?: string;
   @Input() classe!: Classe;
   ue: Ue[] = [];
@@ -103,7 +106,7 @@ export class TimetableComponent implements OnInit {
             _cours.start = _cours.date;
             _cours.title = _cours.matiere.label;
             _cours.editable = true;
-            _cours.color = 'blue';
+            _cours.color = _cours.absents.length ? 'blue' : 'green';
             this.cView.calendar.addEvent(_cours);
             return _cours;
           });

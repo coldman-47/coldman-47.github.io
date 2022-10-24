@@ -14,6 +14,11 @@
         <div class="col-3" *ngFor="let filiere of filieres">
             <p-card class="cursor-pointer" (click)="getClasses(filiere._id)">
                 <h3>{{filiere.label}}</h3>
+                <ng-template pTemplate="footer">
+                    <div class="d-flex justify-content-end">
+                        <button class="p-button p-button-text p-button-danger" pButton icon="pi pi-trash"></button>
+                    </div>
+                </ng-template>
             </p-card>
         </div>
     </div>

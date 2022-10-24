@@ -17,7 +17,12 @@
                                         <p-card class="cursor-pointer"
                                             (click)="selected = class; activeIndex = activeIndex+1">
                                             <ng-template pTemplate="title"><h3>{{class.label}}</h3></ng-template>
-                                            <ng-template pTemplate="footer">{{class.annee}}</ng-template>
+                                            <ng-template pTemplate="subheader">{{class.annee}}</ng-template>
+                                            <ng-template pTemplate="footer">
+                                                <div class="d-flex justify-content-end">
+                                                    <button class="p-button p-button-text p-button-danger" pButton icon="pi pi-trash"></button>
+                                                </div>
+                                            </ng-template>
                                         </p-card>
                                     </div>
                                 </ng-container>
