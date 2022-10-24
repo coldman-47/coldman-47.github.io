@@ -16,7 +16,7 @@
                 <h3>{{filiere.label}}</h3>
                 <ng-template pTemplate="footer">
                     <div class="d-flex justify-content-end">
-                        <button class="p-button p-button-text p-button-danger" pButton icon="pi pi-trash"></button>
+                        <button (click)="delete(filiere._id)" class="p-button p-button-text p-button-danger" pButton icon="pi pi-trash"></button>
                     </div>
                 </ng-template>
             </p-card>
