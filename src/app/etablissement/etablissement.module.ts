@@ -61,7 +61,6 @@ import { SeanceFormComponent } from './seance/seance-form/seance-form.component'
 import { TimetableComponent } from './timetable/timetable.component';
 import { NewUeComponent } from './ue/new-ue/new-ue.component';
 import { UesComponent } from './ue/ues/ues.component';
-import { ApprenantDetailComponent } from './apprenant/apprenant-detail/apprenant-detail.component';
 import { TabViewModule } from 'primeng/tabview';
 import { AppDetailServicesComponent } from './apprenant/apprenant-detail/app-detail-services/app-detail-services.component';
 import { AppDetailPayementsComponent } from './apprenant/apprenant-detail/app-detail-payements/app-detail-payements.component';
