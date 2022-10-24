@@ -7,6 +7,7 @@ import { ClasseService } from 'src/app/core/services/classe/classe.service';
 import { UeService } from '../../../core/services/ue/ue.service';
 import { Cancel } from '../../../shared/utilities/cancel/cancel';
 import { NiveauService } from '../../../core/services/niveaux/niveau.service';
+import { CycleService } from 'src/app/core/services/cycle/cycle.service';
 
 @Component({
   selector: 'app-new-ue',
@@ -19,13 +20,21 @@ export class NewUeComponent extends Cancel implements OnInit {
   @Input() filieres!: Filiere[];
   classes?: Classe[];
   @ViewChild('filiereField') filiereField: any;
+  periodes: any[];
 
-  constructor(private srv: UeService, private messageSrv: MessageService, confirmSrv: ConfirmationService, private classSrv: ClasseService, private nivaeauSrv: NiveauService) {
+  constructor(
+    private srv: UeService,
+    private messageSrv: MessageService,
+    confirmSrv: ConfirmationService,
+    private classSrv: ClasseService,
+    private nivaeauSrv: NiveauService,
+    cycleSrv: CycleService
+  ) {
     super(confirmSrv);
+    this.periodes = cycleSrv.cycle.value.periodes;
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   create() {
     this.submitted = true;
@@ -36,17 +45,17 @@ export class NewUeComponent extends Cancel implements OnInit {
         this.filiereField.clear();
         this.messageSrv.add({
           summary: 'La filière a été créée',
-          severity: 'success'
+          severity: 'success',
         });
         this.submitted = false;
         this.status.emit(false);
-      }
+      },
     });
   }
 
-  getClasses(e: any){
+  getClasses(e: any) {
     this.classSrv.getClassesByFiliere(e.value).subscribe({
-      next: (_classes: any) => this.classes = _classes
-    })
+      next: (_classes: any) => (this.classes = _classes),
+    });
   }
 }

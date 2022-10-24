@@ -50,9 +50,17 @@
         <span class="p-float-label">
             <p-dropdown appendTo="body" optionValue="_id" [options]="matieres" formControlName="matiere" placeholder="Matière"
                 class="form-control {{submitted && controls['matiere'].invalid ? 'ng-invalid ng-dirty' : ''}}"></p-dropdown>
-            <label for="inputtext"><i class="pi pi-file"></i> &nbsp;Matière du cours</label>
+            <label for="inputtext"><i class="pi pi-file"></i> &nbsp;Matière de l'évaluation</label>
         </span>
         <small *ngIf="submitted && controls['matiere'].invalid" id="username-help" class="p-error">Une matière est requise.</small>
+    </div>
+    <div class="field my-4 px-4">
+        <span class="p-float-label">
+            <p-dropdown appendTo="body" [options]="enseignants" optionLabel="fullName" optionValue="_id" formControlName="enseignant" placeholder="Enseignant"
+            class="form-control {{submitted && controls['matiere'].invalid ? 'ng-invalid ng-dirty' : ''}}"></p-dropdown>
+            <label for="inputtext"><i class="pi pi-user"></i> &nbsp;Enseignant</label>
+        </span>
+        <small *ngIf="submitted && controls['enseignant'].invalid" id="username-help" class="p-error">Un enseignant est requis.</small>
     </div>
     <div class="field mx-4">
         <div class="d-flex">

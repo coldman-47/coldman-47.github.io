@@ -8,6 +8,7 @@ import { SeanceService } from '../../../core/services/seance/seance.service';
 import { DatePipe } from '@angular/common';
 import { FiliereService } from 'src/app/core/services/filiere/filiere.service';
 import { NiveauService } from '../../../core/services/niveaux/niveau.service';
+import { CoursService } from '../../../core/services/cours/cours.service';
 
 @Component({
   selector: 'app-seance-form',
@@ -22,6 +23,7 @@ export class SeanceFormComponent implements OnInit {
     volumeHoraire: [null, Validators.required],
     matiere: [null, Validators.required],
     enseignant: [null, Validators.required],
+    rapportHoraire: [null]
   });
   @ViewChildren('duree') durees: any;
   @ViewChildren('heure') heures: any;
@@ -40,6 +42,7 @@ export class SeanceFormComponent implements OnInit {
   ];
   programme: any[] = [];
   @Input() seance?: any;
+  volumeHoraire: any;
 
   constructor(
     private srv: SeanceService,
@@ -47,7 +50,8 @@ export class SeanceFormComponent implements OnInit {
     private fb: FormBuilder,
     enseignantSrv: EnseignantService,
     private filiereSrv: FiliereService,
-    private niveauSrv: NiveauService
+    private niveauSrv: NiveauService,
+    private coursSrv: CoursService
   ) {
     enseignantSrv.getEnseignants().subscribe({
       next: (_enseignants) =>
@@ -66,20 +70,28 @@ export class SeanceFormComponent implements OnInit {
       )
       .subscribe({
         next: (res: any) =>
-          (this.matieres = res.map((_val: any) => _val.matiere)),
+          (this.matieres = res),
       });
-    this.srv.getSeance(this.seance.seance).subscribe({
-      next: (res: any) => {
-        res.debut = new Date(res.debut);
-        res.fin = new Date(res.fin);
-        this.seanceForm.patchValue(res);
-        this.programme = res.programmations;
-        this.programme.forEach(p => {
-          this.durees._results[p.jour].input.nativeElement.value = p.duree;
-          this.heures._results[p.jour].inputfieldViewChild.nativeElement.value = p.debut;
-        });
-      }
-    });    
+    if(this.seance){
+      this.srv.getSeance(this.seance.seance).subscribe({
+        next: (res: any) => {
+          res.debut = new Date(res.debut);
+          res.fin = new Date(res.fin);
+          this.seanceForm.patchValue(res);
+          this.programme = res.programmations;
+          this.programme.forEach(p => {
+            this.durees._results[p.jour].input.nativeElement.value = p.duree;
+            this.heures._results[p.jour].inputfieldViewChild.nativeElement.value = p.debut;
+          });
+        }
+      });
+      this.coursSrv.volumeHoraireRestant(this.seance.matiere._id, this.seance.enseignant).subscribe({
+        next: (res:any) => {
+          this.controls.rapportHoraire.setValue(res.heuresFaites);
+          this.volumeHoraire = res.volumeHoraire;
+        }
+      })
+    }
   }
 
   get controls() {

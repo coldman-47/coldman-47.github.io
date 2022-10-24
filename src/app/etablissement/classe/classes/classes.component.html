@@ -11,13 +11,18 @@
                 <ng-template #_classes>
                     <ng-container *ngIf="activeIndex === 1 else boom">
                         <div class="col-xl-8 px-5 h-100 overflow-y-auto">
-                            <div class="surface-100 row m-0">
+                            <div class="surface-100 row m-0 justify-content-center h-100">
                                 <ng-container *ngIf="classes.length else empty">
                                     <div class="col-lg-4 p-3" *ngFor="let class of classes">
                                         <p-card class="cursor-pointer"
                                             (click)="selected = class; activeIndex = activeIndex+1">
                                             <ng-template pTemplate="title"><h3>{{class.label}}</h3></ng-template>
-                                            <ng-template pTemplate="footer">{{class.annee}}</ng-template>
+                                            <ng-template pTemplate="subheader">{{class.annee}}</ng-template>
+                                            <ng-template pTemplate="footer">
+                                                <div class="d-flex justify-content-end">
+                                                    <button class="p-button p-button-text p-button-danger" pButton icon="pi pi-trash"></button>
+                                                </div>
+                                            </ng-template>
                                         </p-card>
                                     </div>
                                 </ng-container>
@@ -51,7 +56,7 @@
         </div>
     </ng-template>
 </p-card>
-<p-dialog [(visible)]="display" [modal]="true" [style]="{'height': '100%', 'width': '100%', 'maxHeight': '100%'}">
+<p-dialog [closeOnEscape]="false" [(visible)]="display" [modal]="true" [style]="{'height': '100%', 'width': '100%', 'maxHeight': '100%'}">
     <app-timetable *ngIf="display" [classe]="selected"></app-timetable>
 </p-dialog>
 <p-dialog [(visible)]="visible" [modal]="true" [style]="{'height': '100%', 'width': '100%'}">

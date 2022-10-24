@@ -31,19 +31,28 @@ export class PedagogieComponent implements OnInit {
           if (_cycle.niveaux.length)
             _cycle.items = _cycle.niveaux.map((_niveau: any) => {
               let { label } = _niveau;
-              let command = () => classeSrv.getClassesByGrade(_niveau._id).subscribe({
-                next: (_res: any) => {
-                  this.classes = _res;
-                  filiereSrv.getFilieres(_niveau._id).subscribe({
-                    next: (_filieres: any) => {
-                      filiereSrv.filieres.next(_filieres);
-                      niveauSrv.niveau.next(_niveau._id);
-                      this.activeTab = "classes";
-                    }
-                  });
+              let command = () => filiereSrv.getFilieresByNiveau(_niveau._id).subscribe({
+                next: (_filieres: any) => {
+                  filiereSrv.filieres.next(_filieres);
+                  niveauSrv.niveau.next(_niveau._id);
+                  this.activeTab = "classes";
                   cycleSrv.cycle.next(_cycle);
-                },
+                }
               });
+              // () => classeSrv.getClassesByGrade(_niveau._id).subscribe({
+              //   next: (_res: any) => {
+              //     this.classes = _res;
+              //     filiereSrv.getFilieresByNiveau(_niveau._id).subscribe({
+              //       next: (_filieres: any) => {
+              //         filiereSrv.filieres.next(_filieres);
+              //         niveauSrv.niveau.next(_niveau._id);
+              //         this.activeTab = "classes";
+              //       }
+              //     });
+              //     cycleSrv.cycle.next(_cycle);
+              //   },
+              // });
+
               return { label, command };
             });
           return _cycle;

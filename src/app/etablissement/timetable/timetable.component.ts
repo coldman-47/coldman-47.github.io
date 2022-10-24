@@ -12,7 +12,7 @@ import { Ue } from 'src/app/core/models/ue/ue';
 import { CoursService } from 'src/app/core/services/cours/cours.service';
 import { UeService } from 'src/app/core/services/ue/ue.service';
 import { EvaluationService } from '../../core/services/evaluation/evaluation.service';
-import { ApprenantService } from 'src/app/core/services/apprenant/apprenant.service';
+import { EnseignantService } from '../../core/services/enseignant/enseignant.service';
 defineFullCalendarElement();
 
 
@@ -43,6 +43,8 @@ export class TimetableComponent implements OnInit {
     eventClick: (event) => {
       this.selected = event.event.extendedProps;
       if(this.selected.seance) this._seance = this.selected;
+      else this._seance = undefined;
+      
       this.edit = true;
       this.choices = true;
     },
@@ -52,6 +54,7 @@ export class TimetableComponent implements OnInit {
   visible = false;
   choices = false;
   showEval = false;
+  showCours = false;
   choice?: string;
   @Input() classe!: Classe;
   ue: Ue[] = [];
@@ -76,17 +79,19 @@ export class TimetableComponent implements OnInit {
     }
   ];
   _seance?: any;
-  apprenants = [];
+  enseignants: any[];
 
   constructor(
     private coursSrv: CoursService,
     private evalSrv: EvaluationService,
     private ueSrv: UeService,
-    apprenantSrv: ApprenantService
+    enseignantSrv: EnseignantService
   ) {
-    this.apprenants = apprenantSrv.apprenants.value;
-    apprenantSrv.apprenants.subscribe({
-      next: (_apprenants) => this.apprenants = _apprenants
+    enseignantSrv.getEnseignants().subscribe({
+      next: (_enseignants: any) => this.enseignants = _enseignants.data.map((_enseignant: any) => {
+        _enseignant.fullName = _enseignant.prenom + ' ' + _enseignant.nom;
+        return _enseignant;
+      })
     })
   }
 
@@ -101,8 +106,9 @@ export class TimetableComponent implements OnInit {
             _cours.start = _cours.date;
             _cours.title = _cours.matiere.label;
             _cours.editable = true;
-            _cours.color = 'blue';
+            _cours.color = _cours.absents.length ? 'blue' : 'green';
             this.cView.calendar.addEvent(_cours);
+            return _cours;
           });
           this.calendarOptions!.events = cours;
           this.cours = cours;
@@ -112,19 +118,19 @@ export class TimetableComponent implements OnInit {
         next: (evaluations: any) => {
           evaluations = evaluations.map((_evaluation: any) => {
             _evaluation.start = _evaluation.date;
-            _evaluation.title = _evaluation.matiere.label;
+            _evaluation.title = _evaluation.matiere ? _evaluation.matiere.label : "blank";
             _evaluation.editable = true;
             _evaluation.color = 'red';
             this.cView.calendar.addEvent(_evaluation);
+            return _evaluation;
           });
           this.calendarOptions!.events = evaluations;
-          this.cours = evaluations;
+          this.evaluations = evaluations;
         },
       });
       this.ueSrv.getUes().subscribe({
         next: (_res: any) => {
           this.ue = _res[0].ues;
-          console.log(this.ue);
         },
       });
     }
@@ -150,5 +156,16 @@ export class TimetableComponent implements OnInit {
         options.center === 'dayGridMonth' ? 'dayGridWeek' : 'dayGridMonth'
       );
     }
+  }
+
+  filterTimetableEvents(e: any){
+    this.cView.calendar.removeAllEvents()
+    this.cours.concat(this.evaluations).forEach(_event => {
+      if(_event.enseignant === e.value) this.cView.calendar.addEvent(_event);
+    });
+  }
+  
+  resetTimetable(){
+    this.cours.concat(this.evaluations).forEach(_event => this.cView.calendar.addEvent(_event));
   }
 }

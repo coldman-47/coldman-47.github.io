@@ -1,0 +1,16 @@
+<div class="col-md-6">
+    <div class="row">
+        <div class="col-md-6">
+            <span class="p-float-label p-input-filled">
+                <p-dropdown [(ngModel)]="periode" (onChange)="getNotes()" appendTo="body" [options]="periodes" optionLabel="label" optionValue="_id" placeholder="Période" class="p-inputtext-sm"></p-dropdown>
+                <label for="inputtext"><span class="material-icons-outlined">group_work</span> &nbsp;Période</label>
+            </span>
+        </div>
+        <div class="col-md-6">
+            <span class="p-float-label p-input-filled">
+                <p-dropdown [(ngModel)]="type" (onChange)="getNotes()" appendTo="body" optionValue="_id" [autoDisplayFirst]="false" [options]="types" class="p-inputtext-sm"></p-dropdown>
+                <label for="inputtext"><i class="pi pi-list"></i> &nbsp;Type d'évaluation</label>
+            </span>
+        </div>
+    </div>
+</div>

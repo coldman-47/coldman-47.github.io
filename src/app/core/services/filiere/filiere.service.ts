@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Filiere } from 'src/app/core/models/filiere/filiere';
 import { environment } from 'src/environments/environment';
 
@@ -14,11 +14,15 @@ export class FiliereService {
   filieres = new BehaviorSubject<any[]>([]);
 
   constructor(private http: HttpClient) { }
-  
-  getFilieres(id: string){
+
+  getFilieres(): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl);
+  }
+
+  getFilieresByNiveau(id: string){
     return this.http.get(this.baseUrl + '/niveau/'+id);
   }
-  
+
   getFiliere(id: string){
     return this.http.get(this.baseUrl+'/'+id);
   }

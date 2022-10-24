@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FiliereService } from '../../../core/services/filiere/filiere.service';
+import { Ue } from 'src/app/core/models/ue/ue';
 import { Filiere } from '../../../core/models/filiere/filiere';
 import { ClasseService } from '../../../core/services/classe/classe.service';
-import { UeService } from '../../../core/services/ue/ue.service';
-import { Ue } from 'src/app/core/models/ue/ue';
 import { CycleService } from '../../../core/services/cycle/cycle.service';
+import { FiliereService } from '../../../core/services/filiere/filiere.service';
 import { NiveauService } from '../../../core/services/niveaux/niveau.service';
+import { UeService } from '../../../core/services/ue/ue.service';
 
 @Component({
   selector: 'app-classes',
@@ -74,8 +74,10 @@ export class ClassesComponent implements OnInit {
   // }
 
   getClasses(e: any){
+    this.classes = e;
+    
     this.activeIndex = 1;
-    this.filiereSrv.filiere.next(e);
+    // this.filiereSrv.filiere.next(e);
     
   }
 }

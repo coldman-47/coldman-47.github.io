@@ -20,4 +20,8 @@ export class CoursService {
   addCours(cours: Cours){
     return this.http.post(this.baseUrl+'/add', cours);
   }
+
+  volumeHoraireRestant(matiereId: string, enseignantId: string){
+    return this.http.get(this.baseUrl+`/matiere/${matiereId}/enseignant/${enseignantId}/done`);
+  }
 }

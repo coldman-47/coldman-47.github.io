@@ -1,0 +1,152 @@
+<div class="grid">
+  <div class="col-12">
+    <ng-container *ngIf="visiblePaymentForm">
+      <div class="col-12 grid">
+        <div class="field col-12 md:col-6">
+          <label for="montant">Montant</label>
+          <p-inputNumber
+            inputId="montant"
+            class="form-control"
+            [(ngModel)]="montant"
+          ></p-inputNumber>
+        </div>
+
+        <div class="field col-12 md:col-6">
+          <label for="">Mois à régler</label>
+          <p-dropdown [options]="months" [(ngModel)]="moisAregler" optionValue="value" optionLabel="name"></p-dropdown>
+        </div>
+
+        <div class="field col-12">
+          <!-- <label for="">Preuve</label> -->
+          <p-fileUpload
+            name="preuve"
+            chooseLabel="Preuve"
+            cancelLabel="Annuler"
+            chooseStyleClass="bg-secondary"
+            (onClear)="clear()"
+            (onRemove)="clear()"
+            uploadStyleClass="hidden"
+            (onSelect)="onUpload($event)"
+            accept="image/*"
+            [maxFileSize]="1000000"
+          >
+          </p-fileUpload>
+        </div>
+        <div class="field col-12 d-flex">
+          <button
+            pButton
+            type="submit"
+            (click)="addPayment()"
+            class="p-button p-button-lg"
+          >
+            Enregistrer
+          </button>
+          <button
+            pButton
+            type="submit"
+            class="p-button ml-1 p-button-danger"
+          >
+          Annuler
+          </button>
+        </div>
+      </div>
+    </ng-container>
+
+    <button
+      *ngIf="!visiblePaymentForm"
+      (click)="onAddNewPayment()"
+      class="ml-2"
+      pButton
+    >
+      Ajouter
+    </button>
+  </div>
+  <div class="col-12 d-flex justify-content-between align-items-center">
+    <h4>Redevance ponctuelle :</h4>
+    <b>{{ redevance$ | async }} FCFA</b>
+  </div>
+  <div class="col-12">
+    <p-table [value]="payements">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Montant</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-payement>
+        <tr>
+          <td>{{ payement.montant }}</td>
+          <td>{{ payement.date | date: "dd/MM/yyyy" }}</td>
+          <td>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-print"
+              class="p-button-rounded p-button-info p-button-text"
+              (click)="showFacture(payement)"
+            ></button>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-book"
+              class="p-button-rounded mr-1 p-button-info p-button-text"
+              (click)="showPreuve(payement.preuves)"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<p-dialog (onHide)="closePreuve" [(visible)]="displayPreuve"  [style]="{width: '100%'}">
+  <div class="w-100">
+    <img class="preuve" [src]="baseUrl+preuveSelected" alt="">
+  </div>
+</p-dialog>
+
+<p-dialog (onHide)="closeDialog()" [(visible)]="displayFacture" [style]="{width: '100%'}">
+
+  <div class="grid" id="facture">
+    <div class="col-12 d-flex flex-column align-items-start">
+      <h4>{{etablissement.nom | titlecase}}</h4>
+      <!-- <span>Keur Ndiaye Lo</span> -->
+      <span>{{etablissement.telephone}}</span>
+      <span>{{etablissement.email}}</span>
+    </div>
+    <div class="col-12 d-flex flex-column align-items-end">
+      <h5>{{apprenant.prenom | titlecase}} {{apprenant.nom | uppercase}}</h5>
+      <span>{{apprenant.classe.label}}</span>
+    </div>
+    <div class="col-12 d-flex p-2 align-items-center justify-content-between">
+      <span>Facture N° {{payementSelected?._id}}</span>
+      <span>{{ getMonth(payementSelected?.moisAregler) }}</span>
+    </div>
+    <div class="col-12 grid">
+      <div class="col-6 border p-2 d-flex flex-column">
+          <div><span>'</span></div>
+          <span>Frais scolarité</span>
+          <ng-container *ngFor="let s of servicesMensuels">
+            <span>{{s.label}}</span>
+          </ng-container>
+          <span>Total</span>
+      </div>
+      <div class="col-6 border p-2 d-flex flex-column align-items-end">
+        <span>Montant</span>
+        <span>{{scolarite}} FCFA</span>
+        <ng-container *ngFor="let s of servicesMensuels">
+          <span>{{s.tarif}} FCFA</span>
+        </ng-container>
+        <span>{{ payementSelected?.montant }} FCFA</span>
+      </div>
+    </div>
+    <div class="col-12 d-flex justify-content-end">
+      <span>Payée le {{payementSelected?.date | date:'dd/MM/yyy'}}</span>
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+      <p-button icon="pi pi-print" [print]="['facture']" label="Génére facture" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>
