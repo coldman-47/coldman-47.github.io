@@ -22,7 +22,7 @@ export class UesComponent implements OnInit {
   constructor(
     private matiereSrv: MatiereService,
     fb: FormBuilder,
-    srv: UeService,
+    private srv: UeService,
     private filiereSrv: FiliereService,
     private niveauSrv: NiveauService
   ) {
@@ -83,5 +83,11 @@ export class UesComponent implements OnInit {
       //     },
       //   });
       // });
+  }
+
+  delete(id?: string){
+    this.srv.delete(id!).subscribe({
+      next: (res) => console.log(res)
+    });
   }
 }

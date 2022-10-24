@@ -75,7 +75,12 @@ export class FilieresComponent extends StepEvent implements OnInit {
         this._filiere.emit(res);
         this.srv.filiere.next(<string>idFiliere);
       }
-      
+    });
+  }
+
+  delete(id?: string){
+    this.srv.delete(id!).subscribe({
+      next: (res) => console.log(res)
     });
   }
 }

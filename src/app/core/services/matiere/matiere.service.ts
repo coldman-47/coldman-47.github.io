@@ -37,4 +37,8 @@ export class MatiereService {
   addMatiere(matiere: any){
     return this.http.post(this.baseUrl+'/add', matiere);
   }
+
+  delete(id: string){
+    return this.http.delete(this.baseUrl+'/'+id);
+  }
 }

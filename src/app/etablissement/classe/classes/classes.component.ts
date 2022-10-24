@@ -29,7 +29,7 @@ export class ClassesComponent implements OnInit {
   ues?: Ue[];
   private niveau = this.niveauSrv.niveau.value;
 
-  constructor(srv: ClasseService, private filiereSrv: FiliereService, private ueSrv: UeService, private cycleSrv: CycleService, private niveauSrv: NiveauService) {
+  constructor(private srv: ClasseService, private filiereSrv: FiliereService, private ueSrv: UeService, private cycleSrv: CycleService, private niveauSrv: NiveauService) {
     srv.serverSentEvent.subscribe({
       next: (classe: any) => {
         if(classe){
@@ -75,9 +75,13 @@ export class ClassesComponent implements OnInit {
 
   getClasses(e: any){
     this.classes = e;
-    
     this.activeIndex = 1;
     // this.filiereSrv.filiere.next(e);
-    
+  }
+
+  delete(id?: string){
+    this.srv.delete(id!).subscribe({
+      next: (res) => console.log(res)
+    });
   }
 }
