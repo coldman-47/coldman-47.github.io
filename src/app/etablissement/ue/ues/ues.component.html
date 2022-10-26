@@ -28,7 +28,7 @@
                         <td class="text-pink-500">{{ue.label}}</td>
                         <td class="text-right">{{ue.totalCredits}}</td>
                         <td class="text-center"><button (click)="selected = ue; op.toggle($event)" class="p-button p-button-outlined p-button-rounded p-button-warning" pButton icon="pi pi-plus"></button></td>
-                        <td><button class="p-button p-button-text p-button-danger" pButton icon="pi pi-trash"></button></td>
+                        <td><button (click)="delete(ue._id)" class="p-button p-button-text p-button-danger" pButton icon="pi pi-trash"></button></td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="rowexpansion" let-ue>

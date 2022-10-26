@@ -30,4 +30,8 @@ export class FiliereService {
   addFiliere(filiere: Filiere){
     return this.http.post(this.baseUrl+'/add', filiere);
   }
+
+  delete(id: string){
+    return this.http.delete(this.baseUrl+'/'+id);
+  }
 }

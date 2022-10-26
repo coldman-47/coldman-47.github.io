@@ -33,4 +33,8 @@ export class ClasseService {
   createClasse(classe: Classe){
     return this.http.post(this.baseUrl+'/add', classe);
   }
+  
+  delete(id: string){
+    return this.http.delete(this.baseUrl+'/'+id);
+  }
 }
