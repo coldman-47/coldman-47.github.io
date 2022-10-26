@@ -15,6 +15,7 @@ import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { ChipModule } from 'primeng/chip';
+import { RolesComponent } from '../etablissement/role/roles/roles.component';
 
 const PRIME_MODULES = [
   // PrimeNG Modules
@@ -35,7 +36,8 @@ const PRIME_MODULES = [
 ]
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     FormsModule,

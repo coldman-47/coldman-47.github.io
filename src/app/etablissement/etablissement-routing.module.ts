@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClassesComponent } from './classe/classes/classes.component';
 import { EnseignantsComponent } from './enseignant/enseignants/enseignants.component';
+import { InfosComponent } from './info/infos/infos.component';
 import { PedagogieComponent } from './pedagogie/pedagogie.component';
 import { PersonnelComponent } from './personnel/personnel/personnel.component';
+import { RolesComponent } from './role/roles/roles.component';
 
 const routes: Routes = [
   {
@@ -32,6 +34,12 @@ const routes: Routes = [
     path: 'caisses',
     loadChildren: () =>
       import('./caisse/caisse.module').then((m) => m.CaisseModule),
+  },{
+    path: 'infos',
+    component: InfosComponent
+  },{
+    path: 'roles',
+    component: RolesComponent
   }
 ];
 

@@ -112,10 +112,9 @@
     </p-card>
 </div>
 <p-dialog [(visible)]="visible" [modal]="true" [responsive]="true" [style]="{width: '100%', minHeight: '100%'}">
-    <!-- <ng-template pTemplate="header">
-        <h1 class="text-center p-3 titre mb-0"></h1>
-    </ng-template> -->
-    <!--app-releve-periodique *ngIf="visible" [apprenant]="apprenant"></app-releve-periodique-->
-
+    <ng-template pTemplate="header">
+        <h1 class="text-center p-3 titre mb-0">Détails de l'apprenant</h1>
+    </ng-template>
+    <!-- <app-releve-periodique *ngIf="visible" [apprenant]="apprenant"></app-releve-periodique> -->
     <app-apprenant-detail *ngIf="visible" [tuteur]="tuteurApprenant" [apprenant]="apprenant"></app-apprenant-detail>
 </p-dialog>
