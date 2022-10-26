@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { Apprenant } from 'src/app/core/models/apprenant/apprenant';
 import { BourseModel } from 'src/app/core/models/bourse/bourse.model';
@@ -24,6 +25,7 @@ export class ApprenantDetailComponent implements OnInit {
 
   constructor(
     private _bourseService: BourseService,
+    private _messageService: MessageService,
     private _serviceExtraService: ServicesExtraService
   ) {}
 
@@ -41,6 +43,11 @@ export class ApprenantDetailComponent implements OnInit {
 
   addBourse(id: string) {
     this._bourseService.addBourseApprenant(id, this.apprenant._id).subscribe((data) => {
+      this._messageService.add({
+        severity: 'success',
+        summary: 'Confirmation',
+        detail: data,
+      });
       this.visibleBourse = false;
     });
   }

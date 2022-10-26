@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Redevance } from 'src/app/core/models/redevance/redevance.model';
@@ -15,14 +15,14 @@ import { CycleService } from '../../../core/services/cycle/cycle.service';
 export class NewRedevanceComponent implements OnInit {
   redevanceForm: FormGroup = new FormGroup({
     redevance: new FormGroup({
-      montant: new FormControl(),
-      montantInscription: new FormControl(),
-      nbMois: new FormControl(),
-      debutMois: new FormControl(),
+      montant: new FormControl(null, [Validators.required]),
+      montantInscription: new FormControl(null, [Validators.required]),
+      nbMois: new FormControl(null, [Validators.required]),
+      debutMois: new FormControl(null, [Validators.required]),
     }),
-    filieres: new FormControl([]),
-    cycle: new FormControl([]),
-    niveaux: new FormControl([]),
+    filieres: new FormControl([], [Validators.required]),
+    cycle: new FormControl([], [Validators.required]),
+    niveaux: new FormControl([], [Validators.required]),
   });
 
   cycles: any[] = [];
@@ -45,29 +45,38 @@ export class NewRedevanceComponent implements OnInit {
     this._cycleService.cycles.subscribe({
       next: (cycles) => this.cycles = cycles
     });
-    this._filiereService.getFilieres().subscribe({
-      next: (filieres) => this.filieres = filieres
-    });
+    // this._filiereService.getFilieres().subscribe({
+    //   next: (filieres) => this.filieres = filieres
+    // });
     this._cycleService.getCycles();
     this._route.params.subscribe((params: Params) => {
       if (params['id']) {
         this._redevanceService.getRedevance(params['id']).subscribe((data: Redevance) => {
           this.redevance = data;
-          const cycle = data.niveaux?.map(niveau => niveau.cycle)[0];
-          this.title = 'Modifier redevance';
-          this.isEdit = true;
-          this.getNiveaux({ value: cycle });
-          this.redevanceForm.patchValue({
-            redevance: {
-              montant: data.redevance?.montant,
-              montantInscription: data.redevance?.montantInscription,
-              nbMois: data.redevance?.nbMois,
-              debutMois: data.redevance?.debutMois,
-            },
-            filieres: data.filieres,
-            cycle,
-            niveaux: data.niveaux?.map(niveau => niveau._id),
-          });
+          if (data.niveaux && data.niveaux[0]._id) {
+            this._filiereService.getFilieresByNiveau(data.niveaux[0]._id).subscribe(filieres => {
+              if (filieres) {
+                this.filieres = filieres
+
+                const cycle = data.niveaux?.map(niveau => niveau.cycle)[0];
+                this.title = 'Modifier redevance';
+                this.isEdit = true;
+                this.getNiveaux({ value: cycle });
+                this.redevanceForm.patchValue({
+                  redevance: {
+                    montant: data.redevance?.montant,
+                    montantInscription: data.redevance?.montantInscription,
+                    nbMois: data.redevance?.nbMois,
+                    debutMois: data.redevance?.debutMois,
+                  },
+                  filieres: data.filieres,
+                  cycle,
+                  niveaux: data.niveaux?.map(niveau => niveau._id),
+                });
+              }
+            });
+          }
+
         });
       }
     });
@@ -75,6 +84,17 @@ export class NewRedevanceComponent implements OnInit {
 
   getNiveaux(cycle: any) {
     this.niveaux = this.cycles.find(c => c._id === cycle.value)?.niveaux;
+    this.redevanceForm.get('niveaux')?.setValue([]);
+    this.redevanceForm.get('filieres')?.setValue([]);
+  }
+
+  getFilieres(event: any) {
+    if (event.value[0]) {
+      this._filiereService.getFilieresByNiveau(event.value[0]).subscribe(data => this.filieres = data);
+    } else {
+      this.filieres = [];
+    }
+    this.redevanceForm.get('filieres')?.setValue([])
   }
 
   onSubmit() {

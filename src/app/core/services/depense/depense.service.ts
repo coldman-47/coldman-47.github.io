@@ -11,9 +11,14 @@ const BASE_URL = environment.backendUrl + 'depenses';
 })
 export class DepenseService {
   private _depenses = new BehaviorSubject<DepenseModel[]>([]);
+  private _total = new BehaviorSubject<number>(0);
 
   get depenses$() {
     return this._depenses.asObservable();
+  }
+
+  get total$() {
+    return this._total.asObservable();
   }
 
   constructor(private _httpClient: HttpClient) { }
@@ -24,9 +29,9 @@ export class DepenseService {
 
   getDepensesByMonth(month: number) {
     this._httpClient.get<any>(`${BASE_URL}/mois/${month}`)
-      .pipe(map(data => data.depenses))
-      .subscribe(depenses => {
-      this._depenses.next(depenses);
+      .subscribe(data => {
+        this._depenses.next(data.depenses);
+        this._total.next(data.total)
     });;
   }
 

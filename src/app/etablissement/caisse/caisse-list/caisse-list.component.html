@@ -21,6 +21,10 @@
 
   <p-tabView>
     <p-tabPanel header="Dépenses">
+      <div class="col-12 d-flex justify-content-between align-items-center">
+        <h4>Total dépense :</h4>
+        <b>{{ totalDepense }} FCFA</b>
+      </div>
       <p-table [value]="depenses">
         <ng-template pTemplate="header">
           <tr>
@@ -46,13 +50,6 @@
               <button
                 pButton
                 pRipple
-                icon="pi pi-trash"
-                class="p-button-rounded p-button-danger p-button-text"
-                (click)="onDeleteDepense(depense._id)"
-              ></button>
-              <button
-                pButton
-                pRipple
                 icon="pi pi-book"
                 class="p-button-rounded p-button p-button-text"
                 (click)="showPreuve(depense.preuves)"
@@ -63,27 +60,21 @@
       </p-table>
     </p-tabPanel>
     <p-tabPanel header="Encaissements">
+      <div class="col-12 d-flex justify-content-between align-items-center">
+        <h4>Total encaissement :</h4>
+        <b>{{ totalEncaissement }} FCFA</b>
+      </div>
       <p-table [value]="encaissements">
         <ng-template pTemplate="header">
           <tr>
             <th>Montant</th>
             <th>Date</th>
-            <th>Actions</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-enc>
           <tr>
             <td>{{ enc.montant }}</td>
             <td>{{ enc.date | date:'dd/MM/yyyy' }}</td>
-            <td>
-              <button
-                pButton
-                pRipple
-                icon="pi pi-trash"
-                class="p-button-rounded p-button-danger p-button-text"
-                (click)="onDeleteEncaissement(enc._id)"
-              ></button>
-            </td>
           </tr>
         </ng-template>
       </p-table>
