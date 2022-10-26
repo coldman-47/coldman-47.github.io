@@ -19,8 +19,8 @@ export class FiliereService {
     return this.http.get<any[]>(this.baseUrl);
   }
 
-  getFilieresByNiveau(id: string){
-    return this.http.get(this.baseUrl + '/niveau/'+id);
+  getFilieresByNiveau(id: string): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl + '/niveau/'+id);
   }
 
   getFiliere(id: string){

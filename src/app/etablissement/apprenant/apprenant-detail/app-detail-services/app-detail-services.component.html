@@ -13,8 +13,10 @@
         ></p-dropdown>
       </div>
     </ng-container>
-
-    <button (click)="onAddNewService()" class="ml-2" pButton>Ajouter</button>
+    <div class="col-12 d-flex">
+      <button (click)="onAddNewService()" class="ml-2" pButton>Ajouter</button>
+      <button *ngIf="visibleService" (click)="onClose()" class="ml-2 p-button-danger" pButton>Annuler</button>
+    </div>
   </div>
   <div class="col-12">
     <p-table [value]="services">
@@ -47,3 +49,6 @@
     </p-table>
   </div>
 </div>
+
+
+<p-toast></p-toast>
