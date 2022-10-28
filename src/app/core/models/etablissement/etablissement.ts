@@ -5,7 +5,7 @@ export class Etablissement {
     nom?: string;
     email?: string;
     telephone?: string;
-    responsable?: Personnel;
+    directeur?: Personnel;
     personnels?: Personnel[];
     logo: any;
 }

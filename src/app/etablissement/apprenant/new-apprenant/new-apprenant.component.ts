@@ -23,10 +23,10 @@ export class NewApprenantComponent implements OnInit {
     adresse: [null, Validators.required],
     dateNaiss: [null, Validators.required],
     tuteur: this.fb.group({
-      prenom: [null, Validators.required],
-      nom: [null, Validators.required],
-      email: [null, [Validators.email, Validators.required]],
-      telephone: [null, Validators.required],
+      pere: [null, Validators.required],
+      telephonePere: [null, Validators.required],
+      mere: [null, [Validators.email, Validators.required]],
+      telephoneMere: [null, Validators.required],
       adresse: [null, Validators.required]
     })
   });
@@ -78,5 +78,10 @@ export class NewApprenantComponent implements OnInit {
       fr.onloadend = () => img.next(<string>fr.result);
       fr.readAsDataURL(file);
     });
+  }
+
+  upload(e: any){
+    console.log(e);
+    
   }
 }
