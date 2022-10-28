@@ -34,7 +34,7 @@ export class EditEtablissementComponent implements OnInit {
         this.messageSrv.add({
           severity: 'success',
           summary: 'Création réussie',
-          detail: this.loginPage ? 'Connectez vous avec les identifiant du responsable qui vous a été envoyé par email' : 'Un agent a été ajouté au etablissements',
+          detail: this.loginPage ? 'Connectez vous avec les identifiant du directeur qui vous a été envoyé par email' : 'Un agent a été ajouté au etablissements',
         });
         this.submitted = false;
       },

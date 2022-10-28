@@ -56,7 +56,34 @@
             <span class="mr-4">Téléphone de la mère: </span>
             <span>{{ tuteur.telephoneMere }}</span>
           </div>
-          <!-- <pre>{{tuteur | json}}</pre> -->
+        </div>
+        <p-divider class="col-12" [align]="'center'">
+          <b>Bourse</b>
+        </p-divider>
+        <div class="col-12">
+          <div class="d-flex flex-wrap align-items-center">
+            <!-- <ng-container *ngFor="let s of services$ | async">
+              <p-chip class="mr-2" [label]="s.label | titlecase" [removable]="true" (onRemove)="removeService(s._id)"></p-chip>
+            </ng-container> -->
+            <ng-container *ngIf="visibleBourse">
+              <div class="field col-12">
+                <p-dropdown
+                  [options]="allBourses"
+                  (onChange)="addBourse($event.value)"
+                  class="form-control"
+                  placeholder="Choix de la bourse"
+                  [(ngModel)]="idBourse"
+                  [optionValue]="'_id'"
+                  [optionLabel]="'label'"
+                >
+                <ng-template pTemplate="item" let-bourse>
+                  {{ bourse.annee + ' ' + bourse.pourcentage + ' %' }}
+                </ng-template>
+              </p-dropdown>
+              </div>
+            </ng-container>
+            <button (click)="onAddBourse()" class="ml-2" pButton>Ajouter</button>
+          </div>
         </div>
       </div>
     </p-tabPanel>
@@ -70,38 +97,6 @@
     </p-tabPanel>
 
   </p-tabView>
-  <!-- <div class="col-sm-4 p-2">
-    <p-card>
-      <h5>{{ apprenant.prenom + " " + apprenant.nom }}</h5>
-      <i class="pi pi-phone"></i> : {{ apprenant.telephone | phone }}
-      <hr />
-      <i class="pi pi-at"></i> : {{ apprenant.email }}<br />
-    </p-card>
-  </div>
-  <div class="col-sm-8 row">
-    <div class="col-12 p-2">
-      <p-card>
-        <ng-template pTemplate="title">Services</ng-template>
-        <div class="d-flex flex-wrap align-items-center">
-          <ng-container *ngFor="let s of services$ | async">
-            <p-chip class="mr-2" [label]="s.label | titlecase" [removable]="true" (onRemove)="removeService(s._id)"></p-chip>
-          </ng-container>
-          <ng-container *ngIf="visibleService">
-            <div class="field col-12">
-              <p-dropdown
-                [options]="allServices"
-                (onChange)="addService($event.value)"
-                class="form-control"
-                placeholder="Choix de le service"
-                [(ngModel)]="idService"
-                [optionValue]="'_id'"
-                [optionLabel]="'label'"
-              ></p-dropdown>
-            </div>
-          </ng-container>
-
-          <button (click)="onAddNewService()" class="ml-2" pButton>Ajouter</button>
-        </div>
-      </p-card>
-    </div> -->
 </div>
+
+<p-toast></p-toast>

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { Apprenant } from 'src/app/core/models/apprenant/apprenant';
 import { Etablissement } from 'src/app/core/models/etablissement/etablissement';
@@ -54,6 +55,7 @@ export class AppDetailPayementsComponent implements OnInit {
 
   constructor(
     private _payementService: PayementService,
+    private _messageService: MessageService,
     private _authService: AuthService,
     private _etablissementService: EtablissementService,
     private _redevanceService: RedevanceService
@@ -61,9 +63,11 @@ export class AppDetailPayementsComponent implements OnInit {
 
   ngOnInit(): void {
     this._authService.user.subscribe((user) => {
-      this._etablissementService.getEtablissementById(user.etablissement).subscribe(data => {
-        this.etablissement = data
-      })
+      this._etablissementService
+        .getEtablissementById(user.etablissement)
+        .subscribe((data) => {
+          this.etablissement = data;
+        });
     });
     this._payementService.payements$.subscribe((data) => {
       this.payements = data;
@@ -94,21 +98,22 @@ export class AppDetailPayementsComponent implements OnInit {
 
   showFacture(payment: PayementModel) {
     this.payementSelected = payment;
-    this.displayFacture = this.payementSelected !== null && this.etablissement !== null;
+    this.displayFacture =
+      this.payementSelected !== null && this.etablissement !== null;
 
-    this.servicesMensuels = this.services.filter(s => {
+    this.servicesMensuels = this.services.filter((s) => {
       let current = +s.debutMois;
       let mois: number[] = [current];
       for (let i = 1; i < s.nbMois; i++) {
         current += 1;
         current = current > 12 ? 1 : current;
-        mois.push(current)
+        mois.push(current);
       }
-      return mois.includes(payment.moisAregler)
+      return mois.includes(payment.moisAregler);
     });
-    this.totalServices = this.servicesMensuels.map(x => x.tarif).reduce(
-      (prev, curr) => prev + (+curr), 0
-    );
+    this.totalServices = this.servicesMensuels
+      .map((x) => x.tarif)
+      .reduce((prev, curr) => prev + +curr, 0);
     this.scolarite = payment.montant - this.totalServices;
   }
 
@@ -151,9 +156,18 @@ export class AppDetailPayementsComponent implements OnInit {
       preuves: this.preuves,
       apprenant: this.apprenant._id,
     };
-    this._payementService.createPayement(payement).subscribe((data) => {
-      this.loadPayements();
-      this.visiblePaymentForm = false;
-    });
+    this._payementService.createPayement(payement).subscribe(
+      (data) => {
+        this.loadPayements();
+        this.closeForm();
+      },
+      (err) => {
+        this._messageService.add({
+          severity: 'error',
+          summary: 'Erreur',
+          detail: err.error,
+        });
+      }
+    );
   }
 }

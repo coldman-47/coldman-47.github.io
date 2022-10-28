@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { Apprenant } from 'src/app/core/models/apprenant/apprenant';
 import { ServiceExtraModel } from 'src/app/core/models/service/service.model';
 import { ServicesExtraService } from 'src/app/core/services/services-extra/services-extra.service';
@@ -15,7 +16,10 @@ export class AppDetailServicesComponent implements OnInit {
   allServices: ServiceExtraModel[] = [];
   visibleService = false;
 
-  constructor(private _servicesExtraService: ServicesExtraService) {}
+  constructor(
+    private _messageService: MessageService,
+    private _servicesExtraService: ServicesExtraService
+  ) { }
 
   ngOnInit(): void {
     this._servicesExtraService.getAllServicesExtra();
@@ -31,15 +35,27 @@ export class AppDetailServicesComponent implements OnInit {
     this.visibleService = true;
   }
 
+  onClose() {
+    this.visibleService = false;
+    this.idService = '';
+  }
+
   addService(id: string) {
     this._servicesExtraService
       .addServiceApprenant(id, this.apprenant._id)
       .subscribe((data) => {
         this.visibleService = false;
+        this.idService = '';
         this._servicesExtraService
           .getServicesApprenant(this.apprenant._id)
           .subscribe((data) => (this.services = data));
-      });
+      }, (err => {
+        this._messageService.add({
+          severity: 'error',
+          summary: 'Erreur',
+          detail: err.error,
+        });
+      }));
   }
 
   removeService(id: string) {
