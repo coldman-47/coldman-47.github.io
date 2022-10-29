@@ -3,6 +3,17 @@
     <div class="row px-3">
         <div class="col-4">
             <p-table selectionMode="single" [(selection)]="selected" [autoLayout]="true" styleClass="p-datatable-striped" [value]="roles" class="card border-0 p-3">
+                <ng-template pTemplate="summary">
+                    <div class="d-flex justify-content-between">
+                        <span class="p-float-label">
+                            <input pInputText class="form-control">
+                            <label for="">Label</label>
+                        </span>
+                        <span>
+                            <button pButton icon="pi pi-plus" pRipple class="p-button-rounded p-button-outlined"></button>
+                        </span>
+                    </div>
+                </ng-template>
                 <ng-template pTemplate="header" let-yourColumnArrayVaraible>
                     <tr>
                         <th>#</th>

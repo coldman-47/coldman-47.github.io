@@ -5,6 +5,7 @@ import { MatiereService } from 'src/app/core/services/matiere/matiere.service';
 import { UeService } from 'src/app/core/services/ue/ue.service';
 import { FiliereService } from 'src/app/core/services/filiere/filiere.service';
 import { NiveauService } from '../../../core/services/niveaux/niveau.service';
+import { CycleService } from 'src/app/core/services/cycle/cycle.service';
 
 @Component({
   selector: 'app-ues',
@@ -18,14 +19,20 @@ export class UesComponent implements OnInit {
   matiereForm!: FormGroup;
   selected?: any;
   matieres: any[] = [];
+  cycle: any;
 
   constructor(
     private matiereSrv: MatiereService,
     fb: FormBuilder,
     private srv: UeService,
     private filiereSrv: FiliereService,
-    private niveauSrv: NiveauService
+    private niveauSrv: NiveauService,
+    cycleSrv: CycleService
   ) {
+    this.cycle = cycleSrv.cycle.value;
+    cycleSrv.cycle.subscribe({
+      next: _cycle => this.cycle = _cycle
+    });
     this.matiereForm = fb.group({
       label: [null, Validators.required],
       credits: [null, Validators.required],
