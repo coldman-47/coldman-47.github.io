@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  // backendUrl: ' https://glacial-castle-83763.herokuapp.com/api/',
+  backendUrl: ' https://glacial-castle-83763.herokuapp.com/api/',
+  // backendUrl: 'https://cc18-41-214-14-21.ngrok.io/api/',
   baseUrl: 'https://cc18-41-214-14-21.ngrok.io/',
-  backendUrl: 'https://cc18-41-214-14-21.ngrok.io/api/'
 };
 
 /*

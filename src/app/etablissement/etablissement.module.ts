@@ -66,6 +66,8 @@ import { AppDetailServicesComponent } from './apprenant/apprenant-detail/app-det
 import { AppDetailPayementsComponent } from './apprenant/apprenant-detail/app-detail-payements/app-detail-payements.component';
 import {DividerModule} from 'primeng/divider';
 import { NgxPrintElementModule } from 'ngx-print-element';
+import { NewConvocationComponent } from './convocations/new-convocation/new-convocation.component';
+import { ConvocationsComponent } from './convocations/convocations/convocations.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +102,9 @@ import { NgxPrintElementModule } from 'ngx-print-element';
     DetailsCoursComponent,
     InfosComponent,
     RolesComponent,
-    PermissionsComponent
+    PermissionsComponent,
+    NewConvocationComponent,
+    ConvocationsComponent
   ],
   imports: [
     CommonModule,

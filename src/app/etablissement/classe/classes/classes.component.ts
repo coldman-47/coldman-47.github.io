@@ -26,6 +26,7 @@ export class ClassesComponent implements OnInit {
   selected: any;
   display = false;
   visible = false;
+  showCreateForm = false;
   ues?: Ue[];
   private niveau = this.niveauSrv.niveau.value;
 
@@ -51,7 +52,7 @@ export class ClassesComponent implements OnInit {
           this.activeIndex = 0;
         }
       }
-    })
+    });
   }
 
   ngOnInit(): void {

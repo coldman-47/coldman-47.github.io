@@ -95,6 +95,10 @@
     <p-tabPanel header="Payements">
       <app-app-detail-payements [apprenant]="apprenant" [services]="services"></app-app-detail-payements>
     </p-tabPanel>
+    <!-- CONVOCATIONS -->
+    <p-tabPanel header="Convocations">
+      <app-convocations [apprenantId]="apprenant._id"></app-convocations>
+    </p-tabPanel>
 
   </p-tabView>
 </div>
