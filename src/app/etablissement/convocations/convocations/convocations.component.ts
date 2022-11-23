@@ -9,13 +9,14 @@ import { ConvocationService } from '../../../core/services/convocation/convocati
 export class ConvocationsComponent implements OnInit {
   @Input() apprenantId: any;
   display = false;
-  convocation: any = {};  
+  convocation: any = {};
+  convocations: any = [];
 
   constructor(private srv: ConvocationService) { }
 
   ngOnInit(): void {
     this.srv.getConvocations(this.apprenantId).subscribe({
-      next: res => console.log(res)
+      next: res => this.convocations = res
     });
     this.convocation.apprenant = this.apprenantId;
     

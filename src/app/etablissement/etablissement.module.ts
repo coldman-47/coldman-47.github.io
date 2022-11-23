@@ -68,6 +68,7 @@ import {DividerModule} from 'primeng/divider';
 import { NgxPrintElementModule } from 'ngx-print-element';
 import { NewConvocationComponent } from './convocations/new-convocation/new-convocation.component';
 import { ConvocationsComponent } from './convocations/convocations/convocations.component';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 @NgModule({
   declarations: [
@@ -132,6 +133,7 @@ import { ConvocationsComponent } from './convocations/convocations/convocations.
     PaginatorModule,
     PanelMenuModule,
     PipesModule,
+    RadioButtonModule,
     SkeletonModule,
     SpeedDialModule,
     StepsModule,

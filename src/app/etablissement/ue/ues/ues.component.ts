@@ -35,7 +35,7 @@ export class UesComponent implements OnInit {
     });
     this.matiereForm = fb.group({
       label: [null, Validators.required],
-      credits: [null, Validators.required],
+      credits: [null],
       volumeHoraire: [null, Validators.required],
       coefficient: [null, Validators.required],
     });

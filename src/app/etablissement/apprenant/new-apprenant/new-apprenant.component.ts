@@ -18,10 +18,11 @@ export class NewApprenantComponent implements OnInit {
   apprenantForm = this.fb.group({
     prenom: [null, Validators.required],
     nom: [null, Validators.required],
-    email: [null, [Validators.email, Validators.required]],
-    telephone: [null, Validators.required],
+    email: [null, Validators.email],
+    telephone: [null],
     adresse: [null, Validators.required],
     dateNaiss: [null, Validators.required],
+    sexe: [null, Validators.required],
     tuteur: this.fb.group({
       pere: [null, Validators.required],
       telephonePere: [null, Validators.required],

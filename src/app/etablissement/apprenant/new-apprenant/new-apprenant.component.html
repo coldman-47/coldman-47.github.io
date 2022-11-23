@@ -51,6 +51,18 @@
             <small *ngIf="submitted && controls['telephone'].invalid" id="username-help" class="p-error">Une adresse est requise.</small>
         </div>
         <div class="field m-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p-radioButton formControlName="sexe" inputId="male" value="M"></p-radioButton>
+                    <label for="male">&nbsp;Homme</label>
+                </div>
+                <div class="col-md-6">
+                    <p-radioButton inputId="female" formControlName="sexe" value="F"></p-radioButton>
+                    <label for="female">&nbsp;Femme</label>
+                </div>
+            </div>
+        </div>
+        <div class="field m-4">
             <p-fileUpload #img [chooseIcon]="'pi pi-image'" [cancelIcon]="''" [accept]="'image/*'"
             (onRemove)="avatar = undefined" chooseLabel="Image" cancelLabel="Annuler" (onSelect)="getImg($event)"
             [showUploadButton]="false" name="image" [multiple]="false"></p-fileUpload>
