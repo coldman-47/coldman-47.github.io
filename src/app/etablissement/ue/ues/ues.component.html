@@ -63,7 +63,7 @@
                 </span>
                 <small *ngIf="submitted && controls['volumeHoraire'].invalid" id="username-help" class="p-error">Le volume horaire de la matière est requis.</small>
             </div>
-            <div class="field m-4">
+            <div class="field m-4" *ngIf="cycle.label === 'Licence' || cycle.label === 'Master' || cycle.label === 'Doctorat'">
                 <span class="p-float-label">
                     <p-inputNumber formControlName="credits" placeholder="Crédits" class="form-control {{submitted && controls['credits'].invalid ? 'ng-invalid ng-dirty' : ''}}"></p-inputNumber> 
                     <label for="inputtext"><i class="pi pi-phone"></i>&nbsp;Crédits</label>

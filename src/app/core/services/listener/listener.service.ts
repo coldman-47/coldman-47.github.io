@@ -4,19 +4,21 @@ import { Subject } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ListenerService {
-
   data = new Subject();
 
-  constructor(private socket: Socket, private authSrv: AuthService) { }
+  constructor(private socket: Socket, private authSrv: AuthService) {}
 
   listener(entity: string, methods: string[]) {
     methods.forEach((method) =>
       this.socket.on(
-        `/api/${entity}/${this.authSrv.user.value?.entreprise}/${method}`,
-        (_data: any) => this.data.next({ method, _data })
+        `/api/${entity}/${this.authSrv.user.value?.etablissement}/${method}`,
+        (_data: any) => {
+          this.data.next({ method, _data });
+          console.log(_data);
+        }
       )
     );
   }
