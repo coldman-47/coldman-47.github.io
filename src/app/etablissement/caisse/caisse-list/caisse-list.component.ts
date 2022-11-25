@@ -34,7 +34,9 @@ export class CaisseListComponent implements OnInit {
   selectedMonth: { name: string; value: number };
 
   depenses: DepenseModel[] = [];
+  totalDepense: number = 0;
   encaissements: EncaissementModel[] = [];
+  totalEncaissement: number = 0;
 
   constructor(
     private _confirmationService: ConfirmationService,
@@ -46,7 +48,9 @@ export class CaisseListComponent implements OnInit {
   ngOnInit(): void {
     this.selectedMonth = this.months[this.now.getMonth()];
     this._depenseService.depenses$.subscribe(data => this.depenses = data);
+    this._depenseService.total$.subscribe(total => this.totalDepense = total);
     this._encaissementService.encaissements$.subscribe(data => this.encaissements = data);
+    this._encaissementService.total$.subscribe(total => this.totalEncaissement = total);
     this.loadCaisse();
   }
 
@@ -57,7 +61,7 @@ export class CaisseListComponent implements OnInit {
 
   showPreuve(preuve: any) {
     this.preuveSelected = preuve;
-    this.displayPreuve = this.preuveSelected !== null;
+    this.displayPreuve = true;
   }
 
   closePreuve() {
@@ -65,63 +69,4 @@ export class CaisseListComponent implements OnInit {
     this.displayPreuve = false;
   }
 
-  onDeleteDepense(id: string): void {
-    this._confirmationService.confirm({
-      message: 'Voulez-vous supprimer cette dépense?',
-      header: 'Suppression',
-      acceptLabel: 'Supprimer',
-      acceptButtonStyleClass: 'p-button-danger',
-      rejectLabel: 'Annuler',
-      icon: 'pi pi-info-circle',
-      accept: () => {
-        this._depenseService.deleteDepense(id).subscribe({
-          next: (data) => {
-            this._messageService.add({
-              severity: 'info',
-              summary: 'Confirmation',
-              detail: 'Dépense supprimée',
-            });
-            this._depenseService.getDepensesByMonth(this.selectedMonth.value);
-          },
-          error: (err) => {
-            this._messageService.add({
-              severity: 'error',
-              summary: 'Erreur',
-              detail: err.error.message,
-            });
-          }
-        });
-      },
-    });
-  }
-
-  onDeleteEncaissement(id: string): void {
-    this._confirmationService.confirm({
-      message: 'Voulez-vous supprimer cet encaissement?',
-      header: 'Suppression',
-      acceptLabel: 'Supprimer',
-      acceptButtonStyleClass: 'p-button-danger',
-      rejectLabel: 'Annuler',
-      icon: 'pi pi-info-circle',
-      accept: () => {
-        this._encaissementService.deleteEncaissement(id).subscribe({
-          next: (data) => {
-            this._messageService.add({
-              severity: 'info',
-              summary: 'Confirmation',
-              detail: 'Encaissement supprimé',
-            });
-            this._encaissementService.getEncaissementsByMonth(this.selectedMonth.value);
-          },
-          error: (err) => {
-            this._messageService.add({
-              severity: 'error',
-              summary: 'Erreur',
-              detail: err.error.message,
-            });
-          }
-        });
-      },
-    });
-  }
 }

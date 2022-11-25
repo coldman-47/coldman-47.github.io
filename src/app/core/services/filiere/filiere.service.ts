@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Filiere } from 'src/app/core/models/filiere/filiere';
 import { environment } from 'src/environments/environment';
+import { ListenerService } from '../listener/listener.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +14,21 @@ export class FiliereService {
   filiere = new BehaviorSubject<string>('');
   filieres = new BehaviorSubject<any[]>([]);
 
-  constructor(private http: HttpClient) { }
+  serverSentEvent = new BehaviorSubject(null);
+
+  constructor(private http: HttpClient, socket: ListenerService) {
+    socket.listener('filieres', ['add', 'put']);
+    socket.data.subscribe({
+      next: (ssEvent: any) => this.serverSentEvent.next(ssEvent)
+    });
+  }
 
   getFilieres(): Observable<any[]>{
     return this.http.get<any[]>(this.baseUrl);
   }
 
-  getFilieresByNiveau(id: string){
-    return this.http.get(this.baseUrl + '/niveau/'+id);
+  getFilieresByNiveau(id: string): Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl + '/niveau/'+id);
   }
 
   getFiliere(id: string){

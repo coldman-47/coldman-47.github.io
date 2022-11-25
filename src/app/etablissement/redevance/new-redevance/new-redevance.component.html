@@ -48,19 +48,6 @@
         </div>
       </ng-container>
       <div class="field col-12">
-        <label>Filière</label>
-        <p-multiSelect
-          [selectionLimit]="1"
-          [showHeader]="false"
-          [options]="filieres"
-          class="form-control"
-          placeholder="Choix de la filière"
-          formControlName="filieres"
-          [optionValue]="'_id'"
-          [optionLabel]="'label'"
-        ></p-multiSelect>
-      </div>
-      <div class="field col-12 md:col-6">
         <label>Cycle</label>
         <p-dropdown
           #_cycle
@@ -76,16 +63,31 @@
       <div class="field col-12 md:col-6">
         <label>Niveaux</label>
         <p-multiSelect
+          [selectionLimit]="1"
           display="chip"
           [showHeader]="false"
           [disabled]="!_cycle.value"
           name="niveaux"
           formControlName="niveaux"
+          (onChange)="getFilieres($event)"
           [options]="niveaux"
           optionLabel="label"
           optionValue="_id"
           placeholder="Choix des niveaux"
           class="form-control"
+        ></p-multiSelect>
+      </div>
+      <div class="field col-12 md:col-6">
+        <label>Filière</label>
+        <p-multiSelect
+          [selectionLimit]="1"
+          [showHeader]="false"
+          [options]="filieres"
+          class="form-control"
+          placeholder="Choix de la filière"
+          formControlName="filieres"
+          [optionValue]="'_id'"
+          [optionLabel]="'label'"
         ></p-multiSelect>
       </div>
       <div class="field col-12">

@@ -11,10 +11,10 @@
     <ng-template pTemplate="body" let-permission let-i="rowIndex">
         <tr>
             <td class="text-blue-800">{{permission.label | titlecase}}</td>
-            <td><p-inputSwitch [(ngModel)]="_permissions[i]?.privileges['READ']" (onChange)="togglePermission($event, permission)" [trueValue]="'READ'" [falseValue]="'read'"></p-inputSwitch></td>
-            <td><p-inputSwitch [(ngModel)]="_permissions[i]?.privileges['CREATE']" (onChange)="togglePermission($event, permission)" [trueValue]="'CREATE'" [falseValue]="'create'"></p-inputSwitch></td>
-            <td><p-inputSwitch [(ngModel)]="_permissions[i]?.privileges['UPDATE']" (onChange)="togglePermission($event, permission)" [trueValue]="'UPDATE'" [falseValue]="'update'"></p-inputSwitch></td>
-            <td><p-inputSwitch [(ngModel)]="_permissions[i]?.privileges['DELETE']" (onChange)="togglePermission($event, permission)" [trueValue]="'DELETE'" [falseValue]="'delete'"></p-inputSwitch></td>
+            <td><p-inputSwitch [(ngModel)]="_permissions[i]?.privileges['read-'+permission.label.toLowerCase()]" (onChange)="togglePermission($event, permission)" [trueValue]="'read-'+permission.label.toLowerCase()" [falseValue]="'read'"></p-inputSwitch></td>
+            <td><p-inputSwitch [(ngModel)]="_permissions[i]?.privileges['create-'+permission.label.toLowerCase()]" (onChange)="togglePermission($event, permission)" [trueValue]="'create-'+permission.label.toLowerCase()" [falseValue]="'create'"></p-inputSwitch></td>
+            <td><p-inputSwitch [(ngModel)]="_permissions[i]?.privileges['update-'+permission.label.toLowerCase()]" (onChange)="togglePermission($event, permission)" [trueValue]="'update-'+permission.label.toLowerCase()" [falseValue]="'update'"></p-inputSwitch></td>
+            <td><p-inputSwitch [(ngModel)]="_permissions[i]?.privileges['delete-'+permission.label.toLowerCase()]" (onChange)="togglePermission($event, permission)" [trueValue]="'delete-'+permission.label.toLowerCase()" [falseValue]="'delete'"></p-inputSwitch></td>
         </tr>
     </ng-template>
 </p-table>

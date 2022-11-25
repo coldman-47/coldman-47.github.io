@@ -44,7 +44,7 @@ export class NewUeComponent extends Cancel implements OnInit {
         this.ue = new Ue();
         this.filiereField.clear();
         this.messageSrv.add({
-          summary: 'La filière a été créée',
+          summary: 'L\'ue a été créée',
           severity: 'success',
         });
         this.submitted = false;

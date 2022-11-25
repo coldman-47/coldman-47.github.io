@@ -11,9 +11,14 @@ const BASE_URL = environment.backendUrl + 'encaissements';
 })
 export class EncaissementService {
   private _encaissements = new BehaviorSubject<EncaissementModel[]>([]);
+  private _total = new BehaviorSubject<number>(0);
 
   get encaissements$() {
     return this._encaissements.asObservable();
+  }
+
+  get total$() {
+    return this._total.asObservable();
   }
 
   constructor(private _httpClient: HttpClient) { }
@@ -24,9 +29,9 @@ export class EncaissementService {
 
   getEncaissementsByMonth(month: number) {
     this._httpClient.get<any>(`${BASE_URL}/mois/${month}`)
-      .pipe(map(data => data.encaissements))
-      .subscribe(encaissements => {
-      this._encaissements.next(encaissements);
+      .subscribe(data => {
+        this._encaissements.next(data.encaissements);
+        this._total.next(data.total)
     });;
   }
 
