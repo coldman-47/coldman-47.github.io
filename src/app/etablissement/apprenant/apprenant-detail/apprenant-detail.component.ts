@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { Observable } from 'rxjs';
 import { Apprenant } from 'src/app/core/models/apprenant/apprenant';
 import { BourseModel } from 'src/app/core/models/bourse/bourse.model';
 import { ServiceExtraModel } from 'src/app/core/models/service/service.model';

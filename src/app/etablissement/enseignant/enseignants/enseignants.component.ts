@@ -18,7 +18,7 @@ export class EnseignantsComponent implements OnInit {
   loading = false;
   page?: number;
   // @Input() departements!: Departement[];
-  details = false;
+  visible = false;
 
   constructor(private srv: EnseignantService) {
     srv.serverSentEvent.subscribe({
